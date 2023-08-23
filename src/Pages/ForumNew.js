@@ -1,7 +1,9 @@
-export default function New() {
+
+export default function ForumNew() {
     return (
       <div>
          
       </div>
     )
   }
+  

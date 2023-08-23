@@ -1,4 +1,4 @@
-export default function Show() {
+export default function ForumIndex() {
     return (
       <div>
          
