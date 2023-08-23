@@ -1,5 +1,5 @@
 
-export default function Edit() {
+export default function DonationEdit() {
   return (
     <div>
        
