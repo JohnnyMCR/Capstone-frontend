@@ -6,7 +6,6 @@ import LogIn from './Components/LogIn';
 import Home from './Pages/Home'
 import Dashboard from './Components/Dashboard';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import firebaseConfig from './Components/firebaseConfig'; // Your Firebase config
 
 function App() {
   const [user, setUser] = useState(null);
