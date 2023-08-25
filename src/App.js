@@ -1,27 +1,46 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import NavBar from "./Components/NavBar"
-
-import Home from "./Pages/Home"
-// import Index from "./Pages/Index"
-// import Show from "./Pages/Show"
-// import Edit from "./Pages/Edit"
-// import New from "./Pages/New"
-import Error from "./Pages/Error"
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import NavBar from './Components/NavBar';
+import SignUp from './Components/SignUp';
+import LogIn from './Components/LogIn';
+import Home from './Pages/Home'
+import Dashboard from './Components/Dashboard';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import firebaseConfig from './Components/firebaseConfig'; // Your Firebase config
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [auth]);
+
   return (
-    <div className="App">
-     <Router>
-      <NavBar />
-      <main>
+    <Router>
+      <div className="App">
+        <NavBar user={user} onLogout={() => auth.signOut()} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Error />} />
+        <Route path='/' element={<Home/>} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route
+          path="/dashboard"
+          element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}        />
         </Routes>
-      </main>
-     </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 
