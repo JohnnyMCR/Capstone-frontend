@@ -1,11 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import ReactDOM from 'react-dom';
 import App from './App';
+import firebaseConfig from "./Components/firebaseConfig" 
+import { initializeApp } from 'firebase/app';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const app = initializeApp(firebaseConfig);
+
+ReactDOM.render(<App />, document.getElementById('root'));
