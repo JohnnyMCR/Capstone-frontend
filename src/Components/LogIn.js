@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     const auth = getAuth();
@@ -13,7 +16,9 @@ const LogIn = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setError('');
-      // Handle successful login (e.g., redirect to dashboard)
+      
+      // Redirect to the dashboard
+      navigate('/dashboard');
     } catch (error) {
       setError(error.message);
     }
