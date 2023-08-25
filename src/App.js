@@ -24,8 +24,8 @@ function App() {
       <div className="App">
         <NavBar user={user} onLogout={() => auth.signOut()} />
         <Routes>
-        <Route path="/signup" component={SignUp} />
-        <Route path="/login" component={LogIn} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/LogIn" element={<LogIn />} />
         <Route
           path="/dashboard"
           render={() => (user ? <Dashboard user={user} /> : <Navigate to="/login" />)}
