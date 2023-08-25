@@ -19,7 +19,7 @@ const NavBar = ({ user, onLogout }) => {
           </>
         ) : (
           <li>
-            <Link to="/LogIn">Login</Link>
+            <Link to="/login">Login</Link>
           </li>
         )}
       </ul>

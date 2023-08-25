@@ -36,7 +36,7 @@ const LogIn = () => {
       />
       <button onClick={handleLogin}>Login</button>
       <p>
-        Don't have an account? <Link to="/SignUp">Sign up</Link>
+        Don't have an account? <Link to="/signup">Sign up</Link>
       </p>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
