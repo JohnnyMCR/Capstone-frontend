@@ -12,6 +12,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [address, setAddress] = useState('');
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const SignUp = () => {
         return;
       }
   
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password,address);
   
       // Update the user's display name (username)
       await updateProfile(auth.currentUser, { displayName: username });
@@ -34,7 +35,8 @@ const SignUp = () => {
       const response = await axios.post(`${API}/profiles`, {
         username,
         password,
-        email
+        email,
+        address
       });
   
       console.log(response);
@@ -74,6 +76,12 @@ const SignUp = () => {
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="address"
+        placeholder="Address"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
       />
       <button onClick={handleSignup}>Sign Up</button>
       <p>
