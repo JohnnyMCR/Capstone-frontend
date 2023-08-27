@@ -32,12 +32,14 @@ function App() {
       <div className="App">
         <NavBar user={user} onLogout={() => auth.signOut()} />
         <Routes>
-        <Route path='/' element={<Home/>} />
+          <Route path='/' element={<Home />} />
+          {/* <Route path='/forum' element={<Index />} /> */}
+
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route
-          path="/dashboard"
-          element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}        />
+          <Route path="/login" element={<LogIn />} />
+          <Route
+            path="/dashboard"
+            element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>
