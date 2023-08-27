@@ -16,7 +16,6 @@ import ShowDonation from './Pages/ShowDonation';
 // import ShowForum from './Pages/ShowForum';
 import Dashboard from './Components/Dashboard';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import firebaseConfig from './Components/firebaseConfig'; // Your Firebase config
 
 function App() {
   const [user, setUser] = useState(null);
