@@ -1,10 +1,10 @@
-import Forums from "../Components/Forums";
+import SinglePost from "../Components/Forums";
 
 export default function ShowForum() {
   return (
-    <div className="ShowForum">
-      <h2>Forums</h2>
-      <Forums />
+    <div className="Single Post">
+      <h2>New Post</h2>
+      <SinglePost />
     </div>
   );
 }

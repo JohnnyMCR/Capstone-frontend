@@ -1,10 +1,10 @@
-import Donations from "../Components/Donations";
+import SingleDonation from "../Components/Donations";
 
 export default function ShowDonation() {
   return (
-    <div className="ShowDonations">
-      <h2>Donations</h2>
-      <Donations />
+    <div className="New Donation">
+      <h2>New Donation</h2>
+      <SingleDonation />
     </div>
   );
 }
