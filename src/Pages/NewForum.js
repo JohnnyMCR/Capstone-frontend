@@ -6,5 +6,5 @@ export default function NewForum() {
       <h2>New Post</h2>
       <SinglePost />
     </div>
-  )
+  );
 }
