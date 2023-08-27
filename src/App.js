@@ -13,7 +13,7 @@ import ForumIndex from './Pages/ForumIndex';
 import NewDonation from './Pages/NewDonation';
 import NewForum from './Pages/NewForum';
 import ShowDonation from './Pages/ShowDonation';
-import ShowForum from './Pages/ShowForum';
+// import ShowForum from './Pages/ShowForum';
 import Dashboard from './Components/Dashboard';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import firebaseConfig from './Components/firebaseConfig'; // Your Firebase config
@@ -43,15 +43,16 @@ function App() {
         <NavBar user={user} onLogout={() => auth.signOut()} />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<Error />} />
           <Route path="/About" element={<About />} />
           <Route path="/donations" element={<DonationIndex />} />
           <Route path="/donations/new" element={<NewDonation />} />
           <Route path="/donations/edit" element={<EditDonation />} />
           <Route path="/donations/show" element={<ShowDonation />} />
-          <Route path="/Forum" element={<ForumIndex />} />
-          <Route path="/forum/new" element={<NewForum />} />
-          <Route path="/forum/edit" element={<ForumEdit />} />
-          <Route path="/forum/show" element={<ShowForum />} />
+          <Route path="/forums" element={<ForumIndex />} />
+          <Route path="/forums/new" element={<NewForum />} />
+          <Route path="/forums/edit" element={<ForumEdit />} />
+          {/* <Route path="/forum/show" element={<ShowForum />} /> */}
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route
