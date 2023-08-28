@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-
+const API = process.env.REACT_APP_API_URL;
 
 const LogIn = () => {
   const [email, setEmail] = useState('');
@@ -18,6 +19,13 @@ const LogIn = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setError('');
+
+      // Make an API call to your backend to perform additional actions
+      const response = await axios.post(`${API}/profiles`, {
+        email,
+      });
+
+      console.log(response);
       
       // Redirect to the dashboard
       navigate('/dashboard');
