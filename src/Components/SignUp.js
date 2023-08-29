@@ -4,6 +4,8 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
+
 const API = process.env.REACT_APP_API_URL;
 
 
@@ -86,6 +88,7 @@ const SignUp = () => {
       <button onClick={handleSignup}>Sign Up</button>
       <p>
         Already have an account? <Link to="/login">Log in</Link>
+
       </p>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>

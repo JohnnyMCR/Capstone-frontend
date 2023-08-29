@@ -10,17 +10,17 @@ const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     const auth = getAuth();
 
+    
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setError('');
 
-      // Make an API call to your backend to perform additional actions
       const response = await axios.post(`${API}/profiles`, {
         email,
       });
@@ -52,8 +52,10 @@ const LogIn = () => {
       <button onClick={handleLogin}>Login</button>
       <p>
         Don't have an account? <Link to="/signup">Sign up</Link>
+        
       </p>
       {error && <p style={{ color: 'red' }}>{error}</p>}
+
     </div>
   );
 };
