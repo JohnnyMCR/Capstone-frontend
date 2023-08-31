@@ -16,7 +16,7 @@ const ForumForm = ({ onNewForum }) => {
         title,
         content,
         category,
-        user_id: 1, // Replace with the actual user ID
+        user_id: 1, 
         date: new Date().toISOString().split('T')[0], // Get the current date
       });
 

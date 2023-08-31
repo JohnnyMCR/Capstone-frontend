@@ -22,13 +22,13 @@ const Forums = () => {
   }, []);
 
   const handleNewForum = (newForum) => {
-    setForums([...forums, newForum]); // Add the new forum post to the list
+    setForums([...forums, newForum]); 
   };
 
   return (
     <div>
       <h2>Forums</h2>
-      <ForumForm onNewForum={handleNewForum} /> {/* Pass the handler */}
+      <ForumForm onNewForum={handleNewForum} /> 
       <ul>
         {forums.map(forum => (
           <li key={forum.id}>
