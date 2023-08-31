@@ -1,37 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ForumForm from './ForumForm';
 
 const API = process.env.REACT_APP_API_URL;
 
-const Forum = () => {
-  const [forumPosts, setForumPosts] = useState([]);
+const Forums = () => {
+  const [forums, setForums] = useState([]);
 
   useEffect(() => {
-    // Fetch forum posts from the backend API
-    async function fetchForumPosts() {
+    async function fetchForums() {
       try {
         const response = await axios.get(`${API}/forums`);
-        console.log(response.data);
-        setForumPosts(response.data);
+        console.log('API response:', response.data);
+        setForums(response.data);
       } catch (error) {
-        console.error('Error fetching forum posts:', error);
+        console.error('Error fetching forums:', error);
       }
     }
 
-    fetchForumPosts();
+    fetchForums();
   }, []);
+
+  const handleNewForum = (newForum) => {
+    setForums([...forums, newForum]); // Add the new forum post to the list
+  };
 
   return (
     <div>
-      <h2>Forum</h2>
+      <h2>Forums</h2>
+      <ForumForm onNewForum={handleNewForum} /> {/* Pass the handler */}
       <ul>
-        {forumPosts.map((post) => (
-          <li key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            <p>Posted by: User ID {post.user_id}</p>
-            <p>Date: {post.date}</p>
-            <p>Category: {post.category}</p>
+        {forums.map(forum => (
+          <li key={forum.id}>
+            <h3>{forum.title}</h3>
+            <p>Category: {forum.category}</p>
+            <p>Posted by: User ID {forum.user_id}</p>
+            <p>Date: {forum.date}</p>
+            <p>{forum.content}</p>
           </li>
         ))}
       </ul>
@@ -39,4 +44,4 @@ const Forum = () => {
   );
 };
 
-export default Forum;
+export default Forums;

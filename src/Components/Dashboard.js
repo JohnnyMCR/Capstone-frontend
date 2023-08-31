@@ -44,3 +44,42 @@ const Dashboard = ({ user }) => {
 };
 
 export default Dashboard;
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+
+// const API = process.env.REACT_APP_API_URL;
+
+
+// const Dashboard = () => {
+//   const [profiles, setProfiles] = useState([]);
+
+//   useEffect(() => {
+//     async function fetchProfiles() {
+//       try {
+//         const response = await axios.get(`${API}/profiles`);
+//         setProfiles(response.data);
+//       } catch (error) {
+//         console.error('Error fetching profiles:', error);
+//       }
+//     }
+
+//     fetchProfiles();
+//   }, []);
+
+//   return (
+//     <div>
+//       <h2>Profiles</h2>
+//       <ul>
+//         {profiles.map(profile => (
+//           <li key={profile.id}>
+//             <h3>{profile.username}</h3>
+//             <p>Email: {profile.email}</p>
+//             <p>Address: {profile.address}</p>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default Dashboard;

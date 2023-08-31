@@ -5,7 +5,7 @@ import SignUp from './Components/SignUp';
 import LogIn from './Components/LogIn';
 import Home from './Pages/Home';
 import Dashboard from './Components/Dashboard';
-import Forums from './Components/Forums'; // Import the Forum component
+import Forums from './Components/Forums';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function App() {
