@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword,updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
-
 const API = process.env.REACT_APP_API_URL;
-
-
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -27,13 +23,16 @@ const SignUp = () => {
         setError('Please fill in all fields.');
         return;
       }
-  
+        
       const userCredential = await createUserWithEmailAndPassword(auth, email, password,address);
+      console.log('User Credential:', userCredential);
+
+      
+
   
       // Update the user's display name (username)
       await updateProfile(auth.currentUser, { displayName: username });
   
-      // Make an API call to your backend to insert the user's data into the profile table
       const response = await axios.post(`${API}/profiles`, {
         username,
         password,

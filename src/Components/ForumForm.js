@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const API = process.env.REACT_APP_API_URL;
 
-const ForumForm = ({ onNewForum }) => {
+const ForumForm = ({ user, onNewForum }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -16,18 +16,17 @@ const ForumForm = ({ onNewForum }) => {
         title,
         content,
         category,
-        user_id: 1, 
-        date: new Date().toISOString().split('T')[0], // Get the current date
+        user_id: user.id, // Use the actual user_id from the user object
+        date: new Date().toISOString().split('T')[0],
       });
 
       console.log('New forum posted:', response.data);
 
-      // Clear the form fields after posting
       setTitle('');
       setContent('');
       setCategory('');
 
-      onNewForum(response.data); // Call the handler with the new forum data
+      onNewForum(response.data);
     } catch (error) {
       console.error('Error posting forum:', error);
     }

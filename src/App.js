@@ -1,3 +1,8 @@
+//Firebase Starters
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import firebaseConfig from "./Components/firebaseConfig"; 
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import NavBar from './Components/NavBar';
@@ -6,7 +11,12 @@ import LogIn from './Components/LogIn';
 import Home from './Pages/Home';
 import Dashboard from './Components/Dashboard';
 import Forums from './Components/Forums';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+//Initializing Firebase
+const app = initializeApp(firebaseConfig);
+console.log('Firebase initialized:', app);
+
+
 
 function App() {
   const [user, setUser] = useState(null);
