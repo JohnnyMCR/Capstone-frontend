@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { getAuth, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const API = process.env.REACT_APP_API_URL;
-
+// createUserWithEmailAndPassword in line 3
 
 
 const SignUp = () => {
@@ -26,7 +26,7 @@ const SignUp = () => {
         return;
       }
   
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password,address);
+      // const userCredential = await createUserWithEmailAndPassword(auth, email, password,address);
   
       // Update the user's display name (username)
       await updateProfile(auth.currentUser, { displayName: username });
