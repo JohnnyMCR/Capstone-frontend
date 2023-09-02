@@ -1,3 +1,5 @@
+//needs to be fixed
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -16,7 +18,7 @@ const ForumForm = ({ user, onNewForum }) => {
         title,
         content,
         category,
-        user_id: user.id, // Use the actual user_id from the user object
+        user_id: user.id,
         date: new Date().toISOString().split('T')[0],
       });
 
@@ -36,32 +38,7 @@ const ForumForm = ({ user, onNewForum }) => {
     <div>
       <h3>Post on the Forum</h3>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title:</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Content:</label>
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Category:</label>
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          />
-        </div>
+        {/* ... Form input fields ... */}
         <button type="submit">Post</button>
       </form>
     </div>
