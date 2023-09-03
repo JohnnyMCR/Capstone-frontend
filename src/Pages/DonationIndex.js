@@ -1,9 +1,10 @@
+// import Donations from "../Components/Donations";
 
 export default function DonationIndex() {
-    return (
-      <div>
-         
-      </div>
-    )
-  }
-  
+  return (
+    <div className="Donations">
+      <h2>Donations</h2>
+      {/* <Donations /> */}
+    </div>
+  );
+}
