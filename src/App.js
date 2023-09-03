@@ -1,3 +1,8 @@
+//Firebase Starters
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import firebaseConfig from "./Components/firebaseConfig"; 
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import NavBar from './Components/NavBar';
@@ -15,7 +20,13 @@ import NewForum from './Pages/NewForum';
 import ShowDonation from './Pages/ShowDonation';
 // import ShowForum from './Pages/ShowForum';
 import Dashboard from './Components/Dashboard';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import Forums from './Components/Forums';
+
+//Initializing Firebase
+const app = initializeApp(firebaseConfig);
+console.log('Firebase initialized:', app);
+
+
 
 function App() {
   const [user, setUser] = useState(null);
