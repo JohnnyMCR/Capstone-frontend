@@ -1,47 +1,80 @@
-//needs to fixed 
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import ForumForm from './ForumForm';
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import firebaseConfig from './firebaseConfig';
 
 const API = process.env.REACT_APP_API_URL;
 
-const Forums = ({ user }) => {
+const Forums = () => {
   const [forums, setForums] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    async function fetchForums() {
-      try {
-        const response = await axios.get(`${API}/forums`);
-        console.log('API response:', response.data);
+  const fetchForumData = useCallback(() => {
+    axios
+      .get(`${API}/forums`)
+      .then((response) => {
         setForums(response.data);
-      } catch (error) {
-        console.error('Error fetching forums:', error);
-      }
-    }
-
-    fetchForums();
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching forums data:', error);
+        setIsLoading(false);
+      });
   }, []);
 
-  const handleNewForum = (newForum) => {
-    setForums([...forums, newForum]);
+  useEffect(() => {
+    initializeApp(firebaseConfig);
+
+    const auth = getAuth();
+
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        const user = {
+          id: authUser.uid,
+          username: authUser.displayName,
+        };
+
+        setUser(user);
+        fetchForumData();
+      } else {
+        setUser(null);
+        setIsLoading(false);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [fetchForumData]);
+
+  const handleForumPostCreated = () => {
+    console.log('Refreshing forum data...');
+    fetchForumData();
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
-      <h2>Forums</h2>
-      <ForumForm user={user} onNewForum={handleNewForum} />
+      <h1>Forum Posts</h1>
       <ul>
         {forums.map((forum) => (
           <li key={forum.id}>
-            <h3>{forum.title}</h3>
-            <p>Category: {forum.category}</p>
-            <p>Posted by: {forum.user_id === user.id ? user.displayName : 'Unknown User'}</p>
-            <p>Date: {forum.date}</p>
+            <h2><strong>{forum.title}</strong></h2>
             <p>{forum.content}</p>
+            <p>Category: {forum.category}</p>
+            {/* Render additional forum information */}
           </li>
         ))}
       </ul>
+      {user && (
+        <ForumForm user={user} onForumPostCreated={handleForumPostCreated} />
+      )}
     </div>
   );
 };

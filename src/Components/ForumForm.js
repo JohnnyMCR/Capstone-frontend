@@ -1,45 +1,70 @@
-//needs to be fixed
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const API = process.env.REACT_APP_API_URL;
 
-const ForumForm = ({ user, onNewForum }) => {
+const ForumForm = ({ user, onForumPostCreated }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [category, setCategory] = useState('');
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${API}/forums`, {
+      const postData = {
         title,
         content,
-        category,
-        user_id: user.id,
-        date: new Date().toISOString().split('T')[0],
-      });
+        userId: user.id,
+        username: user.username,
+      };
 
-      console.log('New forum posted:', response.data);
-
-      setTitle('');
-      setContent('');
-      setCategory('');
-
-      onNewForum(response.data);
+      const response = await axios.post(`${API}/forums`, postData);
+      if (response.status === 200) {
+        setTitle('');
+        setContent('');
+        onForumPostCreated(); 
+        console.log('Submit button clicked. Post created successfully.');
+      } else {
+        console.error('Error creating the post:', response.statusText);
+      }
     } catch (error) {
-      console.error('Error posting forum:', error);
+      console.error('Error submitting the post:', error);
     }
   };
 
   return (
     <div>
-      <h3>Post on the Forum</h3>
+      <h2>Create a New Post</h2>
+      <p>Welcome, {user.username}!</p>
       <form onSubmit={handleSubmit}>
-        {/* ... Form input fields ... */}
-        <button type="submit">Post</button>
+        <div>
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={handleTitleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="content">Content:</label>
+          <textarea
+            id="content"
+            value={content}
+            onChange={handleContentChange}
+            required
+          />
+        </div>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
