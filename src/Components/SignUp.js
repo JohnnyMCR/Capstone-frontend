@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import LogIn from './LogIn';
 
 const API = process.env.REACT_APP_API_URL;
 // createUserWithEmailAndPassword in line 3
@@ -14,11 +15,14 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [address, setAddress] = useState('');
   const [error, setError] = useState('');
+   //usestate for modal
+   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSignup = async () => {
     const auth = getAuth();
+    console.log(auth)
 
     try {
       if (!email || !password || !username) {
@@ -45,6 +49,8 @@ const SignUp = () => {
       if (response.status === 200) {
         setError('');
         navigate('/dashboard', {replace: true});
+          //close modal
+      setIsModalOpen(false);
       } else {
         setError('Failed to sign up. Please try again.');
       }
@@ -54,42 +60,119 @@ const SignUp = () => {
     }
   };
   
-  
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <input
+    <>
+    <button className="button is-primary is-small" onClick={openModal}>
+     Sign Up
+   </button>
+ 
+ 
+ {isModalOpen && (
+    <div className="modal is-active">
+  <div className="modal-background"></div>
+  <div className='modal-content has-background-info py-5 px-5'>
+    <h3 className='title is-1 has-text-primary'> Join CareVillage </h3>
+    <form>
+      <div className='field'>
+        <label className='label is-large has-text-danger'>Email</label>
+        <div className='control'>
+        <input
         type="email"
         placeholder="Email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="address"
-        placeholder="Address"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      />
-      <button onClick={handleSignup}>Sign Up</button>
-      <p>
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
-  );
+        onChange={(e) => setEmail(e.target.value)}/>
+        </div>
+        
+        <div className='field'>
+          <label className='label is-large has-text-danger'>Password</label>
+          <div className='control'>
+            <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}/>
+          </div>
+        </div>
+      
+        <div className='field'>
+          <label className='label is-large has-text-danger'>Username</label>
+          <div className='control'>
+            <input
+             type="text"
+             placeholder="Username"
+             value={username}
+             onChange={(e) => setUsername(e.target.value)}/>
+          </div>
+        </div>
+        
+        <div className='field'>
+          <label className='label is-large has-text-danger'>Address</label>
+          <div className='control'>
+            <input
+             type="address"
+             placeholder="Address"
+             value={address}
+             onChange={(e) => setAddress(e.target.value)}/>
+          </div>
+        </div>
+
+        <button className='button is-primary is-medium mt-4' onClick={handleSignup}>Sign Up</button>
+        <p className='content is-medium has-text-primary mt-5'>
+        Already have an account? <LogIn/>
+        
+        </p>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+
+        </div>
+    </form>
+    <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
+  </div>
+</div>
+ )}
+ </>
+);
 };
 
 export default SignUp;
+
+//SIGNUP
+// <div>
+//   <h2>Sign Up</h2>
+//   <input
+//     type="email"
+//     placeholder="Email"
+//     value={email}
+//     onChange={(e) => setEmail(e.target.value)}
+//   />
+//   <input
+//     type="password"
+//     placeholder="Password"
+//     value={password}
+//     onChange={(e) => setPassword(e.target.value)}
+//   />
+//   <input
+//     type="text"
+//     placeholder="Username"
+//     value={username}
+//     onChange={(e) => setUsername(e.target.value)}
+//   />
+//   <input
+//     type="address"
+//     placeholder="Address"
+//     value={address}
+//     onChange={(e) => setAddress(e.target.value)}
+//   />
+//   <button onClick={handleSignup}>Sign Up</button>
+//   <p>
+//     Already have an account? <Link to="/login">Log in</Link>
+//   </p>
+//   {error && <p style={{ color: 'red' }}>{error}</p>}
+// </div>
