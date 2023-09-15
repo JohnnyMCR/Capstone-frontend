@@ -17,6 +17,9 @@ const NavBar = ({ user, onLogout }) => {
               <Link to="/forums">Forum</Link> 
             </li>
             <li>
+              <Link to="/donations">Donations</Link>
+            </li>
+            <li>
               <button onClick={onLogout}>Logout</button>
             </li>
           </>

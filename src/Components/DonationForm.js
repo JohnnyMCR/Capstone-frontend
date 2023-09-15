@@ -1,33 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-export default function DonationForm({ addDonation }) {
-    const [donationData, setDonationData] = useState({
-        img: '',
-        description: '',
-        userName:'',
-        zipCode: '',
+function DonationForm({ addDonation }) {
+  const [newDonation, setNewDonation] = useState({
+    img: "",
+    description: "",
+    userName: "",
+    zipcode: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewDonation({
+      ...newDonation,
+      [name]: value,
     });
+  };
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setDonationData({ ...donationData, [name]: value });
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addDonation(newDonation);
+    setNewDonation({
+      img: "",
+      description: "",
+      userName: "",
+      zipcode: "",
+    });
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        addDonation(donationData);
-        setDonationData({
-            img: '',
-            description: '',
-            userName:'',
-            zipCode: '',
-        });
-    };
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <h1>description bubble</h1>
-            <button type="submit">Submit Donation</button>
-        </form>
-    );
+  return (
+    <div>
+      <h2>Add New Donation</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="img"
+          placeholder="Image URL"
+          value={newDonation.img}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          value={newDonation.description}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="userName"
+          placeholder="User Name"
+          value={newDonation.userName}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="zipcode"
+          placeholder="Zipcode"
+          value={newDonation.zipcode}
+          onChange={handleChange}
+        />
+        <button type="submit">Add Donation</button>
+      </form>
+    </div>
+  );
 }
+
+export default DonationForm;

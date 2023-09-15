@@ -10,6 +10,9 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bulma@0.9.3/dist/js/bulma.min.js"></script>
+
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -24,77 +27,20 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Care Village</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>React App</title>
   </head>
   <body>
-    
-    <!--Logo/brand-->
-   
-    <nav class="navbar has-background-grey-light is-spaced is-light">
-      <div class="navbar-logo">
-        <a class="navbar-item">
-          <img src="logo.png" alt="CareVillage" style="max-height: 70px;">
-        </a>
-        <a class="navbar-burger" id="burger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </a>
-      </div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-      <div class="navbar-menu" id="nav-links">
-        <div class="navbar-end">
-          <a href="http://localhost:3000/" class="navbar-item">Home</a>
-          <a href="http://localhost:3000/About" class="navbar-item">About Us</a>
-          <a href="" class="navbar-item">Forum</a>
-          <a href="" class="navbar-item">Donations</a>
-          <a href="" class="navbar-item">Login</a>
-        </div>
-      </div>
-    </nav>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-    <!--Hero-->
-    <section class="hero is-large">
-      <div class="hero-body">
-        <p class="title">
-          CareVillage
-        </p>
-        <p class="subtitle">
-          Where care comes full circle
-        </p>
-      </div>
-    </section>
-
-    <section class="hero is-small has-background-warning">
-      <div class="hero-body">
-        <p class="title">
-          CareVillage
-        </p>
-        <p class="subtitle">
-          Where care comes full circle
-        </p>
-      </div>
-    </section>
-
-
-
-    <!--Footer-->
-    <footer class="footer has-background-grey-lighter is-light">
-      <div class="footer-start">
-        <a href="" class="footer-item">About Us</a>
-        <a href="" class="footer-item">Forum</a>
-        <a href="" class="footer-item">Donations</a>
-        <a href="" class="footer-item">FAQs</a>
-      </div>
-
-
-      <div class="footer-end">
-        <a class="footer-item">
-          <img src="logo.png" alt="Care Village" style="max-height: 70px;">
-        </a>
-      </div>
-    </footer>
-
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
   </body>
 </html>
