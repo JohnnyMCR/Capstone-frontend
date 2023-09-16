@@ -27,10 +27,6 @@ const SignUp = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password,address);
       console.log('User Credential:', userCredential);
 
-      
-
-  
-      // Update the user's display name (username)
       await updateProfile(auth.currentUser, { displayName: username });
   
       const response = await axios.post(`${API}/profiles`, {

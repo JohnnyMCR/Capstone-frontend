@@ -14,8 +14,11 @@ const NavBar = ({ user, onLogout }) => {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link to="/forums">Forum</Link> 
+              <Link to="/forums">Forums</Link> 
             </li>
+            <li>
+          <Link to="/forums/new">Add a New Post</Link>
+        </li>
             <li>
               <button onClick={onLogout}>Logout</button>
             </li>

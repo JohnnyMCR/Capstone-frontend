@@ -5,22 +5,22 @@ import firebaseConfig from "./Components/firebaseConfig";
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import NavBar from './Components/NavBar';
+
 import SignUp from './Components/SignUp';
 import LogIn from './Components/LogIn';
+import Dashboard from './Components/Dashboard';
+import NavBar from './Components/NavBar';
 import Home from './Pages/Home';
 import About from './Pages/About';
+import Error from './Pages/Error';
 import DonationIndex from './Pages/DonationIndex';
 import EditDonation from './Pages/EditDonation';
-import Error from './Pages/Error';
-// import ForumEdit from './Pages/ForumEdit';
-// import ForumIndex from './Pages/ForumIndex';
-import NewDonation from './Pages/NewDonation';
-// import NewForum from './Pages/NewForum';
 import ShowDonation from './Pages/ShowDonation';
-// import ShowForum from './Pages/ShowForum';
-import Dashboard from './Components/Dashboard';
-import Forums from './Components/Forums';
+import NewDonation from './Pages/NewDonation';
+import ForumsIndex from './Pages/ForumsIndex';
+import ShowForumDetails from './Pages/ShowForumDetails'
+import PostNew from './Pages/PostNew';
+
 
 //Initializing Firebase
 const app = initializeApp(firebaseConfig);
@@ -57,10 +57,9 @@ function App() {
           <Route path="/donations/new" element={<NewDonation />} />
           <Route path="/donations/edit" element={<EditDonation />} />
           <Route path="/donations/show" element={<ShowDonation />} />
-          <Route path="/forums" element={<Forums />} />
-          {/* <Route path="/forums/new" element={<NewForum />} />
-          <Route path="/forums/edit" element={<ForumEdit />} /> */}
-          {/* <Route path="/forum/show" element={<ShowForum />} /> */}
+          <Route path="/forums" element={<ForumsIndex />} />
+          <Route path="/forums/new" element={<PostNew />} />
+          <Route path="/forums/:id" element={<ShowForumDetails />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route
