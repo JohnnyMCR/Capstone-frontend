@@ -1,8 +1,6 @@
-//needs to be fixed 
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Profile from './Profile';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -25,7 +23,8 @@ const Dashboard = ({ user }) => {
 
   return (
     <div>
-      <h2>Welcome to Your Dashboard, {user.displayName}!</h2>
+      <h2><Profile user={user} />
+      </h2>
 
       <section>
         <h3>Your Forum Post History</h3>
@@ -40,9 +39,9 @@ const Dashboard = ({ user }) => {
           ))}
         </ul>
       </section>
+
     </div>
   );
 };
 
 export default Dashboard;
-

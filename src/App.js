@@ -5,28 +5,27 @@ import firebaseConfig from "./Components/firebaseConfig";
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import NavBar from './Components/NavBar';
+
 import SignUp from './Components/SignUp';
 import LogIn from './Components/LogIn';
+import Dashboard from './Components/Dashboard';
+import NavBar from './Components/NavBar';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import DonationIndex from './Pages/DonationIndex';
 import EditDonation from './Pages/EditDonation';
+import ForumsIndex from './Pages/ForumsIndex';
+import ShowForumDetails from './Pages/ShowForumDetails'
+import EditForum from './Pages/EditForums';
+import PostNew from './Pages/PostNew';
 import Error from './Pages/Error';
-import ForumEdit from './Pages/ForumEdit';
-import ForumIndex from './Pages/ForumIndex';
 import NewDonation from './Pages/NewDonation';
-import NewForum from './Pages/NewForum';
 import ShowDonation from './Pages/ShowOneDonation';
-// import ShowForum from './Pages/ShowForum';
 import Dashboard from './Components/Dashboard';
-import Forums from './Components/Forums';
 
 //Initializing Firebase
 const app = initializeApp(firebaseConfig);
 console.log('Firebase initialized:', app);
-
-
 
 function App() {
   const [user, setUser] = useState(null);
@@ -59,10 +58,10 @@ function App() {
           <Route path="/donations/new" element={<NewDonation />} />
           <Route path="/donations/edit" element={<EditDonation />} />
           <Route path="/donations/show" element={<ShowDonation />} />
-          <Route path="/forums" element={<ForumIndex />} />
-          <Route path="/forums/new" element={<NewForum />} />
-          <Route path="/forums/edit" element={<ForumEdit />} />
-          {/* <Route path="/forum/show" element={<ShowForum />} /> */}
+          <Route path="/forums" element={<ForumsIndex />} />
+          <Route path="/forums/new" element={<PostNew />} />
+          <Route path="/forums/:id" element={<ShowForumDetails />} />
+          <Route path="/forums/:id/edit" element={<EditForum />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route

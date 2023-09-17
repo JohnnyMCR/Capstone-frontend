@@ -27,7 +27,6 @@ const LogIn = () => {
 
       console.log(response);
       
-      // Redirect to the dashboard
       navigate('/dashboard');
     } catch (error) {
       setError(error.message);

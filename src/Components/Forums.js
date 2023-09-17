@@ -1,49 +1,58 @@
-//needs to fixed 
-
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import ForumForm from './ForumForm';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Forum from "./Forum";
+import CategoryFilter from "./CategoryFilter"; 
 
 const API = process.env.REACT_APP_API_URL;
 
-const Forums = ({ user }) => {
+function Forums() {
   const [forums, setForums] = useState([]);
-
+  const [selectedCategory, setSelectedCategory] = useState(""); 
   useEffect(() => {
-    async function fetchForums() {
-      try {
-        const response = await axios.get(`${API}/forums`);
-        console.log('API response:', response.data);
+    axios
+      .get(`${API}/forums`)
+      .then((response) => {
+        console.log("Fetched forums:", response.data);
         setForums(response.data);
-      } catch (error) {
-        console.error('Error fetching forums:', error);
-      }
-    }
-
-    fetchForums();
+      })
+      .catch((err) => console.warn("Error fetching forums:", err));
   }, []);
 
-  const handleNewForum = (newForum) => {
-    setForums([...forums, newForum]);
+  
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
   };
 
+  
+  const filteredForums = selectedCategory
+    ? forums.filter((forum) => forum.category === selectedCategory)
+    : forums;
+
   return (
-    <div>
-      <h2>Forums</h2>
-      <ForumForm user={user} onNewForum={handleNewForum} />
-      <ul>
-        {forums.map((forum) => (
-          <li key={forum.id}>
-            <h3>{forum.title}</h3>
-            <p>Category: {forum.category}</p>
-            <p>Posted by: {forum.user_id === user.id ? user.displayName : 'Unknown User'}</p>
-            <p>Date: {forum.date}</p>
-            <p>{forum.content}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="Forums">
+      <CategoryFilter
+        categories={Array.from(new Set(forums.map((forum) => forum.category)))}
+        selectedCategory={selectedCategory}
+        onCategoryChange={handleCategoryChange}
+      />
+
+      <table>
+        <thead>
+          <tr>
+            <th className="title">Title</th>
+            <th className="category">Category</th>
+            <th className="date">Date</th>
+            <th className="content">Content</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredForums.map((forum) => {
+            return <Forum key={forum.id} forum={forum} />;
+          })}
+        </tbody>
+      </table>
     </div>
   );
-};
+}
 
 export default Forums;
