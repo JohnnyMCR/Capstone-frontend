@@ -1,34 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-function DonationEditForm({ selectedDonation, editDonation }) {
-  const [editedDonation, setEditedDonation] = useState({});
+export default function DonationEditForm({ selectedDonation, editDonation }) {
+  const [editedDonation, setEditedDonation] = useState(selectedDonation || {});
 
   useEffect(() => {
-    setEditedDonation(selectedDonation);
+    setEditedDonation(selectedDonation || {});
   }, [selectedDonation]);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setEditedDonation({ ...editedDonation, [name]: value });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedDonation({
+      ...editedDonation,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     editDonation(editedDonation);
-    setEditedDonation({});
   };
-
-  if (!selectedDonation) {
-    return null;
-  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* Form inputs for editing */}
-      <h1> TEST </h1>
-      <button type="submit">Save Changes</button>
-    </form>
+    <div>
+      <h2>Edit Donation</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="img"
+          placeholder="Image URL"
+          value={editedDonation.img || ""}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          value={editedDonation.description || ""}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="userName"
+          placeholder="User Name"
+          value={editedDonation.userName || ""}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="zipcode"
+          placeholder="Zipcode"
+          value={editedDonation.zipcode || ""}
+          onChange={handleChange}
+        />
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
   );
 }
-
-export default DonationEditForm;

@@ -12,16 +12,16 @@ import Dashboard from './Components/Dashboard';
 import NavBar from './Components/NavBar';
 import Home from './Pages/Home';
 import About from './Pages/About';
-import Error from './Pages/Error';
 import DonationIndex from './Pages/DonationIndex';
 import EditDonation from './Pages/EditDonation';
-import ShowDonation from './Pages/ShowDonation';
-import NewDonation from './Pages/NewDonation';
 import ForumsIndex from './Pages/ForumsIndex';
 import ShowForumDetails from './Pages/ShowForumDetails'
 import EditForum from './Pages/EditForums';
 import PostNew from './Pages/PostNew';
-
+import Error from './Pages/Error';
+import NewDonation from './Pages/NewDonation';
+import ShowDonation from './Pages/ShowOneDonation';
+import Dashboard from './Components/Dashboard';
 
 //Initializing Firebase
 const app = initializeApp(firebaseConfig);
