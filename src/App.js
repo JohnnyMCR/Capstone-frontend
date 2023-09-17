@@ -17,7 +17,7 @@ import ForumEdit from './Pages/ForumEdit';
 import ForumIndex from './Pages/ForumIndex';
 import NewDonation from './Pages/NewDonation';
 import NewForum from './Pages/NewForum';
-import ShowDonation from './Pages/ShowDonation';
+import ShowDonation from './Pages/ShowOneDonation';
 // import ShowForum from './Pages/ShowForum';
 import Dashboard from './Components/Dashboard';
 import Forums from './Components/Forums';
