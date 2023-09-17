@@ -23,7 +23,8 @@ const Dashboard = ({ user }) => {
 
   return (
     <div>
-      <h2>Welcome to Your Dashboard, {user.displayName}!</h2>
+      <h2><Profile user={user} />
+      </h2>
 
       <section>
         <h3>Your Forum Post History</h3>
@@ -39,7 +40,6 @@ const Dashboard = ({ user }) => {
         </ul>
       </section>
 
-      <Profile user={user} />
     </div>
   );
 };
