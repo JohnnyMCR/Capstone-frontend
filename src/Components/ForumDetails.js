@@ -8,7 +8,7 @@ const API = process.env.REACT_APP_API_URL;
 function ForumDetails() {
   const [forum, setForum] = useState([]);
   const { id } = useParams();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -32,10 +32,9 @@ function ForumDetails() {
         console.error("Error deleting forum:", error);
       });
   };
-  
 
   const handleDelete = () => {
-    console.log("Deleting forum..."); 
+    console.log("Deleting forum...");
     deleteForum();
   };
 
@@ -43,29 +42,39 @@ function ForumDetails() {
     <article className="details">
       {forum && (
         <div className="details">
-          <h1><strong>{forum.title}</strong></h1>
-          
-          <h2><strong>Category:</strong> {forum.category}</h2>
-          
-          <p><strong>Date:</strong> {forum.date}</p>
-          <p><strong>Content:</strong> {forum.content}</p>
+          <h1>
+            <strong>{forum.title}</strong>
+          </h1>
+
+          <h2>
+            <strong>Category:</strong> {forum.category}
+          </h2>
+
+          <p>
+            <strong>Date:</strong> {forum.date}
+          </p>
+          <p>
+            <strong>Content:</strong> {forum.content}
+          </p>
         </div>
       )}
-      <br/>
+      <br />
       <div className="showNavigation">
         <div>
           <Link to="/forums">
             <button>Back to Forums</button>
           </Link>
           <Link to={`/forums/${id}/edit`}>
-            <button>Edit</button>
+            <button>Edit Forum</button>
           </Link>
           <button onClick={handleDelete}>Delete Forum</button>
         </div>
       </div>
       <div className="comments">
-        <h2><strong>Comments</strong></h2>
-        <Comments/>
+        <h2>
+          <strong>Comments</strong>
+        </h2>
+        <Comments />
       </div>
     </article>
   );

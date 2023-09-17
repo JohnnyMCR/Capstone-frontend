@@ -19,6 +19,7 @@ import ShowDonation from './Pages/ShowDonation';
 import NewDonation from './Pages/NewDonation';
 import ForumsIndex from './Pages/ForumsIndex';
 import ShowForumDetails from './Pages/ShowForumDetails'
+import EditForum from './Pages/EditForums';
 import PostNew from './Pages/PostNew';
 
 
@@ -60,6 +61,7 @@ function App() {
           <Route path="/forums" element={<ForumsIndex />} />
           <Route path="/forums/new" element={<PostNew />} />
           <Route path="/forums/:id" element={<ShowForumDetails />} />
+          <Route path="/forums/:id/edit" element={<EditForum />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route

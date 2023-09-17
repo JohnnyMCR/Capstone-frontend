@@ -3,7 +3,7 @@ import CommentForm from "./CommentForm";
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function Comment({ comment, handleSubmit }) {
+function Comment({ comment, handleSubmit }) {
   const [viewEditForm, toggleEditForm] = useState(false);
   const [username, setUsername] = useState("");
 
@@ -47,3 +47,5 @@ export default function Comment({ comment, handleSubmit }) {
     </div>
   );
 }
+
+export default Comment;
