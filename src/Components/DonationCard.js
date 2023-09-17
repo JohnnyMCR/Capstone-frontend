@@ -8,17 +8,17 @@ export default function DonationCard({ donation }) {
             <div className="card mb-5">
                 <div className="card-content">
                     <div className='columns'>
-                        <div className='column is-2'>
+                        <div className='column '>
                             <figure className="image is-128x128">
                                 <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
                             </figure>
                         </div>
-                        <div className='column has-text-left is-three-quarters'>
-                            <p className='is-size-4'>{donation.title}</p>
-                            <p className='is-size-6'>{donation.category}</p>
-                            <p className='is-size-6'>{donation.description}</p>
-                            <p className='is-size-6'>{donation.user}</p>
-                            <p className='is-size-6'>Distance:{donation.distance}</p>
+                        <div className='column has-text-left is-three-quarters has-background-info'>
+                            <p className='is-size-4 has-text-danger'>Title: {donation.title}</p>
+                            <p className='is-size-6 has-text-dark'>Category: {donation.category}</p>
+                            <p className='is-size-6 has-text-dark'>Description: {donation.description}</p>
+                            <p className='is-size-6 has-text-dark'>User: {donation.user}</p>
+                            <p className='is-size-6 has-text-dark'>Distance: {donation.distance}</p>
                         </div>
                         <SingleDonation/>
                     </div>

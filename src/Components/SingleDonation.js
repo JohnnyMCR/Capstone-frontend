@@ -17,7 +17,7 @@ export default function SingleDonation() {
 
   return (
     <div>
-      <div className='column has-text-right'>
+      <div className='column has-text-right '>
         <div className="control" >
           <button className="button is-primary mt-6" onClick={openModal}>
             Show
@@ -29,22 +29,22 @@ export default function SingleDonation() {
         <div className="modal-background" onClick={closeModal}></div>
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">Donation Details</p>
+            <h1 className="modal-card-title title is-2 has-text-danger">Donation Details</h1>
             <button className="delete" aria-label="close" onClick={closeModal}></button>
           </header>
           <section className="modal-card-body">
             <div className="columns">
-              <div className="column is-2">
+              <div className="column">
                 <figure className="image is-128x128">
                   <img alt="Donation" />
                 </figure>
               </div>
               <div className="column has-text-left is-three-fifths">
-                <p className="is-size-4">kmmkasx</p>
-                <p className="is-size-6">wdwdkmwkmdw</p>
-                <p className="is-size-6">qsmkqskmsmqk</p>
-                <p className="is-size-6">User:sss</p>
-                <p className="is-size-6">Distance:</p>
+                <p className="is-size-4 is-large has-text-danger">kmmkasx</p>
+                <p className="is-size-6 is-large has-text-danger">wdwdkmwkmdw</p>
+                <p className="is-size-6 is-large has-text-danger">qsmkqskmsmqk</p>
+                <p className="is-size-6 is-large has-text-danger">User:sss</p>
+                <p className="is-size-6 is-large has-text-danger">Distance:</p>
               </div>
             </div>
           </section>

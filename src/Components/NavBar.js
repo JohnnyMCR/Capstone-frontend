@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Login from "./LogIn"
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
 
-export default function NavBar({ isAuthenticated }) {
+export default function NavBar({ user }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
   
   const toggleMenu = () => {
@@ -40,10 +39,12 @@ export default function NavBar({ isAuthenticated }) {
 
           <a href="/donations" className="navbar-item title is-5 has-text-primary">Donations</a>
   
-            {isAuthenticated ? (
+            <a href="/dashboard" className="navbar-item title is-5 has-text-primary">Dashboard</a>
+            
+            {user ? (
               <div className="navbar-item">
                 <button className="button is-primary is-rounded mx-1 mb-5">
-                  User SA
+                  User
                 </button>
               </div>
             ) : (

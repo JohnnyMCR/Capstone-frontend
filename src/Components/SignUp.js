@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getAuth, updateProfile } from 'firebase/auth';
+
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './LogIn';
 
 const API = process.env.REACT_APP_API_URL;
-// createUserWithEmailAndPassword in line 3
+
 
 
 const SignUp = () => {
@@ -30,7 +30,8 @@ const SignUp = () => {
         return;
       }
   
-      // const userCredential = await createUserWithEmailAndPassword(auth, email, password,address);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password, address);
+            console.log("User Credential:", userCredential);
   
       // Update the user's display name (username)
       await updateProfile(auth.currentUser, { displayName: username });
@@ -80,7 +81,7 @@ const SignUp = () => {
   <div className="modal-background"></div>
   <div className='modal-content has-background-info py-5 px-5'>
     <h3 className='title is-1 has-text-primary'> Join CareVillage </h3>
-    <form>
+    <form onSubmit={handleSignup}>
       <div className='field'>
         <label className='label is-large has-text-danger'>Email</label>
         <div className='control'>

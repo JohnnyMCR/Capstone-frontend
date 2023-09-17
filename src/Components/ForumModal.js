@@ -16,10 +16,10 @@ export default function ForumModal({ isOpen, onClose, onSubmit }) {
 
   return (
     <div className={`modal ${isOpen ? 'is-active' : ''}`}>
-      <div className="modal-background " onClick={onClose}></div>
-      <div className="modal-content">
+      <div className="modal-background" onClick={onClose}></div>
+      <div className="modal-content ">
         <div className="box has-background-info">
-          <h1 className="title has-text-primary">New Post</h1>
+          <h1 className="title is-1 has-text-primary">New Forum Post</h1>
           <form onSubmit={handleSubmit}>
             <div className="field">
               <label className="label is-large has-text-danger">Title</label>

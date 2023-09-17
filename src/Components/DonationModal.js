@@ -29,12 +29,12 @@ export default function DonationModal({ isOpen, onClose }) {
           <div className="modal-background" onClick={onClose}></div>
           <div className="modal-card">
             <header className="modal-card-head">
-              <p className="modal-card-title">Create Donation</p>
+              <h1 className="modal-card-title title is-2 has-text-danger ">Create Donation</h1>
               <button className="delete" aria-label="close" onClick={onClose}></button>
             </header>
-            <section className="modal-card-body">
+            <section className="modal-card-body has-background-info">
               <div className="field">
-                <label className="label">Donation Title</label>
+                <label className="label is-large has-text-danger">Donation Title</label>
                 <div className="control">
                   <input
                     className="input"
@@ -46,7 +46,7 @@ export default function DonationModal({ isOpen, onClose }) {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Donation Description</label>
+                <label className="label is-large has-text-danger">Donation Description</label>
                 <div className="control">
                   <textarea
                     className="textarea"
@@ -57,7 +57,7 @@ export default function DonationModal({ isOpen, onClose }) {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Upload Image</label>
+                <label className="label is-large has-text-danger">Upload Image</label>
                 <div className="control">
                   <div className="file has-name">
                     <label className="file-label ">
@@ -81,7 +81,7 @@ export default function DonationModal({ isOpen, onClose }) {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Category</label>
+                <label className="label is-large has-text-danger">Category</label>
                 <div className="control">
                   <div className="select">
                     <select

@@ -1,6 +1,5 @@
 import React from 'react';
 import backgroundImage from './CareVillageBanner.jpeg'
-// import { Link } from 'react-router-dom';
 import SignUp from "../Components/SignUp"
 import DONATIONS from "./DONATIONS.png"
 import FORUMS from "./FORUMS.jpeg"
@@ -14,13 +13,6 @@ function Home() {
     backgroundPosition: 'center',
   };
 
-  // const roundedImagePlaceholderStyle = {
-  //   borderRadius: '5%',
-  //   width: '400px', 
-  //   height: '250px', 
-  //   backgroundColor: 'gray', 
-    // marginRight: '10px', 
-  // };
 
   return (
     <div>

@@ -1,13 +1,40 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import ForumModal from './ForumModal';
+import ForumCard from './ForumCard';
+// import CategoryFilter from “./CategoryFilter”;
+
+
+const API = process.env.REACT_APP_API_URL;
 
 export default function Forums() {
+    const [forums, setForums] = useState([    {
+        id: 1,
+        title: 'Forum Post 1',
+        date: "2022",
+        user_id: 'User 1',
+        category: "Technology",
+        content: 'Content for forum 1',
+        
+       
+      },
+      {
+        id: 2,
+        title: 'Forum Post 2',
+        date: "2023",
+        user_id: 'User 2',
+        category: "Technology",
+        content: 'Content for forum 2',
+        
+        
+      },]);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [selectedSortOption, setSelectedSortOption] = useState('All');
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -34,6 +61,16 @@ export default function Forums() {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    useEffect(() => {
+            axios
+              .get(`${API}/forums`)
+              .then((response) => {
+                console.log("Fetched forums:", response.data);
+                setForums(response.data);
+              })
+              .catch((err) => console.warn("Error fetching forums:", err));
+          }, []);
 
     return (
         <div>
@@ -116,28 +153,18 @@ export default function Forums() {
                 <ForumModal isOpen={isModalOpen} onClose={closeModal} />
             </div>
             <div className="columns">
-                <div className="column is-8 ml-4">
-                    <div className="card mb-5">
-                        <div className="card-content">
-                            <div className='columns'>
-                                <div className='column has-text-left'>
-                                <p className='is-size-4'>Post Title <span className='is-size-6'>date</span>
-                                </p>
-                                    <p className='is-size-6'>User</p>
-                                    <p className='is-size-6'>post content, and more content</p>
-                                    <p className='is-size-6'>Category</p>
-                                    <br/>
-                                    <p>See More..</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="column">
+
+            <div className='column is-three-quarters'>
+                {forums.map((forum) => {
+                    return (
+                        <ForumCard key={forum.id} forum={forum} />
+                    )
+                })}
+            </div>
+               
+                <div className="column is-one-quarter">
                     <ul>
-                        <li><figure className="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-                        </figure></li>
+                        <li>1</li>
                         <li>2</li>
                         <li>3</li>
                         <li>4</li>
@@ -151,3 +178,53 @@ export default function Forums() {
         </div>
     );
 }
+
+
+
+
+
+
+
+//   const [selectedCategory, setSelectedCategory] = useState(“”);
+
+
+//   
+//   const handleCategoryChange = (category) => {
+//     setSelectedCategory(category);
+//   };
+
+
+
+//   const filteredForums = selectedCategory
+//     ? forums.filter((forum) => forum.category === selectedCategory)
+//     : forums;
+
+
+
+//   return (
+//     <div className=“Forums”>
+//       <CategoryFilter
+//         categories={Array.from(new Set(forums.map((forum) => forum.category)))}
+//         selectedCategory={selectedCategory}
+//         onCategoryChange={handleCategoryChange}
+//       />
+
+//       <table>
+//         <thead>
+//           <tr>
+//             <th className=“title”>Title</th>
+//             <th className=“category”>Category</th>
+//             <th className=“date”>Date</th>
+//             <th className=“content”>Content</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {filteredForums.map((forum) => {
+//             return <Forum key={forum.id} forum={forum} />;
+//           })}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+// export default Forums;

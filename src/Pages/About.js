@@ -4,7 +4,7 @@ import Sam from "./Sam.jpeg"
 import Johnny from "./Johnny.jpg"
 import Angel from "./Angel.jpg"
 import Max from "./Max.jpg"
-// import SignUp from "../Components/SignUp"
+
 
 export default function About() {
   const heroStyle = {
@@ -109,9 +109,9 @@ export default function About() {
                   </figure>
                   <br></br>
                   <p className='content is-medium is-italic has-text-dark'>
-                  Hello, I’m Angel Villa, a dedicated software engineer currently thriving in the Pursuit Program.
-                  When I’m not coding, you’ll find me embracing the freedom of the open road on my bike. Biking fuels my creativity.
-                  While my skills have flourished at the Pursuit Program, I find myself yearning for a new adventure. My current role working in a warehouse has taught me the value of hard work, but I know there’s opportunities waiting for someone with my skills and enthusiasm.
+                  Hello, I'm Angel Villa, a dedicated software engineer currently thriving in the Pursuit Program.
+                  When I'm not coding, you'll find me embracing the freedom of the open road on my bike. Biking fuels my creativity.
+                  While my skills have flourished at the Pursuit Program, I find myself yearning for a new adventure. My current role working in a warehouse has taught me the value of hard work, but I know there's opportunities waiting for someone with my skills and enthusiasm.
                   </p>
                   <span class="icon is-large has-text-primary">
                     <i class="fab fa-github"></i>
