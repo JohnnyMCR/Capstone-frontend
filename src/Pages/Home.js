@@ -1,6 +1,6 @@
 import React from 'react';
 import backgroundImage from './CareVillageBanner.jpeg'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import SignUp from "../Components/SignUp"
 import DONATIONS from "./DONATIONS.png"
 import FORUMS from "./FORUMS.jpeg"
@@ -14,13 +14,13 @@ function Home() {
     backgroundPosition: 'center',
   };
 
-  const roundedImagePlaceholderStyle = {
-    borderRadius: '5%',
-    width: '400px', 
-    height: '250px', 
-    backgroundColor: 'gray', 
+  // const roundedImagePlaceholderStyle = {
+  //   borderRadius: '5%',
+  //   width: '400px', 
+  //   height: '250px', 
+  //   backgroundColor: 'gray', 
     // marginRight: '10px', 
-  };
+  // };
 
   return (
     <div>
@@ -36,6 +36,7 @@ function Home() {
 
 
       <h2 className="title is-2 has-text-primary mt-6">What We Offer</h2>
+      <p className='content is-medium is-italic column has-text-dark is-fouth-fifth'> At CareVillage, we are committed to providing a dynamic and inclusive platform designed to meet the diverse needs of parents, caregivers, and children. Our app offers a range of features and services to support and enrich your parenting journey:</p>
 
       <div className='block'>
         <div className='columns'>
@@ -47,8 +48,9 @@ function Home() {
           </div>
 
           <div className='column is-half'>
-              <p className='content is-medium is-italic pt-6 mt-6'>
-              Text for the first image goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget ante nec metus scelerisque commodo. Text for the first image goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget ante nec metus scelerisque commodo.
+          <p className='title has-text-primary'>Parenting Forums:</p> 
+              <p className='content is-medium is-italic pt-3 mt-3 mr-6 has-text-dark'>
+             Connect with a thriving community of parents, grandparents, guardians, and loved ones. Our forums are a safe and welcoming space to share experiences, seek advice, and engage in meaningful conversations about various parenting methods and challenges. Access a wealth of parenting resources, articles, and expert advice to help you make informed decisions and navigate the ups and downs of parenting.
               </p>
           </div>
 
@@ -59,8 +61,9 @@ function Home() {
         <div className='columns'>
 
         <div className='column is-half'>
-              <p className='content is-medium is-italic pt-6 mt-6'>
-              Text for the first image goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget ante nec metus scelerisque commodo. Text for the first image goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget ante nec metus scelerisque commodo. Text for the first image goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <p className='title has-text-primary'>Donation Center:</p> 
+              <p className='content is-medium is-italic pt-3 mt-3 ml-6 has-text-dark'>
+               Make a positive impact on the lives of children in need. Our dedicated donation section allows you to give back to the community by contributing essential items, toys, books, and educational resources. Together, we can create a brighter future for every child.
               </p>
           </div>
 
@@ -69,8 +72,24 @@ function Home() {
               <img src={DONATIONS} alt="Sam-img" className='' style={{ width: '500px', height: '300px' }} ></img>
               </figure>
           </div>
-
         </div>
+
+          <div className='column'>
+          <p className='title has-text-primary'>Privacy and Security:</p> 
+          <p className='content is-medium is-italic column has-text-dark is-full'> 
+           Rest assured that your data and interactions are secure. We prioritize your privacy and safety, creating a space where you can share openly without worries.
+          </p>
+
+          <p className='title has-text-primary'>Compatibility:</p> 
+          <p className='content is-medium is-italic column has-text-dark is-full'> Mobile App  Enjoy the convenience of our app on various devices, including smartphones and tablets, with a responsive and user-friendly design.</p>
+
+          <p className='title has-text-primary'>Suggestions:</p> 
+          <p className='content is-medium is-italic column has-text-dark is-full'> Feedback and  Provide feedback and suggestions to help us continuously improve the app. We value your input in shaping the future of CareVillage.</p>
+
+          <p className='title has-text-primary'>Join us:</p> 
+          <p className='content is-medium is-italic column has-text-dark is-full'> 
+           At CareVillage and experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
+              </div>
       </div>
 
       

@@ -85,6 +85,7 @@ const SignUp = () => {
         <label className='label is-large has-text-danger'>Email</label>
         <div className='control'>
         <input
+        className="input"
         type="email"
         placeholder="Email"
         value={email}
@@ -95,6 +96,7 @@ const SignUp = () => {
           <label className='label is-large has-text-danger'>Password</label>
           <div className='control'>
             <input
+            className="input"
             type="password"
             placeholder="Password"
             value={password}
@@ -106,6 +108,7 @@ const SignUp = () => {
           <label className='label is-large has-text-danger'>Username</label>
           <div className='control'>
             <input
+            className="input"
              type="text"
              placeholder="Username"
              value={username}
@@ -117,6 +120,7 @@ const SignUp = () => {
           <label className='label is-large has-text-danger'>Address</label>
           <div className='control'>
             <input
+            className="input"
              type="address"
              placeholder="Address"
              value={address}
@@ -142,37 +146,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
-//SIGNUP
-// <div>
-//   <h2>Sign Up</h2>
-//   <input
-//     type="email"
-//     placeholder="Email"
-//     value={email}
-//     onChange={(e) => setEmail(e.target.value)}
-//   />
-//   <input
-//     type="password"
-//     placeholder="Password"
-//     value={password}
-//     onChange={(e) => setPassword(e.target.value)}
-//   />
-//   <input
-//     type="text"
-//     placeholder="Username"
-//     value={username}
-//     onChange={(e) => setUsername(e.target.value)}
-//   />
-//   <input
-//     type="address"
-//     placeholder="Address"
-//     value={address}
-//     onChange={(e) => setAddress(e.target.value)}
-//   />
-//   <button onClick={handleSignup}>Sign Up</button>
-//   <p>
-//     Already have an account? <Link to="/login">Log in</Link>
-//   </p>
-//   {error && <p style={{ color: 'red' }}>{error}</p>}
-// </div>

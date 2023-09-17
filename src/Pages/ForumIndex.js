@@ -1,10 +1,9 @@
-// import Forums from "../Components/Donations";
+import Forums from "../Components/Forums";
 
 export default function ForumIndex() {
   return (
     <div className="Forums">
-      <h2>Forums</h2>
-      {/* <Forums /> */}
+      <Forums />
     </div>
   );
 }

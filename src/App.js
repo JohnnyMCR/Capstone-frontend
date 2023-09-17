@@ -8,24 +8,23 @@ import NavBar from './Components/NavBar.js'
 import Footer from './Components/Footer.js'
 import AboutUs from './Pages/About'
 import Forums from './Pages/ForumIndex'
-// import LogIn from './Components/LogIn'
-// import SignUp from "./Components/SignUp";
+import Donations from "./Pages/DonationIndex"
 
 
 
 
 function App() {
+  const isAuthenticated = true;
   return (
     <div className="App">
       <Router>
-        <NavBar/>
+        <NavBar isAuthenticated={isAuthenticated}/>
         <main>
           <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/aboutus" element={<AboutUs/>} />
           <Route path="/forums" element={<Forums/>} />
-          {/* <Route path="/login" element={<LogIn/>} />
-          <Route path="/signup" element={<SignUp/>} /> */}
+          <Route path="/donations" element={<Donations/>} />
           </Routes>
         </main>
         <Footer/>

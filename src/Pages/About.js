@@ -73,7 +73,7 @@ export default function About() {
                   <i class="fab fa-linkedin"></i>
                   </span>
 
-                  <a className="linked title is-5 has-text-link" href="https://www.linkedin.com/in/samuel-alba-8b2a4b257/"> LinkedIn </a>
+                  <a className="linked title is-5 has-text-link" href="https://www.linkedin.com/in/samuelalba/"> LinkedIn </a>
                 </div>
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function About() {
                   <span class="icon is-large has-text-primary">
                   <i class="fab fa-linkedin"></i>
                   </span>
-                  <a className="linked title is-5 has-text-link" href="https://github.com/JohnnyMCR/"> LinkedIn </a>
+                  <a className="linked title is-5 has-text-link" href="https://www.linkedin.com/in/johnnycastillo/"> LinkedIn </a>
                 </div>
               </div>
             </div>
@@ -108,6 +108,11 @@ export default function About() {
                   <img src={Angel} alt="Angel-img" className='is-rounded' style={{ width: '300px', height: '300px' }}></img>
                   </figure>
                   <br></br>
+                  <p className='content is-medium is-italic has-text-dark'>
+                  Hello, I’m Angel Villa, a dedicated software engineer currently thriving in the Pursuit Program.
+                  When I’m not coding, you’ll find me embracing the freedom of the open road on my bike. Biking fuels my creativity.
+                  While my skills have flourished at the Pursuit Program, I find myself yearning for a new adventure. My current role working in a warehouse has taught me the value of hard work, but I know there’s opportunities waiting for someone with my skills and enthusiasm.
+                  </p>
                   <span class="icon is-large has-text-primary">
                     <i class="fab fa-github"></i>
                   </span>

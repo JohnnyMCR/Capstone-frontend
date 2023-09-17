@@ -57,6 +57,7 @@ const LogIn = () => {
             <label className="label is-large has-text-danger">Email</label>
             <div className="control">
             <input
+                className="input"
                 type="email"
                 placeholder="Email"
                 value={email}
@@ -69,6 +70,7 @@ const LogIn = () => {
             <label className="label is-large has-text-danger">Password</label>
             <div className="control">
             <input
+              className="input"
               type="password"
               placeholder="Password"
               value={password}
@@ -92,26 +94,3 @@ const LogIn = () => {
     )};
 
 export default LogIn;
-
-
-//Login
-//   <div>
-//     <h2>Login</h2>
-//     <input
-//       type="email"
-//       placeholder="Email"
-//       value={email}
-//       onChange={(e) => setEmail(e.target.value)}
-//     />
-//     <input
-//       type="password"
-//       placeholder="Password"
-//       value={password}
-//       onChange={(e) => setPassword(e.target.value)}
-//     />
-//     <button onClick={handleLogin}>Login</button>
-//     <p>
-//       Don't have an account? <Link to="/signup">Sign up</Link>
-//     </p>
-//     {error && <p style={{ color: 'red' }}>{error}</p>}
-//   </div>
