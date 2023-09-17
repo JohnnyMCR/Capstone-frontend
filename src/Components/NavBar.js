@@ -20,6 +20,7 @@ const NavBar = ({ user, onLogout }) => {
 
           <Link to="/forums/new">Add a New Post</Link>
         </li>
+        <li>
               <Link to="/donations">Donations</Link>
             </li>
             <li>
