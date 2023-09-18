@@ -1,4 +1,3 @@
-//Firebase Starters
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import firebaseConfig from "./Components/firebaseConfig"; 
@@ -21,7 +20,7 @@ import PostNew from './Pages/PostNew';
 import Error from './Pages/Error';
 import NewDonation from './Pages/NewDonation';
 import ShowDonation from './Pages/ShowOneDonation';
-import Dashboard from './Components/Dashboard';
+
 
 //Initializing Firebase
 const app = initializeApp(firebaseConfig);
@@ -49,6 +48,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        
         <NavBar user={user} onLogout={() => auth.signOut()} />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -70,7 +70,10 @@ function App() {
         </Routes>
       </div>
     </Router>
+    
   );
 }
 
 export default App;
+
+

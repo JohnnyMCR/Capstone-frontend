@@ -56,3 +56,5 @@ function Forums() {
 }
 
 export default Forums;
+
+//we just want the mmodals to pup up not to route you to a link

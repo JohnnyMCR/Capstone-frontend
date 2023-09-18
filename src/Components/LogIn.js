@@ -15,8 +15,6 @@ const LogIn = () => {
   const handleLogin = async () => {
     const auth = getAuth();
 
-    
-
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setError('');
@@ -60,3 +58,6 @@ const LogIn = () => {
 };
 
 export default LogIn;
+
+
+

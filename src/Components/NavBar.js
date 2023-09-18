@@ -17,6 +17,8 @@ const NavBar = ({ user, onLogout }) => {
               <Link to="/forums">Forums</Link> 
             </li>
             <li>
+  
+        <li>
 
           <Link to="/forums/new">Add a New Post</Link>
         </li>
