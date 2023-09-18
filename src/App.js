@@ -21,7 +21,6 @@ import PostNew from './Pages/PostNew';
 import Error from './Pages/Error';
 import NewDonation from './Pages/NewDonation';
 import ShowDonation from './Pages/ShowOneDonation';
-import Dashboard from './Components/Dashboard';
 
 //Initializing Firebase
 const app = initializeApp(firebaseConfig);
