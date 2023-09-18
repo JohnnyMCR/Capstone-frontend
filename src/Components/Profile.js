@@ -1,5 +1,4 @@
 import React from "react";
-
 const Profile = ({ user }) => {
   return (
     <div className="Profile">
@@ -11,5 +10,4 @@ const Profile = ({ user }) => {
     </div>
   );
 };
-
 export default Profile;
