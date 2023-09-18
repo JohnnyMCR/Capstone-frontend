@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+// import Donation from "../Components/Donation";
+import Donation from "./Donations";
 
-export default function SingleDonation() {
+export default function SingleDonation({ donation }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
 
@@ -14,6 +16,22 @@ export default function SingleDonation() {
 
   //make api call to backend for a SINGLE donation id
 
+//         <div className="SingleDonation">
+//             <h2>Single Donation</h2>
+//             {donation ? (
+//                 <Donation
+//                     donation={donation}
+//                     onEdit={(editedDonation) => {
+//                     }}
+//                     onDelete={(deletedDonation) => {
+//                     }}
+//                 />
+//             ) : (
+//                 <p>No donation selected.</p>
+//             )}
+//         </div>
+//     );
+// }
 
   return (
     <div>

@@ -3,51 +3,13 @@ import Login from "./LogIn"
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
 
-export default function NavBar({ user }) {
+export default function NavBar({ isAuthenticated }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
   
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
   
-  /* <nav>
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      {user ? (
-        <>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/forums">Forums</Link>
-          </li>
-          <li>
-            <Link to="/forums/new">Add a New Post</Link>
-          </li>
-          <li>
-            <Link to="/donations">Donations</Link>
-          </li>
-          <li>
-            <button onClick={onLogout}>Logout</button>
-          </li>
-        </>
-      ) : (
-        <>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign Up</Link>
-          </li>
-        </>
-      )}
-    </ul>
-  </nav>
-);
-}; */
-
   return (
     <nav className="navbar has-background-white is-spaced">
         
@@ -56,7 +18,7 @@ export default function NavBar({ user }) {
           
           
            <h1 className='title is-1 has-text-primary pt-5 ml-3'> Care Village </h1>
-               <a href="*" role="button" className="navbar-burger" aria-label="menu" aria-expanded={isMenuOpen} 
+               <a role="button" className="navbar-burger" aria-label="menu" aria-expanded={isMenuOpen} 
           onClick={toggleMenu}>
             
             <span aria-hidden="true"></span>
@@ -77,12 +39,10 @@ export default function NavBar({ user }) {
 
           <a href="/donations" className="navbar-item title is-5 has-text-primary">Donations</a>
   
-            <a href="/dashboard" className="navbar-item title is-5 has-text-primary">Dashboard</a>
-            
-            {user ? (
+            {isAuthenticated ? (
               <div className="navbar-item">
                 <button className="button is-primary is-rounded mx-1 mb-5">
-                  User
+                  User SA
                 </button>
               </div>
             ) : (
@@ -100,3 +60,49 @@ export default function NavBar({ user }) {
       </nav>
     );
   }
+
+  //import React from 'react';
+// import { Link } from ‘react-router-dom’;
+// const NavBar = ({ user, onLogout }) => {
+//   return (
+//     <nav>
+//       <ul>
+//         <li>
+//           <Link to=“/”>Home</Link>
+//         </li>
+//         {user ? (
+//           <>
+//             <li>
+//               <Link to=“/dashboard”>Dashboard</Link>
+//             </li>
+//             <li>
+//               <Link to=“/forums”>Forums</Link>
+//             </li>
+//             <li>
+//               <Link to=“/forums/new”>Add a New Post</Link>
+//             </li>
+//             <li>
+//         <li>
+//           <Link to=“/forums/new”>Add a New Post</Link>
+//         </li>
+//               <Link to=“/donations”>Donations</Link>
+//             </li>
+//             <li>
+//               <button onClick={onLogout}>Logout</button>
+//             </li>
+//           </>
+//         ) : (
+//           <>
+//             <li>
+//               <Link to=“/login”>Login</Link>
+//             </li>
+//             <li>
+//               <Link to=“/signup”>Sign Up</Link>
+//             </li>
+//           </>
+//         )}
+//       </ul>
+//     </nav>
+//   );
+// };
+// export default NavBar;

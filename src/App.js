@@ -1,23 +1,17 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import firebaseConfig from "./Components/firebaseConfig";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import "bulma/css/bulma.min.css";
-import "./App.css";
-import "./custom.scss";
 
-import Home from "./Pages/Home.js";
-import NavBar from "./Components/NavBar.js";
-import Footer from "./Components/Footer.js";
-import AboutUs from "./Pages/About";
-import Forums from "./Pages/ForumIndex";
-import Donations from "./Pages/DonationIndex";
-import Dashboard from "./Components/Dashboard";
+
+
+
+
+
 //Firebase Starters
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import firebaseConfig from "./Components/firebaseConfig"; 
+
+import "bulma/css/bulma.min.css";
+import "./App.css";
+import "./custom.scss";
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
@@ -27,21 +21,21 @@ import LogIn from './Components/LogIn';
 import Dashboard from './Components/Dashboard';
 import NavBar from './Components/NavBar';
 import Home from './Pages/Home';
-import About from './Pages/About';
 import DonationIndex from './Pages/DonationIndex';
+// import Donations from "./Pages/DonationIndex";
 import EditDonation from './Pages/EditDonation';
 import ForumsIndex from './Pages/ForumsIndex';
+// import Forums from "./Pages/ForumIndex";
 import ShowForumDetails from './Pages/ShowForumDetails'
 import EditForum from './Pages/EditForums';
 import PostNew from './Pages/PostNew';
 import Error from './Pages/Error';
 import NewDonation from './Pages/NewDonation';
 import ShowDonation from './Pages/ShowOneDonation';
+import Footer from "./Components/Footer.js";
+import AboutUs from "./Pages/About";
 
 //Initializing Firebase
-const app = initializeApp(firebaseConfig);
-console.log('Firebase initialized:', app);
-
 const app = initializeApp(firebaseConfig);
 console.log("Firebase initialized:", app);
 
@@ -62,38 +56,20 @@ function App() {
     };
   }, [auth]);
   return (
-    <div className="App">
-      <Router>
-      <NavBar user={user} onLogout={() => auth.signOut()} />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/aboutus" element={<AboutUs />} />
-            <Route path="/forums" element={<Forums />} />
-            <Route path="/donations" element={<Donations />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route
-              path="/dashboard"
-              element={
-                user ? <Dashboard user={user} /> : <Navigate to="/login" />
-              }
-            />
-          </Routes>
-        </main>
-        <Footer />
-      </Router>
-    </div>
     <Router>
       <div className="App">
         <NavBar user={user} onLogout={() => auth.signOut()} />
+        <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error />} />
-          <Route path="/About" element={<About />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          {/* <Route path="/donations" element={<Donations />} /> */}
           <Route path="/donations" element={<DonationIndex />} />
           <Route path="/donations/new" element={<NewDonation />} />
           <Route path="/donations/edit" element={<EditDonation />} />
           <Route path="/donations/show" element={<ShowDonation />} />
+          {/* <Route path="/forums" element={<Forums />} /> */}
           <Route path="/forums" element={<ForumsIndex />} />
           <Route path="/forums/new" element={<PostNew />} />
           <Route path="/forums/:id" element={<ShowForumDetails />} />
@@ -104,6 +80,8 @@ function App() {
             path="/dashboard"
             element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
         </Routes>
+        </main>
+        <Footer />
       </div>
     </Router>
   );

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { getAuth, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './LogIn';
 
 const API = process.env.REACT_APP_API_URL;
-
+// createUserWithEmailAndPassword in line 3
 
 
 const SignUp = () => {
