@@ -1,3 +1,4 @@
+@charset "utf-8";
 // $background-color: #ffffff;
 // $border-color: #D0D0D0;
 
@@ -11,7 +12,7 @@ $danger: #C75200; //Subhead color
 $dark: #817E7E; //Meta color
 $text: #222222; //Text color
 
-@charset "utf-8";
+
 @import "../node_modules/bulma/bulma.sass";
 
 /* Import "Lato" font for headings */

@@ -18,7 +18,7 @@ export default function NavBar({ isAuthenticated }) {
           
           
            <h1 className='title is-1 has-text-primary pt-5 ml-3'> Care Village </h1>
-               <a role="button" className="navbar-burger" aria-label="menu" aria-expanded={isMenuOpen} 
+               <a href="role" role="button" className="navbar-burger" aria-label="menu" aria-expanded={isMenuOpen} 
           onClick={toggleMenu}>
             
             <span aria-hidden="true"></span>
