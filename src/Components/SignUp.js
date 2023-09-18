@@ -30,8 +30,7 @@ const SignUp = () => {
         return;
       }
   
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password, address);
-            console.log("User Credential:", userCredential);
+      // const userCredential = await createUserWithEmailAndPassword(auth, email, password,address);
   
       // Update the user's display name (username)
       await updateProfile(auth.currentUser, { displayName: username });
@@ -81,7 +80,7 @@ const SignUp = () => {
   <div className="modal-background"></div>
   <div className='modal-content has-background-info py-5 px-5'>
     <h3 className='title is-1 has-text-primary'> Join CareVillage </h3>
-    <form onSubmit={handleSignup}>
+    <form>
       <div className='field'>
         <label className='label is-large has-text-danger'>Email</label>
         <div className='control'>

@@ -10,6 +10,44 @@ export default function NavBar({ user }) {
     setMenuOpen(!isMenuOpen);
   };
   
+  /* <nav>
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      {user ? (
+        <>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/forums">Forums</Link>
+          </li>
+          <li>
+            <Link to="/forums/new">Add a New Post</Link>
+          </li>
+          <li>
+            <Link to="/donations">Donations</Link>
+          </li>
+          <li>
+            <button onClick={onLogout}>Logout</button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/signup">Sign Up</Link>
+          </li>
+        </>
+      )}
+    </ul>
+  </nav>
+);
+}; */
+
   return (
     <nav className="navbar has-background-white is-spaced">
         
@@ -18,7 +56,7 @@ export default function NavBar({ user }) {
           
           
            <h1 className='title is-1 has-text-primary pt-5 ml-3'> Care Village </h1>
-               <a role="button" className="navbar-burger" aria-label="menu" aria-expanded={isMenuOpen} 
+               <a href="*" role="button" className="navbar-burger" aria-label="menu" aria-expanded={isMenuOpen} 
           onClick={toggleMenu}>
             
             <span aria-hidden="true"></span>

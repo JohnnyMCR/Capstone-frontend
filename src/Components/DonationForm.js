@@ -1,59 +1,68 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-export default function DonationEditForm({ selectedDonation, editDonation }) {
-  const [editedDonation, setEditedDonation] = useState(selectedDonation || {});
-
-  useEffect(() => {
-    setEditedDonation(selectedDonation || {});
-  }, [selectedDonation]);
+function DonationForm({ addDonation }) {
+  const [newDonation, setNewDonation] = useState({
+    img: "",
+    description: "",
+    userName: "",
+    zipcode: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditedDonation({
-      ...editedDonation,
+    setNewDonation({
+      ...newDonation,
       [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    editDonation(editedDonation);
+    addDonation(newDonation);
+    setNewDonation({
+      img: "",
+      description: "",
+      userName: "",
+      zipcode: "",
+    });
   };
 
   return (
     <div>
-      <h2>Edit Donation</h2>
+      <h2>Add New Donation</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="img"
           placeholder="Image URL"
-          value={editedDonation.img || ""}
+          value={newDonation.img}
           onChange={handleChange}
         />
         <input
           type="text"
           name="description"
           placeholder="Description"
-          value={editedDonation.description || ""}
+          value={newDonation.description}
           onChange={handleChange}
         />
         <input
           type="text"
           name="userName"
           placeholder="User Name"
-          value={editedDonation.userName || ""}
+          value={newDonation.userName}
           onChange={handleChange}
         />
         <input
           type="text"
           name="zipcode"
           placeholder="Zipcode"
-          value={editedDonation.zipcode || ""}
+          value={newDonation.zipcode}
           onChange={handleChange}
         />
-        <button type="submit">Save Changes</button>
+        <button type="submit">Add Donation</button>
       </form>
     </div>
   );
 }
+
+export default DonationForm;
