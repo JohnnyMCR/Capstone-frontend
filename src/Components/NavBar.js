@@ -14,12 +14,21 @@ export default function NavBar({ isAuthenticated }) {
   return (
     <nav className="navbar has-background-white is-spaced">
 
+        
+        <div className="navbar-brand">
+          <img src={LOGO} alt="logo" width='100' />
+          
+          
+           <h1 className='title is-1 has-text-primary pt-5 ml-3'> Care Village </h1>
+               <a href="*" role="button" className="navbar-burger" aria-label="menu" aria-expanded={isMenuOpen} 
+
       <div className="navbar-brand">
         <img src={LOGO} alt="logo" width='100' />
 
 
         <h1 className='title is-1 has-text-primary pt-5 ml-3'> Care Village </h1>
         <a href="*" role="button" className="navbar-burger" aria-label="menu" aria-expanded={isMenuOpen}
+ dev
           onClick={toggleMenu}>
 
           <span aria-hidden="true"></span>
