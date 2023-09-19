@@ -44,8 +44,7 @@
   },
   "devDependencies": {
     "bulma": "^0.9.4",
-    "node-sass": "^7.0.3"
+    "node-sass": "^7.0.3",
+    "sass": "^1.67.0"
   }
 }
-
-
