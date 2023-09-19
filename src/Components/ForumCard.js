@@ -1,7 +1,6 @@
 import React from "react";
 import SinglePost from './SinglePost'
 
-
 export default function ForumCard({ forum }) {
 
     return (
@@ -11,7 +10,7 @@ export default function ForumCard({ forum }) {
                     <div className='columns'>
                         <div className='column has-text-left is-full has-background-info'>
                             <h1 className='column is-one-quarter is-size-4 has-background-warning'>{forum.title}</h1>
-                             <span className='column is-one-quarter is-size-6 has-background-primary'>{forum.date}</span>
+                            <span className='column is-one-quarter is-size-6 has-background-primary'>{forum.date}</span>
                             <p className='column is-one-quarter is-size-6 has-background-danger'>{forum.user_id}</p>
                             <p className='column is-one-quarter is-size-6 has-background-light'>{forum.category}</p>
                             <p className='column is-one-quarter is-size-6 has-background-dark'>{forum.content}</p>
@@ -21,7 +20,5 @@ export default function ForumCard({ forum }) {
                 </div>
             </div>
         </div>
-
     )
-
 }
