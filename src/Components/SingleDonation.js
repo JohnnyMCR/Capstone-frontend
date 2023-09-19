@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import Donation from "../Components/Donation";
-import Donation from "./Donations";
+// import Donation from "./Donations";
 
 export default function SingleDonation({ donation }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
