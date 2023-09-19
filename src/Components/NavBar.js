@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Login from "./LogIn"
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
+import { Link } from 'react-router-dom';
 
 export default function NavBar({ isAuthenticated }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -31,13 +32,13 @@ export default function NavBar({ isAuthenticated }) {
       <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
         <div className="navbar-end">
 
-          <a href="/" className="navbar-item title is-5 has-text-primary">Home</a>
+          <Link to="/" className="navbar-item title is-5 has-text-primary">Home</Link>
 
-          <a href="/aboutus" className="navbar-item title is-5 has-text-primary">About Us</a>
+          <Link to="/aboutus" className="navbar-item title is-5 has-text-primary">About Us</Link>
 
-          <a href="/forums" className="navbar-item title is-5 has-text-primary">Forums</a>
+          <Link to="/forums" className="navbar-item title is-5 has-text-primary">Forums</Link>
 
-          <a href="/donations" className="navbar-item title is-5 has-text-primary">Donations</a>
+          <Link to="/donations" className="navbar-item title is-5 has-text-primary">Donations</Link>
 
           {isAuthenticated ? (
             <div className="navbar-item">
