@@ -3,8 +3,7 @@ import ForumEdit from "../Components/ForumEdit"
 function EditForum() {
   return (
     <div>
-       
-        <ForumEdit />
+      <ForumEdit />
     </div>
   )
 }

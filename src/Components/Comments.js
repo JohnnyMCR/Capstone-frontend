@@ -32,7 +32,7 @@ function Comments() {
   useEffect(() => {
     axios.get(`${API}/forums/${id}/comments`)
       .then((res) => {
-        console.log("Fetched Comments:", res.data); 
+        console.log("Fetched Comments:", res.data);
         setComments(res.data);
       })
       .catch((err) => {
@@ -48,7 +48,7 @@ function Comments() {
     axios
       .post(`${API}/forums/${id}/comments`, newComment)
       .then((res) => {
-        console.log("Added Comment Response:", res.data); 
+        console.log("Added Comment Response:", res.data);
         setComments([res.data, ...comments]);
       })
       .catch((err) => {
@@ -84,7 +84,7 @@ function Comments() {
       });
     console.log('Comment Update Request Sent:', updatedComment);
   };
-  
+
 
   return (
     <section className="Comments">

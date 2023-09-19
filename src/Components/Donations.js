@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import DonationModal from './DonationModal';
 import DonationCard from './DonationCard';
+const API = process.env.REACT_APP_API_URL;
 
 
 export default function Donations() {
@@ -10,28 +11,17 @@ export default function Donations() {
     const [selectedItem, setSelectedItem] = useState(null);
     const [selectedSortOption, setSelectedSortOption] = useState('All');
     const [zipcode, setZipCode] = useState('');
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [donations, setDonations] = useState([
-        {
-            id: 1,
-            title: 'Donation 1',
-            category: 'Category 1',
-            description: 'Description for Donation 1',
-            user: 'User 1',
-            distance: 5,
-            image: 'https://placekitten.com/128/128', 
-          },
-          {
-            id: 2,
-            title: 'Donation 2',
-            category: 'Category 2',
-            description: 'Description for Donation 2',
-            user: 'User 2',
-            distance: 10,
-            image: 'https://placekitten.com/128/128', 
-          },
-    ])
+    const [donations, setDonations] = useState([]);
+
+    useEffect(() => {
+        axios.get(`${API}/donations`)
+            .then((response) => {
+                setDonations(response.data);
+            })
+            .catch((e) => console.warn("catch", e));
+    }, []);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -63,8 +53,6 @@ export default function Donations() {
         setIsModalOpen(false);
     };
 
- 
-
     return (
         <div>
             <div className='columns mt-1'>
@@ -81,29 +69,43 @@ export default function Donations() {
                                     >
                                         <span>{selectedItem || 'Dropdown button'}</span>
                                         <span className="icon is-small">
-                                            <i className={`fas fa-angle-${isDropdownOpen ? 'up' : 'down'}`} aria-hidden="true"></i>
+                                            <i
+                                                className={`fas fa-angle-${isDropdownOpen ? 'up' : 'down'}`}
+                                                aria-hidden="true"
+                                            ></i>
                                         </span>
                                     </button>
                                 </div>
                                 <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                     <div className="dropdown-content">
-                                        <a href="#" className={`dropdown-item ${selectedItem === 'Dropdown item' ? 'is-active' : ''}`} onClick={() => selectItem('Dropdown item')}>
+                                        <button
+                                            className={`dropdown-item ${selectedItem === 'Dropdown item' ? 'is-active' : ''}`}
+                                            onClick={() => selectItem('Dropdown item')}
+                                        >
                                             Dropdown item
-                                        </a>
-                                        <a href="#" className={`dropdown-item ${selectedItem === 'item' ? 'is-active' : ''}`} onClick={() => selectItem('item')}>
+                                        </button>
+                                        <button
+                                            className={`dropdown-item ${selectedItem === 'item' ? 'is-active' : ''}`}
+                                            onClick={() => selectItem('item')}
+                                        >
                                             item
-                                        </a>
-                                        <a href="#" className={`dropdown-item ${selectedItem === 'Active dropdown item' ? 'is-active' : ''}`} onClick={() => selectItem('Active dropdown item')}>
+                                        </button>
+                                        <button
+                                            className={`dropdown-item ${selectedItem === 'Active dropdown item' ? 'is-active' : ''}`}
+                                            onClick={() => selectItem('Active dropdown item')}
+                                        >
                                             Active dropdown item
-                                        </a>
-                                        <a href="#" className={`dropdown-item ${selectedItem === 'Other dropdown item' ? 'is-active' : ''}`} onClick={() => selectItem('Other dropdown item')}>
+                                        </button>
+                                        <button
+                                            className={`dropdown-item ${selectedItem === 'Other dropdown item' ? 'is-active' : ''}`}
+                                            onClick={() => selectItem('Other dropdown item')}
+                                        >
                                             Other dropdown item
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div className="control">
                             <div className={`dropdown ${isSortDropdownOpen ? 'is-active' : ''}`}>
                                 <div className="dropdown-trigger">
@@ -115,21 +117,33 @@ export default function Donations() {
                                     >
                                         <span>Sort: {selectedSortOption}</span>
                                         <span className="icon is-small">
-                                            <i className={`fas fa-angle-${isSortDropdownOpen ? 'up' : 'down'}`} aria-hidden="true"></i>
+                                            <i
+                                                className={`fas fa-angle-${isSortDropdownOpen ? 'up' : 'down'}`}
+                                                aria-hidden="true"
+                                            ></i>
                                         </span>
                                     </button>
                                 </div>
                                 <div className="dropdown-menu" id="sort-dropdown-menu" role="menu">
                                     <div className="dropdown-content">
-                                        <a href="#" className={`dropdown-item ${selectedSortOption === 'Most Recent' ? 'is-active' : ''}`} onClick={() => selectSortOption('Most Recent')}>
+                                        <button
+                                            className={`dropdown-item ${selectedSortOption === 'Most Recent' ? 'is-active' : ''}`}
+                                            onClick={() => selectSortOption('Most Recent')}
+                                        >
                                             Most Recent
-                                        </a>
-                                        <a href="#" className={`dropdown-item ${selectedSortOption === 'Most Popular' ? 'is-active' : ''}`} onClick={() => selectSortOption('Most Popular')}>
+                                        </button>
+                                        <button
+                                            className={`dropdown-item ${selectedSortOption === 'Most Popular' ? 'is-active' : ''}`}
+                                            onClick={() => selectSortOption('Most Popular')}
+                                        >
                                             Most Popular
-                                        </a>
-                                        <a href="#" className={`dropdown-item ${selectedSortOption === 'All' ? 'is-active' : ''}`} onClick={() => selectSortOption('All')}>
+                                        </button>
+                                        <button
+                                            className={`dropdown-item ${selectedSortOption === 'All' ? 'is-active' : ''}`}
+                                            onClick={() => selectSortOption('All')}
+                                        >
                                             All
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -154,18 +168,17 @@ export default function Donations() {
                         </button>
                     </div>
                 </div>
-                <DonationModal isOpen={isModalOpen} onClose={closeModal}/>
+                <DonationModal isOpen={isModalOpen} onClose={closeModal} />
             </div>
             <div>
                 {donations.map((donation) => {
-                    return (
-                        <DonationCard key={donation.id} donation={donation} />
-                    )
+                    return <DonationCard key={donation.id} donation={donation} />;
                 })}
             </div>
         </div>
     );
 }
+
 
 //// import axios from "axios";
 // import React, { useState } from "react";

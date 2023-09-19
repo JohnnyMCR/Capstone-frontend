@@ -36,7 +36,7 @@ function ForumEdit() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     // Send a PUT request to update the forum details
     axios
       .put(`${API}/forums/${id}`, forum)

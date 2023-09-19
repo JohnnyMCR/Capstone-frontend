@@ -11,7 +11,7 @@ $danger: #C75200; //Subhead color
 $dark: #817E7E; //Meta color
 $text: #222222; //Text color
 
-@charset "utf-8";
+
 @import "../node_modules/bulma/bulma.sass";
 
 /* Import "Lato" font for headings */
@@ -20,30 +20,28 @@ $text: #222222; //Text color
 /* Import "Public Sans" font for body text */
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap');
 
-
 /* Headings */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato', sans-serif;
-    
-  }
-  
-  /* Body Text */
-  body {
-    font-family: 'Public Sans', sans-serif;
-    
-  }
-
-  a.navbar-item {
-    font-family: 'Public Sans', sans-serif;
-  
-  }
-  
-a {
-  font-family: 'Public Sans', sans-serif;
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', sans-serif;
 }
 
+/* Body Text */
+body {
+  font-family: 'Public Sans', sans-serif;
+}
 
+a.navbar-item {
+  font-family: 'Public Sans', sans-serif;
+}
+
+a {
+  font-family: 'Public Sans', sans-serif;
+}
 
 p {
   font-family: 'Public Sans', sans-serif;
