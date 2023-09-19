@@ -1,11 +1,12 @@
 // Api call that maps through the comments for that post
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+const API = process.env.REACT_APP_API_URL;
 
+export default function SinglePost({ initialContent }) {
 
-export default function SinglePost({ initialComments, initialContent }) {
-
-    const [comments, setComments] = useState(initialComments);
+    const [comments, setComments] = useState([]);
     // const [content, setContent] = useState(initialContent)
     const [newComment, setNewComment] = useState('');
 
@@ -17,6 +18,13 @@ export default function SinglePost({ initialComments, initialContent }) {
     const handleCommentChange = (event) => {
         setNewComment(event.target.value);
     };
+    useEffect(() => {
+        axios.get(`${API}/comments`)
+            .then((response) => {
+                setComments(response.data);
+            })
+            .catch((e) => console.warn("catch", e));
+    }, []);
 
     return (
         <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>
@@ -33,7 +41,7 @@ export default function SinglePost({ initialComments, initialContent }) {
                     <ul>
                         {comments.map((comment, index) => (
                             <li key={index} className="comment-item mb-3">
-                                {comment}
+                                {comment.content}
                             </li>
                         ))}
                     </ul>

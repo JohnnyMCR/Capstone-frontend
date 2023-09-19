@@ -2,7 +2,7 @@ import React from "react"
 import SingleDonation from "./SingleDonation";
 
 export default function DonationCard({ donation }) {
-   
+
     return (
         <div className="column is-10 ml-4">
             <div className="card mb-5">
@@ -10,7 +10,7 @@ export default function DonationCard({ donation }) {
                     <div className='columns'>
                         <div className='column '>
                             <figure className="image is-128x128">
-                                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
+                                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder" />
                             </figure>
                         </div>
                         <div className='column has-text-left is-three-quarters has-background-info'>
@@ -20,7 +20,7 @@ export default function DonationCard({ donation }) {
                             <p className='is-size-6 has-text-dark'>User: {donation.user}</p>
                             <p className='is-size-6 has-text-dark'>Distance: {donation.distance}</p>
                         </div>
-                        <SingleDonation/>
+                        <SingleDonation />
                     </div>
                 </div>
             </div>

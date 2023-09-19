@@ -25,14 +25,14 @@ function ForumNew() {
     title: "",
     content: "",
     category: "",
-    date:"",
+    date: "",
   });
 
   const handleDateChange = (event) => {
-    const newDate = event.target.value; 
-    setForum({ ...forum, date: newDate }); 
+    const newDate = event.target.value;
+    setForum({ ...forum, date: newDate });
   };
-  
+
 
   const handleTextChange = (event) => {
     setForum({ ...forum, [event.target.id]: event.target.value });
@@ -40,7 +40,7 @@ function ForumNew() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitting form with data:', forum); 
+    console.log('Submitting form with data:', forum);
     addForum(forum);
   };
 
@@ -106,4 +106,4 @@ function ForumNew() {
 }
 
 export default ForumNew;
-  
+

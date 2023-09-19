@@ -25,7 +25,7 @@ function CommentForm(props) {
       if (user) {
         setComment((prevComment) => ({
           ...prevComment,
-          content:"",
+          content: "",
           user_id: user.uid,
           username: user.displayName,
         }));
@@ -47,12 +47,12 @@ function CommentForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Comment Form submitted!");
-     
+
     const currentDate = new Date().toISOString().split('T')[0];
-  setComment((prevComment) => ({
-    ...prevComment,
-    date: currentDate, 
-  }));
+    setComment((prevComment) => ({
+      ...prevComment,
+      date: currentDate,
+    }));
 
     if (props.handleAddComment) {
       const { date, ...commentWithoutDate } = comment;
