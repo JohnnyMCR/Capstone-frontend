@@ -63,6 +63,9 @@ export default function About() {
                     <img src={Sam} alt="Sam-img" className='is-rounded' style={{ width: '300px', height: '300px' }} ></img>
                   </figure>
                   <br></br>
+                  <p className='content is-medium is-italic has-text-dark'>
+                  Hello, I'm Samuel Alba, the product owner behind CareVillage. As a dedicated problem solver and technology enthusiast, I embarked on a mission to craft an app that simplifies and elevates daily life. My unwavering belief is that technology should be a seamless part of our lives, enhancing our experiences.
+                  </p>
                   <span class="icon is-large has-text-primary">
                     <i class="fab fa-github"></i>
                   </span>
@@ -85,6 +88,9 @@ export default function About() {
                     <img src={Johnny} alt="Johnny-img" className='is-rounded' style={{ width: '300px', height: '300px' }} ></img>
                   </figure>
                   <br></br>
+                  <p className='content is-medium is-italic has-text-dark'>
+                    Hello! My name is Johnny Castillo and I'm a software engineer with experience in multiple fields ranging from marketing, finance, nonprofit and early childhood development. I'm passionate about learning new and adventurous ways of seeking knowledge and implementing them. The pursuit of knowledge led me here and I have gained an invaluable amount of it with this program.
+                  </p>
                   <span class="icon is-large has-text-primary">
                     <i class="fab fa-github"></i>
                   </span>
