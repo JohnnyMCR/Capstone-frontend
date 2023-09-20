@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { getAuth, updateProfile } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './LogIn';
 
 const API = process.env.REACT_APP_API_URL;
-// createUserWithEmailAndPassword in line 3
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -13,14 +12,14 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [address, setAddress] = useState('');
   const [error, setError] = useState('');
-  //usestate for modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
+  console.log("testing component")
 
   const handleSignup = async () => {
     const auth = getAuth();
-    console.log(auth)
+    console.log(auth, "test")
 
     try {
       if (!email || !password || !username) {
@@ -28,17 +27,17 @@ const SignUp = () => {
         return;
       }
 
-      // const userCredential = await createUserWithEmailAndPassword(auth, email, password,address);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password,address);
+      console.log('User Credential:' ,userCredential);
 
-      // Update the user's display name (username)
       await updateProfile(auth.currentUser, { displayName: username });
-
-      // Make an API call to your backend to insert the user's data into the profile table
+      
+      // console.log(auth)
       const response = await axios.post(`${API}/profiles`, {
         username,
         password,
-        email,
-        address
+        address,
+        email
       });
 
       console.log(response);
@@ -46,8 +45,7 @@ const SignUp = () => {
 
       if (response.status === 200) {
         setError('');
-        navigate('/dashboard', { replace: true });
-        //close modal
+        navigate('/', { replace: true });
         setIsModalOpen(false);
       } else {
         setError('Failed to sign up. Please try again.');
@@ -59,16 +57,18 @@ const SignUp = () => {
   };
 
   const openModal = () => {
+    console.log("Open Modal")
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
+    console.log("Close Modal")
     setIsModalOpen(false);
   };
 
   return (
     <>
-      <button className="button is-primary is-small" onClick={openModal}>
+      <button className="button is-primary is-small" type='button' onClick={openModal}>
         Sign Up
       </button>
 
@@ -126,7 +126,7 @@ const SignUp = () => {
                   </div>
                 </div>
 
-                <button className='button is-primary is-medium mt-4' onClick={handleSignup}>Sign Up</button>
+                <button className='button is-primary is-medium mt-4' type='button' onClick={() => handleSignup()}>Sign Up</button>
                 <p className='content is-medium has-text-primary mt-5'>
                   Already have an account? <LogIn />
 
@@ -135,7 +135,7 @@ const SignUp = () => {
 
               </div>
             </form>
-            <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
+            <button className="modal-close is-large" aria-label="close" onClick={() => closeModal()}></button>
           </div>
         </div>
       )}
