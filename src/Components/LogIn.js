@@ -7,22 +7,20 @@ const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  //usestate for modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     const auth = getAuth();
-    console.log(auth)
+    console.log("Button Clicked")
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setError('');
 
-      // Redirect to the dashboard
       navigate('/dashboard');
-      //close modal
+    
       setIsModalOpen(false);
     } catch (error) {
       setError(error.message);
@@ -30,16 +28,18 @@ const LogIn = () => {
   };
 
   const openModal = () => {
+    console.log("Open Modal")
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
+    console.log('Close Modal')
     setIsModalOpen(false);
   };
 
   return (
     <>
-      <button className="button is-warning is-small" onClick={openModal}>
+      <button className="button is-warning is-small" type="button" onClick={openModal}>
         Login
       </button>
 
@@ -75,7 +75,7 @@ const LogIn = () => {
                 </div>
               </div>
 
-              <button className="button is-warning is-medium mt-3" onClick={handleLogin}>Login</button>
+              <button className="button is-warning is-medium mt-3" type='button' onClick={() => handleLogin()}>Login</button>
               <p className='content is-medium mt-5 has-text-primary'>
                 Don't have an account? <SignUp />
               </p>

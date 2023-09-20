@@ -8,10 +8,10 @@ import "./App.css";
 import "./custom.scss";
 
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import SignUp from './Components/SignUp';
-import LogIn from './Components/LogIn';
+// import SignUp from './Components/SignUp';
+// import LogIn from './Components/LogIn';
 import Dashboard from './Components/Dashboard';
 import NavBar from './Components/NavBar';
 import Home from './Pages/Home';
@@ -33,7 +33,6 @@ import AboutUs from "./Pages/About";
 const app = initializeApp(firebaseConfig);
 console.log("Firebase initialized:", app);
 
-
 function App() {
   const [user, setUser] = useState(null);
   const auth = getAuth();
@@ -49,6 +48,7 @@ function App() {
       unsubscribe();
     };
   }, [auth]);
+  
   return (
     <Router>
       <div className="App">
@@ -58,6 +58,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Error />} />
             <Route path="/aboutus" element={<AboutUs />} />
+            <Route path='/dashboard' element={<Dashboard />} />
             {/* <Route path="/donations" element={<Donations />} /> */}
             <Route path="/donations" element={<DonationIndex />} />
             <Route path="/donations/new" element={<NewDonation />} />
@@ -68,12 +69,12 @@ function App() {
             <Route path="/forums/new" element={<PostNew />} />
             <Route path="/forums/:id" element={<ShowForumDetails />} />
             <Route path="/forums/:id/edit" element={<EditForum />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route
+            {/* <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<LogIn />} />  */}
+             {/* <Route
               path="/dashboard"
-              element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
-          </Routes>
+              element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />  */}
+          </Routes> 
         </main>
         <Footer />
       </div>
