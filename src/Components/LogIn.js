@@ -19,7 +19,7 @@ const LogIn = () => {
       await signInWithEmailAndPassword(auth, email, password);
       setError('');
 
-      navigate('/dashboard');
+      navigate('/');
     
       setIsModalOpen(false);
     } catch (error) {
