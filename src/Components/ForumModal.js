@@ -5,28 +5,18 @@ export default function ForumModal({ isOpen, onClose, onSubmit }) {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit({ title, content, category: setCategory });
-    setTitle('');
-    setContent('');
-    setCategory('')
-    onClose();
-  };
-
   return (
     <div className={`modal ${isOpen ? 'is-active' : ''}`}>
-      <div className="modal-background" onClick={onClose}></div>
+      <div className="modal-background" typeof='button' onClick={onClose}></div>
       <div className="modal-content ">
         <div className="box has-background-info">
           <h1 className="title is-1 has-text-primary">New Forum Post</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit= {onSubmit}>
             <div className="field">
               <label className="label is-large has-text-danger">Title</label>
               <div className="control">
                 <input
                   className="input"
-                  type="text"
                   placeholder="Enter post title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -82,3 +72,4 @@ export default function ForumModal({ isOpen, onClose, onSubmit }) {
     </div>
   );
 }
+
