@@ -34,27 +34,27 @@ export default function NavBar({ user, onLogout }) {
       <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
         <div className="navbar-end">
 
-          <Link to="/" className="navbar-item title is-5 has-text-primary">Home</Link>
+          <Link to="/" className="navbar-item title is-4 has-text-primary mt-5">Home</Link>
 
-          <Link to="/aboutus" className="navbar-item title is-5 has-text-primary">About Us</Link>
+          <Link to="/aboutus" className="navbar-item title is-4 has-text-primary mt-5">About Us</Link>
 
-          <Link to="/forums" className="navbar-item title is-5 has-text-primary">Forums</Link>
+          <Link to="/forums" className="navbar-item title is-4 has-text-primary mt-5">Forums</Link>
 
-          <Link to="/donations" className="navbar-item title is-5 has-text-primary">Donations</Link>
+          <Link to="/donations" className="navbar-item title is-4 has-text-primary mt-5">Donations</Link>
 
           {user ? (
             <div className="navbar-item">
-              <button className="button is-primary is-rounded mx-1 mb-5">
+              <button className="button is-primary is-rounded mx-1 mb-5 mt-5">
                 <Profile/>
               </button>
-              <button className="button is-primary is-rounded mx-1 mb-5" onClick={onLogout}>Logout</button>              
+              <button className="button is-primary is-rounded mx-1 mb-5 mt-5" onClick={onLogout}>Logout</button>              
             </div>
           ) : (
             <>
-              <button href='/login' className="button is-warning  mx-1 mb-5 is-rounded" id="login" >
+              <button href='/login' className="button is-warning mx-1 mb-5 is-rounded mt-5" id="login" >
                 <Login />
               </button>
-              <button href='/signup' className="button is-primary mx-1 mb-5 is-rounded" id="signup" >
+              <button href='/signup' className="button is-primary mx-1 mb-5 is-rounded mt-5" id="signup" >
                 <SignUp />
               </button>
             </>

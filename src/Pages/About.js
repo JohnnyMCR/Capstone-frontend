@@ -17,7 +17,7 @@ export default function About() {
       <section className="hero is-large" style={heroStyle}>
         <div className="hero-body">
           <div className="container">
-            <h1 className="title is-2 has-text-white"><strong>Where Care Comes Full Circle</strong></h1>
+            <h1 className="title is-2 has-text-white is-italic is-overlay">"Where Care Comes Full Circle"</h1>
           </div>
         </div>
       </section>
@@ -56,8 +56,8 @@ export default function About() {
 
           <div className="columns">
             <div className="column is-half">
-              <div className="card">
-                <div className="card-content">
+              <div className="card pb-1">
+                <div className="card-content mb-6 pb-1">
                   <h1 className='subtitle is-3 is-primary has-text-primary has-background-warning'>Samuel A.</h1>
                   <figure className='image is-flex is-justify-content-center'>
                     <img src={Sam} alt="Sam-img" className='is-rounded' style={{ width: '300px', height: '300px' }} ></img>
@@ -131,8 +131,8 @@ export default function About() {
             </div>
 
             <div className="column is-half">
-              <div className="card">
-                <div className="card-content">
+              <div className="card mb-6 pb-5">
+                <div className="card-content mb-6 pb-6">
                   <h1 className='subtitle is-3 is-primary has-text-primary has-background-warning'>Max W.</h1>
                   <figure className='image is-flex is-justify-content-center'>
                     <img src={Max} alt="Max-img" className='is-rounded' style={{ width: '300px', height: '300px' }}></img>
