@@ -163,7 +163,7 @@ export default function Forums() {
             </button>
           </div>
         </div>
-        <ForumModal isOpen={isModalOpen} onClose={closeModal} />
+        <ForumModal isOpen={isModalOpen} onClose={closeModal}/>
       </div>
       <div className="columns">
         <div className='column is-three-quarters'>
@@ -187,6 +187,7 @@ export default function Forums() {
     </div>
   );
 }
+
 
 
 

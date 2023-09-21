@@ -48,11 +48,11 @@ function CommentForm(props) {
     event.preventDefault();
     console.log("Comment Form submitted!");
 
-    const currentDate = new Date().toISOString().split('T')[0];
-    setComment((prevComment) => ({
-      ...prevComment,
-      date: currentDate,
-    }));
+    // const currentDate = new Date().toISOString().split('T')[0];
+    // setComment((prevComment) => ({
+    //   ...prevComment,
+    //   date: currentDate,
+    // }));
 
     if (props.handleAddComment) {
       const { date, ...commentWithoutDate } = comment;

@@ -115,7 +115,7 @@ const SignUp = () => {
                 </div>
 
                 <div className='field'>
-                  <label className='label is-large has-text-danger'>Address</label>
+                  <label className='label is-large has-text-danger'>Zipcode</label>
                   <div className='control'>
                     <input
                       className="input"
