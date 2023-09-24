@@ -12,10 +12,10 @@ export default function Footer() {
       <div className="columns">
         <div className="column is-half has-text-left ml-3">
           <ul className="footer-list">
-            <li className="footer-item"><Link to="/" className="title is-5 has-text-white">Home</Link></li>
-            <li className="footer-item"><Link to="/aboutus" className="title is-5 has-text-white">About Us</Link></li>
-            <li className="footer-item "><Link to="/forums" className="title is-5 has-text-white">Forums</Link></li>
-            <li className="footer-item"><Link to="/donations" className="title is-5 has-text-white">Donations</Link></li>
+            <li className="footer-item"><Link to="/" className="title is-5 has-text-white ">Home</Link></li>
+            <li className="footer-item mt-3"><Link to="/aboutus" className="title is-5 has-text-white">About Us</Link></li>
+            <li className="footer-item mt-3"><Link to="/forums" className="title is-5 has-text-white">Forums</Link></li>
+            <li className="footer-item mt-3"><Link to="/donations" className="title is-5 has-text-white ">Donations</Link></li>
           </ul>
         </div>
 

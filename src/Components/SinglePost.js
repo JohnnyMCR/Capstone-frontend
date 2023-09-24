@@ -35,12 +35,12 @@ export default function SinglePost({ initialContent }) {
             </div>
             {isExpanded && (
                 <div className="expanded-content">
-                    <div className="post-content column is-three-quarter is-size-6 has-background-light">
+                    <div className="post-content column is-three-quarter is-size-6 has-background-light has-text-dark">
                         <p>{initialContent}</p>
                     </div>
                     <ul>
                         {comments.map((comment, index) => (
-                            <li key={index} className="comment-item mb-3">
+                            <li key={index} className="comment-item mb-3 has-background-warning pl-3 has-text-dark">
                                 {comment.content}
                             </li>
                         ))}
