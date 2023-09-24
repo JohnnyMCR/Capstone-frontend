@@ -68,8 +68,8 @@ const SignUp = () => {
 
   return (
     <>
-      <button className="button is-primary is-small" type='button' onClick={openModal}>
-        Sign Up
+      <button className="button is-primary mx-1 mb-5 is-rounded mt-5 has-text-weight-bold" type='button' onClick={openModal}>
+        SIGN UP
       </button>
 
 

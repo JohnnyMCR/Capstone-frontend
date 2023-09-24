@@ -39,9 +39,19 @@ const LogIn = () => {
 
   return (
     <>
-      <button className="button is-warning is-small" type="button" onClick={openModal}>
+      {/* <button className="button is-outlined is-primary has-text-primary has-text-weight-bold is-rounded" type="button" onClick={openModal}>
         Login
-      </button>
+      </button> */}
+<button
+  className="button custom-button is-outlined is-primary has-text-primary has-text-weight-bold is-rounded"
+  type="button"
+  onClick={openModal}
+  style={{ boxShadow: 'none', backgroundColor: 'transparent', color: 'inherit' }}
+>
+  LOGIN
+</button>
+
+
 
       {isModalOpen && (
         <div className="modal is-active">
