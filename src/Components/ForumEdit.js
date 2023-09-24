@@ -15,7 +15,6 @@ function ForumEdit() {
   });
 
   useEffect(() => {
-    // Fetch current forum details from the server and populate the form fields
     axios
       .get(`${API}/forums/${id}`)
       .then((response) => {
@@ -37,7 +36,7 @@ function ForumEdit() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Send a PUT request to update the forum details
+    
     axios
       .put(`${API}/forums/${id}`, forum)
       .then(() => {

@@ -52,7 +52,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <NavBar user={user} onLogout={() => auth.signOut()} />
+        <NavBar user={user} onLogout={() => auth.signOut()}/>  
         <main>
           <Routes>
             <Route path="/" element={<Home />} />

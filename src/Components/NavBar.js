@@ -3,9 +3,12 @@ import Login from "./LogIn"
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
 import { Link } from 'react-router-dom';
-import Profile from './Profile';
+// import Profile from './Profile';
+import UserId from './UserId';
 
-export default function NavBar({ user, onLogout }) {
+export default function NavBar({ user, onLogout, username }) {
+  console.log(username);
+
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -18,18 +21,18 @@ export default function NavBar({ user, onLogout }) {
       <div className="navbar-brand">
         <img src={LOGO} alt="logo" width='100' />
 
-
         <h1 className='title is-1 has-text-primary pt-5 ml-3'> Care Village </h1>
-        <a href="*" role="button" className="navbar-burger" aria-label="menu" aria-expanded={isMenuOpen}
- dev
-          onClick={toggleMenu}>
-
+        <button
+          className="navbar-burger"
+          aria-label="menu"
+          aria-expanded={isMenuOpen}
+          onClick={toggleMenu}
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </button>
       </div>
-
 
       <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
         <div className="navbar-end">
@@ -42,11 +45,10 @@ export default function NavBar({ user, onLogout }) {
 
           <Link to="/donations" className="navbar-item title is-5 has-text-primary">Donations</Link>
 
-
           {user ? (
             <div className="navbar-item">
               <button className="button is-primary is-rounded mx-1 mb-5">
-                <Profile/>
+                <UserId userId={user.id} username={username}/>
               </button>
               <button className="button is-primary is-rounded mx-1 mb-5" onClick={onLogout}>Logout</button>              
             </div>
@@ -65,50 +67,3 @@ export default function NavBar({ user, onLogout }) {
     </nav>
   );
 }
-
-
-//  import React from 'react';
-// import { Link } from react-router-dom;
-// const NavBar = ({ user, onLogout }) => { 
-//    return (
-//     <nav>
-//        <ul>
-//         <li>
-//           <Link to=“/”>Home</Link>
-//          </li>
-//         {user ? (
-//           <>
-//             <li>
-//               <Link to=“/dashboard”>Dashboard</Link>
-//             </li>
-//             <li>
-//                <Link to=“/forums”>Forums</Link>
-//              </li>
-//             <li>
-//                <Link to=“/forums/new”>Add a New Post</Link>
-//             </li>
-//              <li>
-//         <li>
-//           <Link to=“/forums/new”>Add a New Post</Link>
-//         </li>
-//                <Link to=“/donations”>Donations</Link>
-//             </li>
-//              <li>
-//               <button onClick={onLogout}>Logout</button>
-//             </li>
-//           </>
-//          ) : (
-//           <>
-//             <li>
-//                <Link to=“/login”>Login</Link>
-//              </li>
-//             <li>
-//               <Link to=“/signup”>Sign Up</Link>
-//              </li>
-//           </>
-//          )}
-//        </ul>
-//      </nav>
-//   );
-// };
-//  export default NavBar; 

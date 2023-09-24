@@ -1,4 +1,4 @@
-// Api call that maps through the comments for that post
+// // Api call that maps through the comments for that post
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -7,16 +7,16 @@ const API = process.env.REACT_APP_API_URL;
 export default function SinglePost({ initialContent }) {
 
     const [comments, setComments] = useState([]);
-    // const [content, setContent] = useState(initialContent)
     const [newComment, setNewComment] = useState('');
-
     const [isExpanded, setIsExpanded] = useState(false);
+
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
     };
 
     const handleCommentChange = (event) => {
         setNewComment(event.target.value);
+        console.log('comment has been submitted:', event.target.value);
     };
     useEffect(() => {
         axios.get(`${API}/comments`)
@@ -25,6 +25,8 @@ export default function SinglePost({ initialContent }) {
             })
             .catch((e) => console.warn("catch", e));
     }, []);
+
+      
 
     return (
         <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>
@@ -62,3 +64,5 @@ export default function SinglePost({ initialContent }) {
         </div>
     )
 }
+
+

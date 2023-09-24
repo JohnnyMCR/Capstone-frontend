@@ -1,3 +1,5 @@
+// dont need this code as well
+
 // import React from "react";
 // import { Link } from "react-router-dom";
 
