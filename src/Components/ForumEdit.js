@@ -26,7 +26,6 @@ function ForumEdit() {
   }, [id]);
 
   const handleTextChange = (event) => {
-    // Update the state when form fields change
     setForum({
       ...forum,
       [event.target.id]: event.target.value,

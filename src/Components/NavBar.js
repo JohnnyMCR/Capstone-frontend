@@ -3,11 +3,9 @@ import Login from "./LogIn"
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
 import { Link } from 'react-router-dom';
-// import Profile from './Profile';
-import UserId from './UserId';
 
-export default function NavBar({ user, onLogout, username }) {
-  console.log(username);
+export default function NavBar({ user, onLogout }) {
+ 
 
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -48,7 +46,7 @@ export default function NavBar({ user, onLogout, username }) {
           {user ? (
             <div className="navbar-item">
               <button className="button is-primary is-rounded mx-1 mb-5">
-                <UserId userId={user.id} username={username}/>
+                User
               </button>
               <button className="button is-primary is-rounded mx-1 mb-5" onClick={onLogout}>Logout</button>              
             </div>
