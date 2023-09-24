@@ -29,7 +29,7 @@ export default function About() {
           <div className="columns is-centered">
             <div className="column is-four-fifth has-text-centered">
 
-              <p className='content is-medium is-italic has-text-dark'>
+              <p className='content is-medium is-italic has-text-grey'>
                 At CareVillage, our mission is to empower parents and caregivers on their unique parenting journeys while fostering a compassionate and supportive community. We provide a platform that seamlessly connects individuals with diverse parenting methods and offers a dedicated space for the generosity of giving to children in need. We believe in the power of knowledge-sharing and collaboration among parents, grandparents, guardians, and loved ones.
               </p>
 
@@ -56,7 +56,7 @@ export default function About() {
 
           <div className="columns">
             <div className="column is-half">
-              <div className="card pb-1">
+              <div className="card pb-1 has-background-info">
                 <div className="card-content mb-6 pb-1">
                   <h1 className='subtitle is-3 is-primary has-text-primary has-background-warning'>Samuel A.</h1>
                   <figure className='image is-flex is-justify-content-center'>
@@ -82,7 +82,7 @@ export default function About() {
 
             <div className="column is-half">
               <div className="card">
-                <div className="card-content">
+                <div className="card-content has-background-info">
                   <h1 className='subtitle is-3 is-primary has-text-primary has-background-warning'> Johnny C. </h1>
                   <figure className='image is-flex is-justify-content-center'>
                     <img src={Johnny} alt="Johnny-img" className='is-rounded' style={{ width: '300px', height: '300px' }} ></img>
@@ -107,7 +107,7 @@ export default function About() {
           <div className="columns">
             <div className="column is-half">
               <div className="card">
-                <div className="card-content">
+                <div className="card-content has-background-info">
                   <h1 className='subtitle is-3 is-primary has-text-primary has-background-warning'>Angel V.</h1>
                   <figure className='image is-flex is-justify-content-center'>
                     <img src={Angel} alt="Angel-img" className='is-rounded' style={{ width: '300px', height: '300px' }}></img>
@@ -131,8 +131,8 @@ export default function About() {
             </div>
 
             <div className="column is-half">
-              <div className="card mb-6 pb-5">
-                <div className="card-content mb-6 pb-6">
+              <div className="card mb-6 pb-5 has-background-info">
+                <div className="card-content mb-6 pb-6 has-background-info">
                   <h1 className='subtitle is-3 is-primary has-text-primary has-background-warning'>Max W.</h1>
                   <figure className='image is-flex is-justify-content-center'>
                     <img src={Max} alt="Max-img" className='is-rounded' style={{ width: '300px', height: '300px' }}></img>

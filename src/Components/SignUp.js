@@ -77,10 +77,14 @@ const SignUp = () => {
         <div className="modal is-active">
           <div className="modal-background"></div>
           <div className='modal-content has-background-info py-5 px-5'>
-            <h3 className='title is-1 has-text-primary'> Join CareVillage </h3>
+          <header className="modal-card-head">
+            <h1 className="modal-card-title title is-2 has-text-danger">Join CareVillage</h1>
+            <button className="delete is-medium mb-5" aria-label="close" onClick={closeModal}></button>
+          </header>
+          
             <form>
               <div className='field'>
-                <label className='label is-large has-text-danger'>Email</label>
+                <label className='label is-large has-text-danger mt-5'>Email</label>
                 <div className='control'>
                   <input
                     className="input"
@@ -91,7 +95,7 @@ const SignUp = () => {
                 </div>
 
                 <div className='field'>
-                  <label className='label is-large has-text-danger'>Password</label>
+                  <label className='label is-large has-text-danger mt-4'>Password</label>
                   <div className='control'>
                     <input
                       className="input"
@@ -128,7 +132,8 @@ const SignUp = () => {
 
                 <button className='button is-primary is-medium mt-4' type='button' onClick={() => handleSignup()}>Sign Up</button>
                 <p className='content is-medium has-text-primary mt-5'>
-                  Already have an account? <LogIn />
+                  Already have an account? <p className='content mt-3'><LogIn /></p>
+                  
 
                 </p>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

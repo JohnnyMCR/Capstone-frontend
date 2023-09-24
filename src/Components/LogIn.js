@@ -47,10 +47,14 @@ const LogIn = () => {
         <div className="modal is-active">
           <div className="modal-background"></div>
           <div className='modal-content has-background-info py-5 px-5'>
-            <h3 className='title is-1 has-text-primary'> Log In CareVillage </h3>
+          <header className="modal-card-head">
+            <h1 className="modal-card-title title is-2 has-text-danger">Log In CareVillage</h1>
+            <button className="delete is-medium mb-5" aria-label="close" onClick={closeModal}></button>
+          </header>
+  
             <form>
               <div className="field">
-                <label className="label is-large has-text-danger">Email</label>
+                <label className="label is-large has-text-danger mt-5">Email</label>
                 <div className="control">
                   <input
                     className="input"
@@ -76,14 +80,14 @@ const LogIn = () => {
               </div>
 
               <button className="button is-warning is-medium mt-3" type='button' onClick={() => handleLogin()}>Login</button>
-              <p className='content is-medium mt-5 has-text-primary'>
-                Don't have an account? <SignUp />
-              </p>
               {error && <p style={{ color: 'red' }}>{error}</p>}
 
             </form>
+              <p className='content is-medium mt-5  has-text-primary'>
+                Don't have an account? <p className='content mt-3'><SignUp /></p>
+              </p>
           </div>
-          <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
+          <button className="modal-close is-large" aria-label="close" onClick={() => closeModal()}></button>
         </div>
       )}
     </>
