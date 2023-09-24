@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import SignUp from './SignUp';
+import React, { useState } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import SignUp from "./SignUp";
 
 const LogIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     const auth = getAuth();
-    console.log("Button Clicked")
+    console.log("Button Clicked");
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      setError('');
+      setError("");
 
-      navigate('/');
-    
+      navigate("/");
+
       setIsModalOpen(false);
     } catch (error) {
       setError(error.message);
@@ -28,12 +28,12 @@ const LogIn = () => {
   };
 
   const openModal = () => {
-    console.log("Open Modal")
+    console.log("Open Modal");
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    console.log('Close Modal')
+    console.log("Close Modal");
     setIsModalOpen(false);
   };
 
@@ -42,29 +42,37 @@ const LogIn = () => {
       {/* <button className="button is-outlined is-primary has-text-primary has-text-weight-bold is-rounded" type="button" onClick={openModal}>
         Login
       </button> */}
-<button
-  className="button custom-button is-outlined is-primary has-text-primary has-text-weight-bold is-rounded"
-  type="button"
-  onClick={openModal}
-  style={{ boxShadow: 'none', backgroundColor: 'transparent', color: 'inherit' }}
->
-  LOGIN
-</button>
-
-
+      <button
+        className="button custom-button is-outlined is-primary has-text-primary has-text-weight-bold is-rounded"
+        type="button"
+        onClick={openModal}
+        style={{
+          boxShadow: "none",
+          backgroundColor: "transparent",
+          color: "inherit",
+        }}
+      >
+        LOGIN
+      </button>
 
       {isModalOpen && (
         <div className="modal is-active">
           <div className="modal-background"></div>
-          <div className='modal-content has-background-info py-5 px-5'>
-          <header className="modal-card-head">
-            <h1 className="modal-card-title title is-2 has-text-danger">Log In CareVillage</h1>
-            <button className="delete is-medium mb-5" aria-label="close" onClick={closeModal}></button>
-          </header>
-  
+          <div className="modal-content has-background-info py-5 px-5">
+            <div className="columns">
+              <h1 className="modal-card-title title is-3 has-text-primary has-text-left py-3 px-6">
+                Login to Care Village{" "}
+              </h1>
+              <button
+                className="delete is-medium mb-5 has-text-right"
+                aria-label="close"
+                onClick={closeModal}
+              ></button>
+            </div>
+
             <form>
-              <div className="field">
-                <label className="label is-large has-text-danger mt-5">Email</label>
+              <div className="field px-6">
+                {/* <label className="label is-large has-text-danger mt-5">Email</label> */}
                 <div className="control">
                   <input
                     className="input"
@@ -76,8 +84,8 @@ const LogIn = () => {
                 </div>
               </div>
 
-              <div className="field">
-                <label className="label is-large has-text-danger">Password</label>
+              <div className="field px-6">
+                {/* <label className="label is-large has-text-danger">Password</label> */}
                 <div className="control">
                   <input
                     className="input"
@@ -89,19 +97,40 @@ const LogIn = () => {
                 </div>
               </div>
 
-              <button className="button is-warning is-medium mt-3" type='button' onClick={() => handleLogin()}>Login</button>
-              {error && <p style={{ color: 'red' }}>{error}</p>}
-
+              {error && <p style={{ color: "red" }}>{error}</p>}
             </form>
-              <p className='content is-medium mt-5  has-text-primary'>
-                Don't have an account? <p className='content mt-3'><SignUp /></p>
-              </p>
+            <div className="columns">
+              <div>
+                <p className="content is-medium px-6  pt-6  has-text-link has-text-left">
+                  Forgot password? <p className="content mt-3"></p>
+                </p>
+                <div>
+                  <p className="content is-medium has-text-link px-6 has-text-left">
+                    Don't have an account? <p className="content mt-3"></p>
+                    {/* <SignUp /> */}
+                  </p>
+                </div>
+              </div>
+              <div className="column has-text-right">
+                <button
+                  className="button is-primary is-rounded is-medium mt-6"
+                  type="button"
+                  onClick={() => handleLogin()}
+                >
+                  Login
+                </button>
+              </div>
+            </div>
           </div>
-          <button className="modal-close is-large" aria-label="close" onClick={() => closeModal()}></button>
+          <button
+            className="modal-close is-large"
+            aria-label="close"
+            onClick={() => closeModal()}
+          ></button>
         </div>
       )}
     </>
-  )
+  );
 };
 
 export default LogIn;
