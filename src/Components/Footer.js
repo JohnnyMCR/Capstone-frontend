@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="has-background-primary">
       <div className="columns">
-        <div className="column is-one-quarter has-text-left">
+        <div className="column is-one-quarter has-text-left ml-2">
           <img src={LOGO} alt="logo" width="150" />
         </div>
 
@@ -43,11 +43,19 @@ export default function Footer() {
         </div>
 
         <div className="column is-one-quarter has-text-centered">
-          <button className="button is-rounded mt-6" type="button">
+          <button className="button is-rounded has-text-dark mt-6" type="button" style={{
+                    boxShadow: "none",
+                    backgroundColor: "none",
+                    color: "inherit",
+                  }}>
             <Login />
           </button>
 
-          <button className="button is-rounded mt-6" type="button">
+          <button className="button is-rounded has-text-dark mt-6" type="button" style={{
+                    boxShadow: "none",
+                    backgroundColor: "none",
+                    color: "inherit",
+                  }}>
             <SignUp />
           </button>
         </div>
