@@ -61,10 +61,10 @@ export default function SingleDonation({ donation }) {
       </div>
 
       <div className={`modal ${isModalOpen ? 'is-active' : ''}`}>
-        <div className="modal-background" onClick={closeModal}></div>
+        <div className="modal-background " onClick={closeModal}></div>
         <div className="modal-card">
         
-          <section className="modal-card-body py-6 px-6">
+          <section className="modal-card-body py-6 px-6 has-background-info">
             <div className='columns'>
             <h1 className="modal-card-title title is-2 has-text-primary has-text-left">Donation Details</h1>
             <button className="delete" aria-label="close" onClick={closeModal}></button>
