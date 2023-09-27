@@ -1,8 +1,8 @@
 import React from "react";
 import LOGO from "./LOGO.png";
 import { Link } from "react-router-dom";
-import Login from "./LogIn";
-import SignUp from "./SignUp";
+// import Login from "./LogIn";
+// import SignUp from "./SignUp";
 
 export default function Footer() {
   return (
@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
 
         <div className="column is-one-quarter has-text-centered">
-          <button className="button is-rounded has-text-dark mt-6" type="button" style={{
+          {/* <button className="button is-rounded has-text-dark mt-6" type="button" style={{
                     boxShadow: "none",
                     backgroundColor: "none",
                     color: "inherit",
@@ -51,13 +51,13 @@ export default function Footer() {
             <Login />
           </button>
 
-          <button className="button is-rounded has-text-dark mt-6" type="button" style={{
+          <button className="button is-rounded has-text-dark mt-6 p-0 has-background-" type="button" style={{
                     boxShadow: "none",
                     backgroundColor: "none",
                     color: "inherit",
                   }}>
             <SignUp />
-          </button>
+          </button> */}
         </div>
 
         {/* <div className="column is-half has-text-left ml-3">
