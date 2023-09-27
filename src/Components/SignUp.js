@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import LogIn from "./LogIn";
+import LogIn from "./LogIn";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -88,7 +88,7 @@ const SignUp = () => {
       {isModalOpen && (
         <div className="modal is-active">
           <div className="modal-background"></div>
-          <div className="modal-content has-background-info py-5 px-5">
+          <div className="modal-content has-background-info py-6 px-6">
             <div className="columns">
               <h1 className="modal-card-title title is-3 has-text-primary has-text-left py-5 px-6 mx-6">
                 Sign up for Care Village{" "}
@@ -151,9 +151,11 @@ const SignUp = () => {
                     />
                   </div>
                 </div>
-                <div className="column ">
+                <div className="columns">
+                  <div className="column mr-5">
+
                   <button
-                    className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary mr-6"
+                    className="button is-medium mt-4 mr-5 is-outlined is-primary is-rounded has-text-primary"
                     aria-label="close"
                     onClick={closeModal}
                     style={{
@@ -164,22 +166,26 @@ const SignUp = () => {
                   >
                     Cancel
                   </button>
+                  </div>
+                  
+                  <div className="column ml-5">
 
                   <button
-                    className="button is-primary is-rounded is-medium mt-4 ml-6"
+                    className="button is-primary is-rounded is-medium mt-4 ml-5"
                     type="button"
                     onClick={() => handleSignup()}
                   >
                     Sign Up
                   </button>
+                  </div>
                 </div>
 
                 <div>
                  
                   <p className="content is-medium has-text-balck mt-5">
                     Already have an account?{" "}
-                    <p className="has-text-link">
-                      Login
+                    <p className="has-text-link pt-5">
+                      <LogIn />
                     </p>
                   </p>
                 </div>
