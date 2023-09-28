@@ -9,9 +9,9 @@ export default function ForumCard({ forum }) {
     console.log(forum)
 
     useEffect(() => {
-      if (forum.profile_id) {
+      if (forum.user_id) {
         axios
-          .get(`${API}/profiles/${forum.profile_id}`)
+          .get(`${API}/profiles/${forum.user_id}`)
           .then((response) => {
             console.log('API Response:', response.data);
             if (response.data && response.data.username) {
@@ -25,9 +25,9 @@ export default function ForumCard({ forum }) {
             setUserName('Error fetching username');
           });
       } else {
-        setUserName('Profile ID not defined');
+        setUserName('User ID not defined');
       }
-    }, [forum.profile_id]); 
+    }, [forum.user_id]); 
 
     return (
         <div className="column">

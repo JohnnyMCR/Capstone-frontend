@@ -17,7 +17,7 @@ export default function ForumModal({ isOpen, onClose ,user})
   const handleSubmit = (e) => {
     e.preventDefault();
     const newForum = {
-      profile_id: curUser,
+      user_id: curUser,
       title,
       content,
       category,
