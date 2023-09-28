@@ -23,7 +23,7 @@ export default function Forums() {
         setForums(response.data);
       })
       .catch((e) => console.warn("catch", e));
-  }, []);
+  }, [isModalOpen]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
