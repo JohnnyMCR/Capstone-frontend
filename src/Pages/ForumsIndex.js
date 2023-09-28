@@ -1,9 +1,9 @@
 import Forums from "../Components/Forums";
 
-function ForumsIndex() {
+function ForumsIndex( {user}) {
   return (
     <div>
-      <Forums />
+      <Forums user={user} />
     </div>
   );
 }

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function ForumModal({ isOpen, onClose }) {
+export default function ForumModal({ isOpen, onClose ,user}) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
+  const [userName, setUserName] = useState('');
+  // console.log(user.displayName)
 
   const API = process.env.REACT_APP_API_URL;
 
@@ -14,11 +16,13 @@ export default function ForumModal({ isOpen, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newForum = {
+      userName,
       title,
       content,
       category,
       date: new Date().toLocaleDateString(),
     };
+      setUserName(user.displayName);
 
     axios
       .post(`${API}/forums`, newForum)
@@ -29,7 +33,7 @@ export default function ForumModal({ isOpen, onClose }) {
       .catch((error) => {
         console.error('Error:', error);
       });
-
+    
     setTitle('');
     setContent('');
     setCategory('');

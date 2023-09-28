@@ -42,16 +42,17 @@ const SignUp = () => {
 
       await updateProfile(auth.currentUser, { displayName: username });
 
+      
+
       const response = await axios.post(`${API}/profiles`, formData);
       console.log(response);
       console.log(response.status);
       
-      
-
       if (response.status === 200) {
         setError('');
         navigate('/', { replace: true });
         setIsModalOpen(false);
+
       } else {
         setError('Failed to sign up. Please try again.');
       }

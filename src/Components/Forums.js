@@ -5,17 +5,7 @@ import ForumCard from './ForumCard';
 
 const API = process.env.REACT_APP_API_URL;
 
-const fetchForumPosts = async (forumId) => {
-  try {
-    const response = await axios.get(`${API}/forums/${forumId}/comments`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching forum posts:', error);
-    return [];
-  }
-};
-
-export default function Forums() {
+export default function Forums({user}) {
   const [forums, setForums] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
@@ -166,15 +156,13 @@ export default function Forums() {
             </button>
           </div>
         </div>
-        <ForumModal isOpen={isModalOpen} onClose={closeModal}/>
+        <ForumModal isOpen={isModalOpen} onClose={closeModal} user={user}/>
       </div>
       <div className="columns">
         <div className='column is-three-quarters'>
-          {forums.map((forum) => {
-                        const forumPosts = fetchForumPosts(forum.id);
-
-            return <ForumCard key={forum.id} forum={forum} posts={forumPosts} />
-          })}
+          {forums.map((forum) => (
+            <ForumCard key={forum.id} forum={forum} />
+          ))}
         </div>
         <div className="column is-one-quarter">
           <ul>
