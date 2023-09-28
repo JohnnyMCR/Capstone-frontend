@@ -6,6 +6,7 @@ import ForumCard from './ForumCard';
 const API = process.env.REACT_APP_API_URL;
 
 export default function Forums({ user }) {
+  console.log(user)
   const [forums, setForums] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);

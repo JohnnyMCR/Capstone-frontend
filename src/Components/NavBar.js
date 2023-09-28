@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Login from "./LogIn"
+import Login from "./LogIn";
+import Profile from './Profile';
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
 import { Link } from 'react-router-dom';
@@ -46,7 +47,7 @@ export default function NavBar({ user, onLogout }) {
           {user ? (
             <div className="navbar-item">
               <button className="button is-primary is-rounded mx-1 mb-5">
-                User
+                <Profile user={user}/>
               </button>
               <button className="button is-primary is-rounded mx-1 mb-5" onClick={onLogout}>Logout</button>              
             </div>

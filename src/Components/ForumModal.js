@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function ForumModal({ isOpen, onClose ,user}) {
+export default function ForumModal({ isOpen, onClose ,user})
+{
+  
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
-  const [userName, setUserName] = useState('');
-  // console.log(user.displayName)
+  const [curUser, setCurUser] = useState(null);
 
   const API = process.env.REACT_APP_API_URL;
 
@@ -16,13 +17,12 @@ export default function ForumModal({ isOpen, onClose ,user}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newForum = {
-      userName,
+      profile_id: curUser,
       title,
       content,
       category,
       date: new Date().toLocaleDateString(),
     };
-      setUserName(user.displayName);
 
     axios
       .post(`${API}/forums`, newForum)
@@ -40,6 +40,29 @@ export default function ForumModal({ isOpen, onClose ,user}) {
     onClose();
   };
 
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`${API}/profiles`)
+        .then((response) => {
+          console.log('API Response:', response.data);
+          response.data.forEach(element => {
+            if (element.username === user.displayName) {
+              setCurUser(element.id)
+            }
+            
+          });
+        })
+        .catch((error) => {
+          console.error('Error fetching username:', error);
+          setCurUser('Error fetching username');
+        });
+    } else {
+      setCurUser('Profile ID not defined');
+    }
+  },[user ,API]);
+
+  console.log(curUser)
   return (
     <div className={`modal ${isOpen ? 'is-active' : ''}`}>
       <div className="modal-background" onClick={onClose}></div>
@@ -83,8 +106,8 @@ export default function ForumModal({ isOpen, onClose ,user}) {
                     <option value="">Select a category</option>
                     <option value="baby">Baby</option>
                     <option value="adolescents">Adolescents</option>
-                    <option value="teen">Teen</option>
-                    <option value="health">Health</option>
+                    <option value="teen">Expecting</option>
+                    <option value="health">Newborn</option>
                   </select>
                 </div>
               </div>

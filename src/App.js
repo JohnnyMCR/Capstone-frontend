@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import firebaseConfig from "./Components/firebaseConfig";
 
-import { UserProvider } from './Components/UserProvider'; 
+import { AuthProvider } from './Components/AuthContext'; 
 
 import "bulma/css/bulma.min.css";
 import "./App.css";
@@ -54,7 +54,7 @@ function App() {
   
   return (
     <Router>
-      <UserProvider>
+      <AuthProvider>
       <div className="App">
         <NavBar user={user} onLogout={() => auth.signOut()}/>  
         <main>
@@ -82,7 +82,7 @@ function App() {
         </main>
         <Footer />
       </div>
-      </UserProvider>
+      </AuthProvider>
     </Router>
   );
 }

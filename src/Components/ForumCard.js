@@ -1,29 +1,34 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import Comment from './Comment'
+import React, { useState, useEffect } from "react";
+import Comment from './Comment';
 import axios from "axios";
 
 const API = process.env.REACT_APP_API_URL;
 
 export default function ForumCard({ forum }) {
-    const [userName, setUserName] = useState(null)
+    const [userName, setUserName] = useState(null);
+    console.log(forum)
 
     useEffect(() => {
+      if (forum.profile_id) {
         axios
-          .get(`${API}/profiles/${forum.user_id}`)
+          .get(`${API}/profiles/${forum.profile_id}`)
           .then((response) => {
-            console.log('API Response:', response.data); 
+            console.log('API Response:', response.data);
             if (response.data && response.data.username) {
               setUserName(response.data.username);
+            } else {
+              setUserName('Username not found');
             }
           })
           .catch((error) => {
             console.error('Error fetching username:', error);
-            setUserName('Error fetching username'); 
+            setUserName('Error fetching username');
           });
+      } else {
+        setUserName('Profile ID not defined');
+      }
+    }, [forum.profile_id]); 
 
-      }, [forum.user_id]);
-      
     return (
         <div className="column">
             <div className="card mb-5">
@@ -41,9 +46,5 @@ export default function ForumCard({ forum }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
-
-
-
-
