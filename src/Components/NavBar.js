@@ -34,13 +34,13 @@ export default function NavBar({ user, onLogout }) {
       <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
         <div className="navbar-end">
 
-          <Link to="/" className="navbar-item title is-4 has-text-primary mt-5">Home</Link>
+          <Link to="/" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">Home</Link>
 
-          <Link to="/aboutus" className="navbar-item title is-4 has-text-primary mt-5">About Us</Link>
+          <Link to="/aboutus" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">About us</Link>
 
-          <Link to="/forums" className="navbar-item title is-4 has-text-primary mt-5">Forums</Link>
+          <Link to="/forums" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">Forums</Link>
 
-          <Link to="/donations" className="navbar-item title is-4 has-text-primary mt-5">Donations</Link>
+          <Link to="/donations" className="navbar-item subtitle is-4 has-text-black mt-5 mr-6 ml-2">Donations</Link>
 
           {user ? (
             <div className="navbar-item">
@@ -51,12 +51,11 @@ export default function NavBar({ user, onLogout }) {
             </div>
           ) : (
             <>
-              <button href='/login' className="button is-warning mx-1 mb-5 is-rounded mt-5" id="login" >
+              
                 <Login />
-              </button>
-              <button href='/signup' className="button is-primary mx-1 mb-5 is-rounded mt-5" id="signup" >
+              
                 <SignUp />
-              </button>
+            
             </>
           )}
         </div>

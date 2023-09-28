@@ -100,9 +100,9 @@ function Home() {
             <h1 className="title is-3 has-text-white is-italic mb-5">"Where Care Comes Full Circle"</h1>
           </div>
             <h2 className="title is-4 has-text-danger">Make a Donation!</h2>
-            <button href='/signup' className="button is-primary mx-2 is-rounded" id="signup" >
+            
               <SignUp />
-            </button>
+            
 
           </div>
         </div>

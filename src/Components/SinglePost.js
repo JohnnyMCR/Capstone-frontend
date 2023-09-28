@@ -29,7 +29,7 @@ export default function SinglePost({ initialContent }) {
     return (
         <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>
             <div className="header" onClick={toggleExpand}>
-                <span className="see-more-link has-text-link">
+                <span className="see-more-link has-text-link ">
                     {isExpanded ? 'See Less' : 'See More'}
                 </span>
             </div>
