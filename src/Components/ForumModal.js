@@ -64,17 +64,27 @@ export default function ForumModal({ isOpen, onClose ,user})
 
   console.log(curUser)
   return (
-    <div className={`modal ${isOpen ? 'is-active' : ''}`}>
+    <div className={`modal ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>
       <div className="modal-content ">
         <div className="box has-background-info">
-          <h1 className="title is-1 has-text-primary">New Forum Post</h1>
+          <div className="columns px-3 py-3">
+            <h1 className="modal-card-title title is-2 has-text-primary has-text-left">
+              New forum post
+            </h1>
+            <button
+              className="delete"
+              aria-label="close"
+              onClick={onClose}
+            ></button>
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="field">
-              <label className="label is-large has-text-danger">Title</label>
+              {/* <label className="label is-large has-text-danger">Title</label> */}
               <div className="control">
                 <input
                   className="input"
+                  type="text"
                   placeholder="Enter post title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -83,7 +93,7 @@ export default function ForumModal({ isOpen, onClose ,user})
               </div>
             </div>
             <div className="field">
-              <label className="label is-large has-text-danger">Content</label>
+              {/* <label className="label is-large has-text-danger">Content</label> */}
               <div className="control">
                 <textarea
                   className="textarea"
@@ -95,7 +105,7 @@ export default function ForumModal({ isOpen, onClose ,user})
               </div>
             </div>
             <div className="field">
-              <label className="label is-large has-text-danger">Category</label>
+              {/* <label className="label is-large has-text-danger">Category</label> */}
               <div className="control">
                 <div className="select">
                   <select
@@ -106,17 +116,38 @@ export default function ForumModal({ isOpen, onClose ,user})
                     <option value="">Select a category</option>
                     <option value="baby">Baby</option>
                     <option value="adolescents">Adolescents</option>
-                    <option value="teen">Expecting</option>
-                    <option value="health">Newborn</option>
+                    <option value="teen">Teen</option>
+                    <option value="health">Health</option>
                   </select>
                 </div>
               </div>
             </div>
-            <div className="field">
-              <div className="control">
-                <button className="button is-primary" type="submit">
-                  Submit
+            <div className="columns">
+              <div className="column has-text-left">
+                <button
+                  className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary has-text-left"
+                  aria-label="close"
+                  onClick={onClose}
+                  style={{
+                    boxShadow: "none",
+                    backgroundColor: "white",
+                    color: "inherit",
+                  }}
+                >
+                  Cancel
                 </button>
+              </div>
+              <div className="column has-text-right">
+                <div className="field">
+                  <div className="control">
+                    <button
+                      className="button is-medium is-rounded is-primary mt-3"
+                      type="submit"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </form>
@@ -130,4 +161,3 @@ export default function ForumModal({ isOpen, onClose ,user})
     </div>
   );
 }
-

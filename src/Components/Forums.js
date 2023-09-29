@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ForumModal from './ForumModal';
-import ForumCard from './ForumCard';
+import ForumModal from "./ForumModal";
+import ForumCard from "./ForumCard";
+import ArticleCard from "./ArticleCard";
+// import Articles from "./Articles";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -11,7 +13,7 @@ export default function Forums({ user }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedSortOption, setSelectedSortOption] = useState('All');
+  const [selectedSortOption, setSelectedSortOption] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -22,6 +24,7 @@ export default function Forums({ user }) {
         })
         .catch((e) => console.warn("catch", e));
 }, [isModalOpen]);
+
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -50,15 +53,13 @@ export default function Forums({ user }) {
   };
 
   console.log('Rendered Forums component');
-
-
   return (
     <div>
-      <div className='columns mt-1'>
-        <div className='column is-one-fifth'>
+      <div className="columns mt-1">
+        <div className="column is-one-fifth">
           <div className="field is-grouped">
             <div className="control">
-              <div className={`dropdown ${isDropdownOpen ? 'is-active' : ''}`}>
+              <div className={`dropdown ${isDropdownOpen ? "is-active" : ""}`}>
                 <div className="dropdown-trigger">
                   <button
                     className="button"
@@ -66,10 +67,12 @@ export default function Forums({ user }) {
                     aria-controls="dropdown-menu"
                     onClick={toggleDropdown}
                   >
-                    <span>{selectedItem || 'Dropdown button'}</span>
+                    <span>{selectedItem || "Dropdown button"}</span>
                     <span className="icon is-small">
                       <i
-                        className={`fas fa-angle-${isDropdownOpen ? 'up' : 'down'}`}
+                        className={`fas fa-angle-${
+                          isDropdownOpen ? "up" : "down"
+                        }`}
                         aria-hidden="true"
                       ></i>
                     </span>
@@ -78,26 +81,38 @@ export default function Forums({ user }) {
                 <div className="dropdown-menu" id="dropdown-menu" role="menu">
                   <div className="dropdown-content">
                     <button
-                      className={`dropdown-item ${selectedItem === 'Dropdown item' ? 'is-active' : ''}`}
-                      onClick={() => selectItem('Dropdown item')}
+                      className={`dropdown-item ${
+                        selectedItem === "Dropdown item" ? "is-active" : ""
+                      }`}
+                      onClick={() => selectItem("Dropdown item")}
                     >
                       Dropdown item
                     </button>
                     <button
-                      className={`dropdown-item ${selectedItem === 'item' ? 'is-active' : ''}`}
-                      onClick={() => selectItem('item')}
+                      className={`dropdown-item ${
+                        selectedItem === "item" ? "is-active" : ""
+                      }`}
+                      onClick={() => selectItem("item")}
                     >
                       item
                     </button>
                     <button
-                      className={`dropdown-item ${selectedItem === 'Active dropdown item' ? 'is-active' : ''}`}
-                      onClick={() => selectItem('Active dropdown item')}
+                      className={`dropdown-item ${
+                        selectedItem === "Active dropdown item"
+                          ? "is-active"
+                          : ""
+                      }`}
+                      onClick={() => selectItem("Active dropdown item")}
                     >
                       Active dropdown item
                     </button>
                     <button
-                      className={`dropdown-item ${selectedItem === 'Other dropdown item' ? 'is-active' : ''}`}
-                      onClick={() => selectItem('Other dropdown item')}
+                      className={`dropdown-item ${
+                        selectedItem === "Other dropdown item"
+                          ? "is-active"
+                          : ""
+                      }`}
+                      onClick={() => selectItem("Other dropdown item")}
                     >
                       Other dropdown item
                     </button>
@@ -107,7 +122,9 @@ export default function Forums({ user }) {
             </div>
 
             <div className="control">
-              <div className={`dropdown ${isSortDropdownOpen ? 'is-active' : ''}`}>
+              <div
+                className={`dropdown ${isSortDropdownOpen ? "is-active" : ""}`}
+              >
                 <div className="dropdown-trigger">
                   <button
                     className="button"
@@ -118,29 +135,41 @@ export default function Forums({ user }) {
                     <span>Sort: {selectedSortOption}</span>
                     <span className="icon is-small">
                       <i
-                        className={`fas fa-angle-${isSortDropdownOpen ? 'up' : 'down'}`}
+                        className={`fas fa-angle-${
+                          isSortDropdownOpen ? "up" : "down"
+                        }`}
                         aria-hidden="true"
                       ></i>
                     </span>
                   </button>
                 </div>
-                <div className="dropdown-menu" id="sort-dropdown-menu" role="menu">
+                <div
+                  className="dropdown-menu"
+                  id="sort-dropdown-menu"
+                  role="menu"
+                >
                   <div className="dropdown-content">
                     <button
-                      className={`dropdown-item ${selectedSortOption === 'Most Recent' ? 'is-active' : ''}`}
-                      onClick={() => selectSortOption('Most Recent')}
+                      className={`dropdown-item ${
+                        selectedSortOption === "Most Recent" ? "is-active" : ""
+                      }`}
+                      onClick={() => selectSortOption("Most Recent")}
                     >
                       Most Recent
                     </button>
                     <button
-                      className={`dropdown-item ${selectedSortOption === 'Most Popular' ? 'is-active' : ''}`}
-                      onClick={() => selectSortOption('Most Popular')}
+                      className={`dropdown-item ${
+                        selectedSortOption === "Most Popular" ? "is-active" : ""
+                      }`}
+                      onClick={() => selectSortOption("Most Popular")}
                     >
                       Most Popular
                     </button>
                     <button
-                      className={`dropdown-item ${selectedSortOption === 'All' ? 'is-active' : ''}`}
-                      onClick={() => selectSortOption('All')}
+                      className={`dropdown-item ${
+                        selectedSortOption === "All" ? "is-active" : ""
+                      }`}
+                      onClick={() => selectSortOption("All")}
                     >
                       All
                     </button>
@@ -150,23 +179,34 @@ export default function Forums({ user }) {
             </div>
           </div>
         </div>
-        <div className='column'>
-          <div className="control" style={{ textAlign: 'right', marginRight: '20px' }}>
+        <div className="column">
+          <div
+            className="control"
+            style={{ textAlign: "right", marginRight: "20px" }}
+          >
             <button className="button is-primary" onClick={openModal}>
               Post +
             </button>
           </div>
         </div>
-        <ForumModal isOpen={isModalOpen} onClose={closeModal} user={user}/>
+        <ForumModal isOpen={isModalOpen} onClose={closeModal} />
       </div>
       <div className="columns">
-        <div className='column is-three-quarters'>
-          {forums.map((forum) => (
-            <ForumCard key={forum.id} forum={forum} />
-          ))}
+        <div className="column is-three-quarters">
+          {forums.map((forum) => {
+            return <ForumCard key={forum.id} forum={forum} />;
+          })}
         </div>
-        <div className="column is-one-quarter">
-          <ul>
+        <div className="column is-one-quarter mb-6 mt-3">
+                <ArticleCard /> 
+                <ArticleCard /> 
+                <ArticleCard /> 
+                <ArticleCard /> 
+                {/* <Articles /> */}
+          <div className="card">
+          </div>
+
+          {/* <ul>
             <li>1</li>
             <li>2</li>
             <li>3</li>
@@ -175,11 +215,134 @@ export default function Forums({ user }) {
             <li>6</li>
             <li>7</li>
             <li>8</li>
-          </ul>
+          </ul> */}
         </div>
       </div>
     </div>
   );
 }
 
+
+
+//  <nav className="level">
+//   <div class="level-item">
+//     <div>
+//       <figure className="image is-96x96">
+//         <img
+//           src="https://bulma.io/images/placeholders/96x96.png"
+//           alt="Placeholder"
+//         />
+//       </figure>
+//     </div>
+//       <li className="mx-6">1</li>
+//   </div>
+// </nav>
+
+// <nav className="level">
+//   <div class="level-item">
+//     <div>
+//       <figure className="image is-96x96">
+//         <img
+//           src="https://bulma.io/images/placeholders/96x96.png"
+//           alt="Placeholder"
+//         />
+//       </figure>
+//     </div>
+//       <li className="mx-6">2</li>
+//   </div>
+// </nav>
+
+//   const [selectedCategory, setSelectedCategory] = useState(“”);
+
+//
+//   const handleCategoryChange = (category) => {
+//     setSelectedCategory(category);
+//   };
+
+//   const filteredForums = selectedCategory
+//     ? forums.filter((forum) => forum.category === selectedCategory)
+//     : forums;
+
+//   return (
+//     <div className=“Forums”>
+//       <CategoryFilter
+//         categories={Array.from(new Set(forums.map((forum) => forum.category)))}
+//         selectedCategory={selectedCategory}
+//         onCategoryChange={handleCategoryChange}
+//       />
+
+//       <table>
+//         <thead>
+//           <tr>
+//             <th className=“title”>Title</th>
+//             <th className=“category”>Category</th>
+//             <th className=“date”>Date</th>
+//             <th className=“content”>Content</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {filteredForums.map((forum) => {
+//             return <Forum key={forum.id} forum={forum} />;
+//           })}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+// export default Forums;import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import Forum from "./Forum";
+// import CategoryFilter from "./CategoryFilter";
+
+// const API = process.env.REACT_APP_API_URL;
+
+// function Forums() {
+//   const [forums, setForums] = useState([]);
+//   const [selectedCategory, setSelectedCategory] = useState("");
+//   useEffect(() => {
+//     axios
+//       .get(`${API}/forums`)
+//       .then((response) => {
+//         console.log("Fetched forums:", response.data);
+//         setForums(response.data);
+//       })
+//       .catch((err) => console.warn("Error fetching forums:", err));
+//   }, []);
+
+//   const handleCategoryChange = (category) => {
+//     setSelectedCategory(category);
+//   };
+
+//   const filteredForums = selectedCategory
+//     ? forums.filter((forum) => forum.category === selectedCategory)
+//     : forums;
+
+//   return (
+//     <div className="Forums">
+//       <CategoryFilter
+//         categories={Array.from(new Set(forums.map((forum) => forum.category)))}
+//         selectedCategory={selectedCategory}
+//         onCategoryChange={handleCategoryChange}
+//       />
+
+//       <table>
+//         <thead>
+//           <tr>
+//             <th className="title">Title</th>
+//             <th className="category">Category</th>
+//             <th className="date">Date</th>
+//             <th className="content">Content</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {filteredForums.map((forum) => {
+//             return <Forum key={forum.id} forum={forum} />;
+//           })}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+
+// export default Forums;
 

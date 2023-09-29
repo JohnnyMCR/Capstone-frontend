@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // import SignUp from './Components/SignUp';
 // import LogIn from './Components/LogIn';
-import Dashboard from './Components/Dashboard';
+import UserDash from './Components/UserDash';
 import NavBar from './Components/NavBar';
 import Home from './Pages/Home';
 import DonationIndex from './Pages/DonationIndex';
@@ -62,7 +62,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Error />} />
             <Route path="/aboutus" element={<AboutUs />} />
-            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/dashboard' element={<UserDash />} />
             {/* <Route path="/donations" element={<Donations />} /> */}
             <Route path="/donations" element={<DonationIndex />} />
             <Route path="/donations/new" element={<NewDonation />} />
