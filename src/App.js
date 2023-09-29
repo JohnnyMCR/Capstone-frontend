@@ -62,7 +62,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Error />} />
             <Route path="/aboutus" element={<AboutUs />} />
-            <Route path='/dashboard' element={<UserDash />} />
+            <Route path='/dashboard' element={<UserDash user={user}/>} />
             {/* <Route path="/donations" element={<Donations />} /> */}
             <Route path="/donations" element={<DonationIndex />} />
             <Route path="/donations/new" element={<NewDonation />} />
