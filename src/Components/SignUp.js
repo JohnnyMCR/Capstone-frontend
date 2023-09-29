@@ -92,7 +92,7 @@ const SignUp = () => {
                       name={field.toLowerCase()}
                       value={formData[field.toLowerCase()]}
                       onChange={handleChange}
-/>
+                   />
                   </div>
                 </div>
               ))}
