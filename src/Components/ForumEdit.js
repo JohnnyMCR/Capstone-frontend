@@ -15,7 +15,6 @@ function ForumEdit() {
   });
 
   useEffect(() => {
-    // Fetch current forum details from the server and populate the form fields
     axios
       .get(`${API}/forums/${id}`)
       .then((response) => {
@@ -27,7 +26,6 @@ function ForumEdit() {
   }, [id]);
 
   const handleTextChange = (event) => {
-    // Update the state when form fields change
     setForum({
       ...forum,
       [event.target.id]: event.target.value,
@@ -37,7 +35,7 @@ function ForumEdit() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Send a PUT request to update the forum details
+    
     axios
       .put(`${API}/forums/${id}`, forum)
       .then(() => {

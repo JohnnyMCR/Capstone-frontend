@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-// import SignUp from "./SignUp";
+import SignUp from "./SignUp";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -107,7 +107,7 @@ const LogIn = () => {
                 <div>
                   <p className="content is-medium has-text-link px-6 has-text-left">
                     Don't have an account? <p className="content mt-3"></p>
-                    {/* <SignUp /> */}
+                    <SignUp />
                   </p>
                 </div>
               </div>
@@ -134,3 +134,4 @@ const LogIn = () => {
 };
 
 export default LogIn;
+

@@ -7,9 +7,9 @@ import ArticleCard from "./ArticleCard";
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function Forums() {
+export default function Forums({ user }) {
+  console.log(user)
   const [forums, setForums] = useState([]);
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -17,13 +17,14 @@ export default function Forums() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`${API}/forums`)
-      .then((response) => {
-        setForums(response.data);
-      })
-      .catch((e) => console.warn("catch", e));
-  }, [isModalOpen]);
+    axios.get(`${API}/forums`)
+        .then((response) => {
+            setForums(response.data);
+            console.log('Fetched forums:', response.data); 
+        })
+        .catch((e) => console.warn("catch", e));
+}, [isModalOpen]);
+
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -51,16 +52,7 @@ export default function Forums() {
     setIsModalOpen(false);
   };
 
-  //   useEffect(() => {
-  //     axios
-  //       .get(`${API}/forums`)
-  //       .then((response) => {
-  //         console.log("Fetched forums:", response.data);
-  //         setForums(response.data);
-  //       })
-  //       .catch((err) => console.warn("Error fetching forums:", err));
-  //   }, []);
-
+  console.log('Rendered Forums component');
   return (
     <div>
       <div className="columns mt-1">
@@ -197,7 +189,7 @@ export default function Forums() {
             </button>
           </div>
         </div>
-        <ForumModal isOpen={isModalOpen} onClose={closeModal} />
+        <ForumModal isOpen={isModalOpen} onClose={closeModal} user={user} />
       </div>
       <div className="columns">
         <div className="column is-three-quarters">
@@ -229,6 +221,8 @@ export default function Forums() {
     </div>
   );
 }
+
+
 
 //  <nav className="level">
 //   <div class="level-item">
@@ -351,3 +345,4 @@ export default function Forums() {
 // }
 
 // export default Forums;
+
