@@ -1,13 +1,19 @@
-import React from "react";
-const Profile = ({ user }) => {
+import React from 'react';
+
+function Profile({user}) {
+  console.log(user)
+
   return (
-    <div className="Profile">
+    <div>
       {user ? (
-        <p><strong>Welcome, {user.displayName}!</strong></p>
+        <div>
+          <p>{user.displayName}</p>
+        </div>
       ) : (
-        <p><strong>Not logged in</strong></p>
+        <p>You are not logged in.</p>
       )}
     </div>
   );
-};
+}
+
 export default Profile;

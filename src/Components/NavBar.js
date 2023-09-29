@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import Login from "./LogIn"
+import Login from "./LogIn";
+import Profile from './Profile';
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
 import { Link } from 'react-router-dom';
-import Profile from './Profile';
 
 export default function NavBar({ user, onLogout }) {
+ 
+
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -45,7 +47,7 @@ export default function NavBar({ user, onLogout }) {
           {user ? (
             <div className="navbar-item">
               <button className="button is-primary is-rounded mx-1 mb-5 mt-5">
-                <Profile/>
+                <Profile user={user}/>
               </button>
               <button className="button is-primary is-rounded mx-1 mb-5 mt-5" onClick={onLogout}>Logout</button>              
             </div>
@@ -63,50 +65,3 @@ export default function NavBar({ user, onLogout }) {
     </nav>
   );
 }
-
-
-//  import React from 'react';
-// import { Link } from react-router-dom;
-// const NavBar = ({ user, onLogout }) => { 
-//    return (
-//     <nav>
-//        <ul>
-//         <li>
-//           <Link to=“/”>Home</Link>
-//          </li>
-//         {user ? (
-//           <>
-//             <li>
-//               <Link to=“/dashboard”>Dashboard</Link>
-//             </li>
-//             <li>
-//                <Link to=“/forums”>Forums</Link>
-//              </li>
-//             <li>
-//                <Link to=“/forums/new”>Add a New Post</Link>
-//             </li>
-//              <li>
-//         <li>
-//           <Link to=“/forums/new”>Add a New Post</Link>
-//         </li>
-//                <Link to=“/donations”>Donations</Link>
-//             </li>
-//              <li>
-//               <button onClick={onLogout}>Logout</button>
-//             </li>
-//           </>
-//          ) : (
-//           <>
-//             <li>
-//                <Link to=“/login”>Login</Link>
-//              </li>
-//             <li>
-//               <Link to=“/signup”>Sign Up</Link>
-//              </li>
-//           </>
-//          )}
-//        </ul>
-//      </nav>
-//   );
-// };
-//  export default NavBar; 
