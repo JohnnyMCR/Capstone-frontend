@@ -92,7 +92,7 @@ function Home() {
 
 
 
-      <section className="hero is-medium is-info is-warning">
+      <section className="hero is-small is-info is-warning">
         <div className="hero-body">
           <div className="container has-text-centered">
             <h1 className="title is-3 has-text-primary">Join CareVillage</h1>
