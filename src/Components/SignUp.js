@@ -70,18 +70,24 @@ const SignUp = () => {
 
   return (
     <>
-    <button className="button is-primary is-small" type="button" onClick={openModal}>
+    <button className="button is-primary mx-1 mb-5 is-rounded mt-5 has-text-weight-bold" type="button" onClick={openModal}>
       Sign Up
       </button>
       {isModalOpen && (
         <div className="modal is-active">
           <div className="modal-background"></div>
-          <div className="modal-content has-background-info py-5 px-5">
-            <h3 className="title is-1 has-text-primary"> Join CareVillage </h3>
+          <div className="modal-content has-background-info py-6 px-6">
+            <h1 className="modal-card-title title is-3 has-text-primary has-text-left py-5 px-6 mx-6"> Sign up for Care Village </h1>
+            <button
+               className="delete is-medium mb-5 has-text-right"
+                aria-label="close"
+                 onClick={closeModal}
+               ></button>
+              
             <form>
               {['Email', 'Password', 'Username', 'Zipcode'].map((field) => (
                 <div className="field" key={field}>
-                  <label className="label is-large has-text-danger">
+                  <label className="label is-large has-text-danger mt-5">
                     {field === 'Zipcode' ? 'Zipcode' : field}
                   </label>
                   <div className="control">
