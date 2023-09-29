@@ -107,7 +107,7 @@ const LogIn = () => {
                 <div>
                   <p className="content is-medium has-text-link px-6 has-text-left">
                     Don't have an account? <p className="content mt-3"></p>
-                    {/* <SignUp /> */}
+                    <SignUp />
                   </p>
                 </div>
               </div>
