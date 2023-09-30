@@ -31,7 +31,7 @@ export default function DonationModal({ isOpen, onClose }) {
           <section className="modal-card-body has-background-info">
             <div className="columns px-3 py-3">
               <h1 className="modal-card-title title is-2 has-text-primary has-text-left">
-                New donation
+                New Donation
               </h1>
               <button
                 className="delete"
@@ -96,7 +96,7 @@ export default function DonationModal({ isOpen, onClose }) {
                     onChange={handleCategoryChange}
                   >
                     <option value="" disabled>
-                      Select a category
+                      Select A Category
                     </option>
                     <option value="Category 1">Clothing</option>
                     <option value="Category 2">Toys</option>

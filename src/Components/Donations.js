@@ -82,25 +82,25 @@ export default function Donations() {
                                             className={`dropdown-item ${selectedItem === 'Dropdown item' ? 'is-active' : ''}`}
                                             onClick={() => selectItem('Dropdown item')}
                                         >
-                                            Dropdown item
+                                            Dropdown Item
                                         </button>
                                         <button
                                             className={`dropdown-item ${selectedItem === 'item' ? 'is-active' : ''}`}
                                             onClick={() => selectItem('item')}
                                         >
-                                            item
+                                            Item
                                         </button>
                                         <button
                                             className={`dropdown-item ${selectedItem === 'Active dropdown item' ? 'is-active' : ''}`}
                                             onClick={() => selectItem('Active dropdown item')}
                                         >
-                                            Active dropdown item
+                                            Active Dropdown Item
                                         </button>
                                         <button
                                             className={`dropdown-item ${selectedItem === 'Other dropdown item' ? 'is-active' : ''}`}
                                             onClick={() => selectItem('Other dropdown item')}
                                         >
-                                            Other dropdown item
+                                            Other Dropdown Item
                                         </button>
                                     </div>
                                 </div>
