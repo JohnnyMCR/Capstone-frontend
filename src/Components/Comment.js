@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function SinglePost() {
+export default function Comment({ user }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [isExpanded, setIsExpanded] = useState(false);
@@ -47,8 +47,10 @@ export default function SinglePost() {
                     <div className="post-content column is-three-quarter is-size-6 has-background-light">
                     </div>
                     <ul>
+                    
                         {comments.map((comment, index) => (
                             <li key={index} className="comment-item mb-3">
+                              <p>Posted by {user.displayName} :</p>
                                 {comment.content}
                             </li>
                         ))}
@@ -60,7 +62,6 @@ export default function SinglePost() {
                             value={newComment}
                             onChange={handleCommentChange}
                         />
-
                         <button className="button is-primary mt-3" onClick={handleSubmitComment}>
                             Submit Comment
                         </button>

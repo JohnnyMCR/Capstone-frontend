@@ -4,9 +4,8 @@ import axios from "axios";
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function ForumCard({ forum, }) {
+export default function ForumCard({ forum ,user }) {
     const [userName, setUserName] = useState(null);
-    console.log(forum)
 
     useEffect(() => {
       if (forum.user_id) {
@@ -40,7 +39,7 @@ export default function ForumCard({ forum, }) {
                             <p className='column is-one-quarter is-size-6 has-background-danger'>{userName}</p>
                             <p className='column is-one-quarter is-size-6 has-background-light'>{forum.category}</p>
                             <p className='column is-one-quarter is-size-6 has-background-dark'>{forum.content}</p>
-                            <Comment  />
+                            <Comment user={user} />
                         </div>
                     </div>
                 </div>

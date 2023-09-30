@@ -194,7 +194,7 @@ export default function Forums({ user }) {
       <div className="columns">
         <div className="column is-three-quarters">
           {forums.map((forum) => {
-            return <ForumCard key={forum.id} forum={forum}  />;
+            return <ForumCard key={forum.id} forum={forum} user={user} />;
           })}
         </div>
         <div className="column is-one-quarter mb-6 mt-3">
