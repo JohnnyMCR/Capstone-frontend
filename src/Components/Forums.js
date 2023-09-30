@@ -194,7 +194,7 @@ export default function Forums({ user }) {
       <div className="columns">
         <div className="column is-three-quarters">
           {forums.map((forum) => {
-            return <ForumCard key={forum.id} forum={forum} />;
+            return <ForumCard key={forum.id} forum={forum}  />;
           })}
         </div>
         <div className="column is-one-quarter mb-6 mt-3">
@@ -224,125 +224,5 @@ export default function Forums({ user }) {
 
 
 
-//  <nav className="level">
-//   <div class="level-item">
-//     <div>
-//       <figure className="image is-96x96">
-//         <img
-//           src="https://bulma.io/images/placeholders/96x96.png"
-//           alt="Placeholder"
-//         />
-//       </figure>
-//     </div>
-//       <li className="mx-6">1</li>
-//   </div>
-// </nav>
 
-// <nav className="level">
-//   <div class="level-item">
-//     <div>
-//       <figure className="image is-96x96">
-//         <img
-//           src="https://bulma.io/images/placeholders/96x96.png"
-//           alt="Placeholder"
-//         />
-//       </figure>
-//     </div>
-//       <li className="mx-6">2</li>
-//   </div>
-// </nav>
-
-//   const [selectedCategory, setSelectedCategory] = useState(“”);
-
-//
-//   const handleCategoryChange = (category) => {
-//     setSelectedCategory(category);
-//   };
-
-//   const filteredForums = selectedCategory
-//     ? forums.filter((forum) => forum.category === selectedCategory)
-//     : forums;
-
-//   return (
-//     <div className=“Forums”>
-//       <CategoryFilter
-//         categories={Array.from(new Set(forums.map((forum) => forum.category)))}
-//         selectedCategory={selectedCategory}
-//         onCategoryChange={handleCategoryChange}
-//       />
-
-//       <table>
-//         <thead>
-//           <tr>
-//             <th className=“title”>Title</th>
-//             <th className=“category”>Category</th>
-//             <th className=“date”>Date</th>
-//             <th className=“content”>Content</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {filteredForums.map((forum) => {
-//             return <Forum key={forum.id} forum={forum} />;
-//           })}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// }
-// export default Forums;import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import Forum from "./Forum";
-// import CategoryFilter from "./CategoryFilter";
-
-// const API = process.env.REACT_APP_API_URL;
-
-// function Forums() {
-//   const [forums, setForums] = useState([]);
-//   const [selectedCategory, setSelectedCategory] = useState("");
-//   useEffect(() => {
-//     axios
-//       .get(`${API}/forums`)
-//       .then((response) => {
-//         console.log("Fetched forums:", response.data);
-//         setForums(response.data);
-//       })
-//       .catch((err) => console.warn("Error fetching forums:", err));
-//   }, []);
-
-//   const handleCategoryChange = (category) => {
-//     setSelectedCategory(category);
-//   };
-
-//   const filteredForums = selectedCategory
-//     ? forums.filter((forum) => forum.category === selectedCategory)
-//     : forums;
-
-//   return (
-//     <div className="Forums">
-//       <CategoryFilter
-//         categories={Array.from(new Set(forums.map((forum) => forum.category)))}
-//         selectedCategory={selectedCategory}
-//         onCategoryChange={handleCategoryChange}
-//       />
-
-//       <table>
-//         <thead>
-//           <tr>
-//             <th className="title">Title</th>
-//             <th className="category">Category</th>
-//             <th className="date">Date</th>
-//             <th className="content">Content</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {filteredForums.map((forum) => {
-//             return <Forum key={forum.id} forum={forum} />;
-//           })}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// }
-
-// export default Forums;
 
