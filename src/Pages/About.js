@@ -30,12 +30,12 @@ export default function About() {
 
       <section className="section">
         <div className="container">
-          <h2 className="title is-2 has-text-primary has-text-left">
+          <h2 className="title is-2 has-text-primary has-text-center">
             Our Mission
           </h2>
           <div className="columns is-centered">
-            <div className="column is-four-fifth has-text-centered">
-              <p className="content has-text-left is-medium is-italic has-text-grey pb-6">
+            <div className="column is-four-fifth has-text-center">
+              <p className="content has-text-center is-medium is-italic has-text-grey pb-6">
                 At CareVillage, our mission is to empower parents and caregivers
                 on their unique parenting journeys while fostering a
                 compassionate and supportive community. We provide a platform
@@ -47,10 +47,10 @@ export default function About() {
               </p>
               <hr className="is-divider" />
 
-              <h2 className="title is-2 has-text-primary has-text-left pt-6">
+              <h2 className="title is-2 has-text-primary has-text-center pt-6">
                 What We Offer
               </h2>
-              <h3 className="title is-4 has-text-primary has-text-left pt-4">
+              <h3 className="title is-4 has-text-primary has-text-center pt-4">
                 {" "}
                 <FontAwesomeIcon
                   className="pr-4"
@@ -61,7 +61,7 @@ export default function About() {
                 Forums{" "}
               </h3>
 
-              <p className="content is-medium is-italic has-text-dark has-text-left">
+              <p className="content is-medium is-italic has-text-dark has-text-center">
                 Our forums serve as a welcoming hub where you can explore and
                 discuss a wide range of parenting approaches, from gentle
                 parenting to positive discipline, and everything in between.
@@ -69,7 +69,7 @@ export default function About() {
                 of giving.
               </p>
 
-              <h3 className="title is-4 has-text-primary has-text-left pt-4">
+              <h3 className="title is-4 has-text-primary has-text-center pt-4">
                 {" "}
                 <FontAwesomeIcon
                   className="pr-4"
@@ -79,7 +79,7 @@ export default function About() {
                 />
                 Donations{" "}
               </h3>
-              <p className="content is-medium is-italic has-text-dark pb-6">
+              <p className="content is-medium is-italic has-text-dark has-text-center pb-6">
                 Our dedicated donation section is a place where users can make a
                 difference in the lives of children. Whether it's providing
                 essential items, toys, or educational resources, we encourage
@@ -107,7 +107,7 @@ export default function About() {
 
       <section className="section">
         <div className="container">
-          <h2 className="title is-1 has-text-primary has-text-left">
+          <h2 className="title is-1 has-text-primary has-text-center">
             The Team
           </h2>
 

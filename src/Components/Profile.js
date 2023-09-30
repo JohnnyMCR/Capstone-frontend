@@ -10,7 +10,7 @@ function Profile({user}) {
           <p>{user.displayName}</p>
         </div>
       ) : (
-        <p>You are not logged in.</p>
+        <p>You Are Not Logged In.</p>
       )}
     </div>
   );

@@ -37,7 +37,7 @@ export default function NavBar({ user, onLogout }) {
 
           <Link to="/" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">Home</Link>
 
-          <Link to="/aboutus" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">About us</Link>
+          <Link to="/aboutus" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">About Us</Link>
 
           <Link to="/forums" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">Forums</Link>
 

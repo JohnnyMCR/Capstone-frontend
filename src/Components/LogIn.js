@@ -61,7 +61,7 @@ const LogIn = () => {
           <div className="modal-content has-background-info py-5 px-5">
             <div className="columns">
               <h1 className="modal-card-title title is-3 has-text-primary has-text-left py-3 px-6">
-                Login to Care Village{" "}
+                Login To Care Village{" "}
               </h1>
               <button
                 className="delete is-medium mb-5 has-text-right"
@@ -102,11 +102,11 @@ const LogIn = () => {
             <div className="columns">
               <div>
                 <p className="content is-medium px-6  pt-6  has-text-link has-text-left">
-                  Forgot password? <p className="content mt-3"></p>
+                  Forgot Password? <p className="content mt-3"></p>
                 </p>
                 <div>
                   <p className="content is-medium has-text-link px-6 has-text-left">
-                    Don't have an account? <p className="content mt-3"></p>
+                    Don't Have An Account? <p className="content mt-3"></p>
                     <SignUp />
                   </p>
                 </div>
