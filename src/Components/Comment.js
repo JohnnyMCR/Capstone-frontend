@@ -91,14 +91,14 @@ function Comment({ initialContent, postId }) {
   return (
     <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>
       <div className="header" onClick={toggleExpand}>
-        <span className="see-more-link has-text-link">
+        <span className="see-more-link has-text-link ml-4">
           {isExpanded ? 'See Less' : 'See More'}
         </span>
       </div>
       {isExpanded && (
-        <div className="expanded-content">
+        <div className="expanded-content pt-3 px-3">
           <div className="post-content column is-three-quarter is-size-6 has-background-light">
-            <p>{initialContent}</p>
+            <p className='py-3 px-3 has-text-dark'>{initialContent}</p>
           </div>
           <ul>
             {comments.map((comment, index) => (
@@ -107,14 +107,14 @@ function Comment({ initialContent, postId }) {
               </li>
             ))}
           </ul>
-          <div className="comment-box">
+          <div className="comment-box pt-3">
             <textarea
               className="textarea"
               placeholder="Add your comment..."
               value={newComment}
               onChange={handleCommentChange}
             />
-            <button className="button is-primary mt-3">Submit Comment</button>
+            <button className="button is-primary mt-3 is-rounded">Submit Comment</button>
           </div>
         </div>
       )}

@@ -15,7 +15,7 @@ export default function ArticleCard() {
           </figure>
         </div>
         <div className="column">
-          <div className="article has-text-centered pt-6 pr-6 mr-6">
+          <div className="article has-text-centered pt-6 pr-6 mr-6 has-text-dark">
             {" "}
             Link To Article
           </div>

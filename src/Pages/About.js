@@ -105,12 +105,11 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
           <h2 className="title is-1 has-text-primary has-text-center">
             The Team
           </h2>
-
+      <section className="section">
+        <div className="container">
           <div className="columns pt-6">
             <div className="column has-text-left">
               <figure className="image is-128x128">
@@ -156,7 +155,7 @@ export default function About() {
                 Samuel A.
               </h1>
               <div className="body has-text-left">
-                <p className="content is-medium is-italic has-text-dark mx-3">
+                <p className="media-content is-medium is-italic has-text-dark mx-3 ">
                   "Hello, I'm Samuel Alba, the product owner behind CareVillage.
                   As a dedicated problem solver and technology enthusiast, I
                   embarked on a mission to craft an app that simplifies and
@@ -211,7 +210,7 @@ export default function About() {
                 Johnny C.
               </h1>
               <div className="body has-text-left">
-                <p className="content is-medium is-italic has-text-dark has-text-center mx-3">
+                <p className="media-content is-medium is-italic has-text-dark has-text-center mx-3">
                   "Hello! My name is Johnny Castillo and I'm a software engineer
                   with experience in multiple fields ranging from marketing,
                   finance, nonprofit and early childhood development. I'm
@@ -270,7 +269,7 @@ export default function About() {
               </h1>
 
               <div className="body has-text-left">
-                <p className="content is-medium is-italic has-text-dark has-text-center">
+                <p className="media-content is-medium is-italic has-text-dark has-text-center">
                   "Hello, I'm Angel Villa, a dedicated software engineer
                   currently thriving in the Pursuit Program. When I'm not
                   coding, you'll find me embracing the freedom of the open road
@@ -328,7 +327,7 @@ export default function About() {
                 Max W.
               </h1>
               <div className="body has-text-left">
-                <p className="content is-medium is-italic has-text-dark has-text-center mx-3">
+                <p className="media-content is-medium is-italic has-text-dark has-text-center mx-3">
                   "Hello, My name is Max. I have a Bachelors in Hospitality
                   Management and I am transitioning my skills into tech. As a
                   full stack web developer I am passionate about creating
