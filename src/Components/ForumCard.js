@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Comment from './Comment';
+import Comments from './Comment';
 import axios from "axios";
 
 const API = process.env.REACT_APP_API_URL;
@@ -39,7 +39,7 @@ export default function ForumCard({ forum ,user }) {
                             <p className='column is-one-quarter is-size-6 has-background-danger'>{userName}</p>
                             <p className='column is-one-quarter is-size-6 has-background-light'>{forum.category}</p>
                             <p className='column is-one-quarter is-size-6 has-background-dark'>{forum.content}</p>
-                            <Comment user={user}  />
+                            <Comments user={user}  />
                         </div>
                     </div>
                 </div>
