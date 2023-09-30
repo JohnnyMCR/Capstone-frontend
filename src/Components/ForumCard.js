@@ -39,7 +39,7 @@ export default function ForumCard({ forum ,user }) {
                             <p className='column is-one-quarter is-size-6 has-background-danger'>{userName}</p>
                             <p className='column is-one-quarter is-size-6 has-background-light'>{forum.category}</p>
                             <p className='column is-one-quarter is-size-6 has-background-dark'>{forum.content}</p>
-                            <Comment user={user} />
+                            <Comment user={user}  />
                         </div>
                     </div>
                 </div>

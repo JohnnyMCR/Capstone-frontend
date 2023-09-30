@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function ForumModal({ isOpen, onClose ,user})
+export default function ForumModal({ isOpen, onClose ,user })
 {
   
   const [title, setTitle] = useState('');
