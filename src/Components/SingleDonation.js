@@ -52,9 +52,9 @@ export default function SingleDonation({ donation }) {
 
   return (
     <div>
-      <div className='column has-text-right control'>
+      <div className='column has-text-right control pt-6 ml-6'>
         {/* <div className="control" > */}
-          <button className="button is-primary mt-6" onClick={openModal}>
+          <button className="button is-medium is-rounded is-primary mt-5 ml-5" onClick={openModal}>
             Show
           </button>
         {/* </div> */}
@@ -77,10 +77,10 @@ export default function SingleDonation({ donation }) {
             </div>
               <div className="column has-text-left is-three-fifths">
                 <p className="content is-size-4 is-large has-text-primary has-text-weight-bold">Title: </p>
-                <p className="content is-size-6 is-large has-text-danger">Category: </p>
-                <p className="content is-size-6 is-large has-text-danger">Drescription: </p>
-                <p className="content is-size-6 is-large has-text-danger">User: </p>
-                <p className="content is-size-6 is-large has-text-danger">Distance:  miles away</p>
+                <p className="content is-size-6 is-large has-text-dark">Category: </p>
+                <p className="content is-size-6 is-large has-text-dark">Drescription: </p>
+                <p className="content is-size-6 is-large has-text-dark">User: </p>
+                <p className="content is-size-6 is-large has-text-dark">Distance:  miles away</p>
               </div>
             </div>
           </section>

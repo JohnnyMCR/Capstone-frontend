@@ -163,7 +163,7 @@ export default function Donations() {
                 </div>
                 <div className='column'>
                     <div className="control" style={{ textAlign: 'right', marginRight: '20px' }}>
-                        <button className="button is-primary" onClick={openModal}>
+                        <button className="button is-rounded is-primary" onClick={openModal}>
                             Post +
                         </button>
                     </div>

@@ -45,7 +45,7 @@ export default function NavBar({ user, onLogout }) {
 
           {user ? (
             <div className="navbar-item">
-              <button className="button is-primary is-rounded mx-1 mb-5 mt-5">
+              <button className="button is-primary is-rounded mx-1 mb-5 mt-5 has-text-weight-bold is-italic has-text-warning">
                 {user.displayName}
               </button>
               <button className="button is-primary is-rounded mx-1 mb-5 mt-5" onClick={onLogout}>Logout</button>              
