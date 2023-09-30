@@ -86,7 +86,7 @@ export default function Forums({ user }) {
                       }`}
                       onClick={() => selectItem("Dropdown item")}
                     >
-                      Dropdown item
+                      Dropdown Item
                     </button>
                     <button
                       className={`dropdown-item ${
@@ -94,7 +94,7 @@ export default function Forums({ user }) {
                       }`}
                       onClick={() => selectItem("item")}
                     >
-                      item
+                      Item
                     </button>
                     <button
                       className={`dropdown-item ${
@@ -104,7 +104,7 @@ export default function Forums({ user }) {
                       }`}
                       onClick={() => selectItem("Active dropdown item")}
                     >
-                      Active dropdown item
+                      Active Dropdown Item
                     </button>
                     <button
                       className={`dropdown-item ${
@@ -114,7 +114,7 @@ export default function Forums({ user }) {
                       }`}
                       onClick={() => selectItem("Other dropdown item")}
                     >
-                      Other dropdown item
+                      Other Dropdown Item
                     </button>
                   </div>
                 </div>

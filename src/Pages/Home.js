@@ -66,7 +66,24 @@ function Home() {
           </div>
         </div>
 
-        <div className='column mt-6 pt-6'>
+        <div className='columns mt-6 pt-6'>
+          <div className='column is-one-third has-background-info card'>
+          <p className='title has-text-primary mt-3 pt-3'>Community:</p>
+          <p className='content is-medium is-italic column has-text-dark is-full mb-6 pb-6'>
+            At CareVillage and experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
+          </div>
+
+          <div className='column is-one-third has-background-success card'>
+          <p className='title has-text-primary mt-3 pt-3'>Join Us:</p>
+          <p className='content is-medium is-italic column has-text-dark is-full mb-6 pb-6'>
+            At CareVillage and experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
+          </div>
+
+          <div className='column is-one-third has-background-info card'>
+          <p className='title has-text-primary mt-3 pt-3'>About Us:</p>
+          <p className='content is-medium is-italic column has-text-dark is-full mb-6 pb-6'>
+            At CareVillage and experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
+          </div>
           {/* <p className='title has-text-primary'>Privacy and Security:</p>
           <p className='content is-medium is-italic column has-text-dark is-full'>
             Rest assured that your data and interactions are secure. We prioritize your privacy and safety, creating a space where you can share openly without worries.
@@ -78,9 +95,7 @@ function Home() {
           <p className='title has-text-primary mt-3 pt-3'>Suggestions:</p>
           <p className='content is-medium is-italic column has-text-dark is-full'> Feedback and  Provide feedback and suggestions to help us continuously improve the app. We value your input in shaping the future of CareVillage.</p> */}
 
-          <p className='title has-text-primary mt-3 pt-3'>Join us:</p>
-          <p className='content is-medium is-italic column has-text-dark is-full mb-6 pb-6'>
-            At CareVillage and experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
+        
         </div>
       </div>
 
@@ -92,7 +107,7 @@ function Home() {
 
 
 
-      <section className="hero is-medium is-info is-warning">
+      <section className="hero is-small is-info is-warning">
         <div className="hero-body">
           <div className="container has-text-centered">
             <h1 className="title is-3 has-text-primary">Join CareVillage</h1>

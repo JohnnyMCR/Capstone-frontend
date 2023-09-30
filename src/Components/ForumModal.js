@@ -70,7 +70,7 @@ export default function ForumModal({ isOpen, onClose ,user })
         <div className="box has-background-info">
           <div className="columns px-3 py-3">
             <h1 className="modal-card-title title is-2 has-text-primary has-text-left">
-              New forum post
+              New Forum Post
             </h1>
             <button
               className="delete"
@@ -113,7 +113,7 @@ export default function ForumModal({ isOpen, onClose ,user })
                     onChange={(e) => setCategory(e.target.value)}
                     required
                   >
-                    <option value="">Select a category</option>
+                    <option value="">Select A Category</option>
                     <option value="baby">Baby</option>
                     <option value="adolescents">Adolescents</option>
                     <option value="teen">Teen</option>

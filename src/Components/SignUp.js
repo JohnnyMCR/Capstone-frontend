@@ -77,18 +77,21 @@ const SignUp = () => {
         <div className="modal is-active">
           <div className="modal-background"></div>
           <div className="modal-content has-background-info py-6 px-6">
-            <h1 className="modal-card-title title is-3 has-text-primary has-text-left py-5 px-6 mx-6"> Sign up for Care Village </h1>
+            <div className='columns'>
+
+            <h1 className="modal-card-title title is-3 has-text-primary has-text-left py-5 px-6 mx-6"> Sign Up For Care Village </h1>
             <button
                className="delete is-medium mb-5 has-text-right"
                 aria-label="close"
                  onClick={closeModal}
                ></button>
+            </div>
               
             <form>
               {['Email', 'Password', 'Username', 'Zipcode'].map((field) => (
                 <div className="field" key={field}>
                   <label className="label is-large has-text-danger mt-5">
-                    {field === 'Zipcode' ? 'Zipcode' : field}
+                    {/* {field === 'Zipcode' ? 'Zipcode' : field} */}
                   </label>
                   <div className="control">
                     <input
@@ -102,13 +105,43 @@ const SignUp = () => {
                   </div>
                 </div>
               ))}
-              <button className="button is-primary is-medium mt-4" type="button" onClick={handleSignup}>
-                Sign Up
-              </button>
-              <p className="content is-medium has-text-primary mt-5">
+
+              
+                <div className="columns">
+                  <div className="column mr-5">
+
+                  <button
+                    className="button is-medium mt-4 mr-5 is-outlined is-primary is-rounded has-text-primary"
+                    aria-label="close"
+                    onClick={closeModal}
+                    style={{
+                      boxShadow: "none",
+                      backgroundColor: "white",
+                      color: "inherit",
+                    }}
+                  >
+                    Cancel
+                  </button>
+                  </div>
+                  
+                  <div className="column ml-5">
+
+                  <button
+                    className="button is-primary is-rounded is-medium mt-4 ml-5"
+                    type="button"
+                    onClick={() => handleSignup()}
+                  >
+                    Sign Up
+                  </button>
+                  </div>
+                </div>
+
+                <div>
+              <p className="content is-medium has-text-primary mt-5 ">
                 Already have an account? <LogIn />
               </p>
               {error && <p style={{ color: 'red' }}>{error}</p>}
+              </div>
               </form>
             <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
             </div>

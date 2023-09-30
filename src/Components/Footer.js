@@ -9,10 +9,10 @@ export default function Footer() {
     <footer className="has-background-primary">
       <div className="columns">
         <div className="column is-one-quarter has-text-left ml-2">
-          <img src={LOGO} alt="logo" width="150" />
+          <img src={LOGO} alt="logo" width="96" />
         </div>
 
-        <div className="column is-half has-text-centered pt-5 mt-6">
+        <div className="column is-half has-text-centered pt-5 mt-5">
           <Link
             to="/"
             className="title is-5 has-text-white mx-6 has-text-centered"

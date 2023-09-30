@@ -34,11 +34,11 @@ export default function ForumCard({ forum ,user }) {
                 <div className="card-content">
                     <div className='columns'>
                         <div className='column has-text-left is-full has-background-info'>
-                            <h1 className='column is-one-quarter is-size-4 has-background-warning'>{forum.title}</h1>
-                            <span className='column is-one-quarter is-size-6 has-background-primary'>{forum.date}</span>
-                            <p className='column is-one-quarter is-size-6 has-background-danger'>{userName}</p>
-                            <p className='column is-one-quarter is-size-6 has-background-light'>{forum.category}</p>
-                            <p className='column is-one-quarter is-size-6 has-background-dark'>{forum.content}</p>
+                            <h1 className='column is-one-half has-text-centered title has-text-primary'>{forum.title}</h1>
+                            <span className='column is-one-quarter is-size-6 has-text-dark'>{forum.date}</span>
+                            <p className='column is-one-quarter is-size-6 has-text-dark'>{userName}</p>
+                            <p className='column is-one-quarter is-size-6 has-text-dark'>{forum.category}</p>
+                            <p className='column is-one-quarter is-size-6 has-text-dark'>{forum.content}</p>
                             <Comments user={user}  />
                         </div>
                     </div>
