@@ -43,7 +43,7 @@ const LogIn = () => {
         Login
       </button> */}
       <button
-        className="button custom-button  is-outlined is-primary has-text-primary has-text-weight-bold is-rounded"
+        className="button custom-button is-outlined is-primary has-text-primary has-text-weight-bold is-rounded"
         type="button"
         onClick={openModal}
         style={{
@@ -60,7 +60,7 @@ const LogIn = () => {
           <div className="modal-background"></div>
           <div className="modal-content has-background-info py-5 px-5">
             <div className="columns">
-              <h1 className="modal-card-title title is-3 has-text-primary has-text-left py-3 px-6">
+              <h1 className="modal-card-title title is-3 has-text-primary py-3 px-6 has-text-centered">
                 Login To Care Village{" "}
               </h1>
               <button
@@ -101,11 +101,11 @@ const LogIn = () => {
             </form>
             <div className="columns">
               <div>
-                <p className="content is-medium px-6  pt-6  has-text-link has-text-left">
+                <p className="content is-medium px-6  pt-6  has-text-link has-text-left ml-4">
                   Forgot Password? <p className="content mt-3"></p>
                 </p>
                 <div>
-                  <p className="content is-medium has-text-link px-6 has-text-left">
+                  <p className="content is-medium has-text-link px-6 has-text-left ml-4 mb-3">
                     Don't Have An Account? <p className="content mt-3"></p>
                     <SignUp />
                   </p>
@@ -113,7 +113,7 @@ const LogIn = () => {
               </div>
               <div className="column has-text-right">
                 <button
-                  className="button is-primary is-rounded is-medium mt-6"
+                  className="button is-primary is-rounded is-medium mt-6 has-text-weight-bold	"
                   type="button"
                   onClick={() => handleLogin()}
                 >
