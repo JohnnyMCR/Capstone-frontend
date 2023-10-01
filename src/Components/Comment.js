@@ -39,9 +39,21 @@ export default function Comment({ user, forum_id }) {
         setEditingCommentId(null); 
     };
 
-    const handleSubmitComment = () => {
-        axios.post(`${API}/comments`, { content: newComment })
+    const handleSubmitComment = (e) => {
+        e.preventDefault()
+        console.log(user)
+        const actualNewComment = {
+            content: newComment,
+            user_id: user.id,
+            forum_id,
+            date: new Date().toLocaleDateString()
+        }
+
+
+        axios.post(`${API}/comments`, actualNewComment)
             .then((response) => {
+                console.log(actualNewComment)
+                console.log(response.data)
                 setComments([...comments, response.data]); 
                 setNewComment('');
             })
