@@ -1,128 +1,142 @@
-// import { useState, useEffect } from "react";
-// import CommentForm from "./CommentForm";
-
-// const API = process.env.REACT_APP_API_URL;
-
-// function Comment({ comment, handleSubmit }) {
-//   const [viewEditForm, toggleEditForm] = useState(false);
-//   const [username, setUsername] = useState("");
-
-//   useEffect(() => {
-//     const fetchUsername = async () => {
-//       try {
-//         const response = await fetch(`${API}/profiles/${comment.user_id}`);
-//         const data = await response.json();
-//         setUsername(data.username);
-//       } catch (error) {
-//         console.error("Error fetching username:", error);
-//       }
-//     };
-
-//     fetchUsername();
-//   }, [comment.user_id]);
-
-//   const toggleView = () => {
-//     toggleEditForm(!viewEditForm);
-//   };
-
-//   return (
-//     <div className="Comment">
-//       <br />
-//       <br />
-//       <button onClick={toggleView}>Edit this comment...</button>
-//       <br />
-//       <br />
-//       {viewEditForm ? (
-//         <CommentForm
-//           commentDetails={comment}
-//           toggleView={toggleView}
-//           handleSubmit={handleSubmit}
-//         />
-//       ) : (
-//         <div>
-//           <p>{username}</p>
-//           <p>{comment.content}</p>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default Comment;
-
-// Api call that maps through the comments for that post
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import EditComment from './EditComment'; 
 
 const API = process.env.REACT_APP_API_URL;
 
-function Comment({ initialContent, postId }) {
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState('');
-  const [isExpanded, setIsExpanded] = useState(false);
+export default function Comment({ user }) {
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState('');
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [editingCommentId, setEditingCommentId] = useState(null);
 
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleCommentChange = (event) => {
-    setNewComment(event.target.value);
-    console.log('Comment has been submitted:', event.target.value);
-  };
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const response = await axios.get(`${API}/forums/${postId}/comments`); 
-        if (response.status === 200) {
-          setComments(response.data);
-        } else {
-          console.error('Failed to fetch comments. Status:', response.status);
-        }
-      } catch (error) {
-        console.error('Error fetching comments:', error);
-      }
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
     };
 
-    fetchComments();
-  }, [postId]);
+    const handleCommentChange = (event) => {
+        setNewComment(event.target.value);
+    };
 
-  return (
-    <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>
-      <div className="header" onClick={toggleExpand}>
-        <span className="see-more-link has-text-link ml-4">
-          {isExpanded ? 'See Less' : 'See More'}
-        </span>
-      </div>
-      {isExpanded && (
-        <div className="expanded-content pt-3 px-3">
-          <div className="post-content column is-three-quarter is-size-6 has-background-light">
-            <p className='py-3 px-3 has-text-dark'>{initialContent}</p>
-          </div>
-          <ul>
-            {comments.map((comment, index) => (
-              <li key={index} className="comment-item mb-3">
-                {comment.content}
-              </li>
-            ))}
-          </ul>
-          <div className="comment-box pt-3">
-            <textarea
-              className="textarea"
-              placeholder="Add your comment..."
-              value={newComment}
-              onChange={handleCommentChange}
-            />
-            <button className="button is-primary mt-3 is-rounded">Submit Comment</button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+    const handleEditClick = (commentId) => {
+        setEditingCommentId(commentId);
+    };
 
-export default Comment;
+    const handleCancelEdit = () => {
+        setEditingCommentId(null);
+    };
 
+    const handleUpdateComment = (updatedComment) => {
+        const updatedComments = comments.map((comment) => {
+            if (comment.id === updatedComment.id) {
+                return updatedComment;
+            }
+            return comment;
+        });
+        setComments(updatedComments);
+        setEditingCommentId(null); 
+    };
 
+    const handleSubmitComment = () => {
+        axios.post(`${API}/comments`, { content: newComment })
+            .then((response) => {
+                setComments([...comments, response.data]); 
+                setNewComment('');
+            })
+            .catch((error) => {
+                console.error('Error submitting comment:', error);
+            });
+    };
 
+    useEffect(() => {
+        axios.get(`${API}/comments`)
+            .then((response) => {
+                setComments(response.data);
+            })
+            .catch((e) => console.warn("Error fetching comments:", e));
+    }, []);
+
+    return (
+        <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>
+            <div className="header" onClick={toggleExpand}>
+                <span className="see-more-link has-text-link">
+                    {isExpanded ? 'See Less' : 'See More'}
+                </span>
+            </div>
+            {isExpanded && (
+                <div className="expanded-content">
+                    <div className="post-content column is-three-quarter is-size-6 has-background-light">
+                    </div>
+                    <ul>
+                        {comments.map((comment, index) => (
+                            <li key={index} className="comment-item mb-3">
+                                <p>Posted by {user.displayName}:</p>
+                                {editingCommentId === comment.id ? (
+                                    <EditComment
+                                        comment={comment}
+                                        onUpdateComment={handleUpdateComment}
+                                        onCancel={handleCancelEdit}
+                                    />
+                                ) : (
+                                    <div>
+                                        {comment.content}
+                                        <div className="is-pulled-right">
+                                        <button className="button is-primary is-small mt-1" onClick={() => handleEditClick(comment.id)}>
+                                            Edit
+                                        </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                    <div className='comment-box'>
+                        <textarea
+                            className="textarea"
+                            placeholder="Add your comment..."
+                            value={newComment}
+                            onChange={handleCommentChange}
+                        />
+                        <button className="button is-primary mt-3" onClick={handleSubmitComment}>
+                            Submit Comment
+                        </button>
+                    </div>
+                </div>
+            )}
+            </div>
+    )}
+                                
+  
+  
+  
+//   {/* return (
+//     <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>
+//       <div className="header" onClick={toggleExpand}>
+//         <span className="see-more-link has-text-link ml-4">
+//           {isExpanded ? 'See Less' : 'See More'}
+//         </span>
+//       </div>
+//       {isExpanded && (
+//         <div className="expanded-content pt-3 px-3">
+//           <div className="post-content column is-three-quarter is-size-6 has-background-light">
+//             <p className='py-3 px-3 has-text-dark'>{initialContent}</p>
+//           </div>
+//           <ul>
+//             {comments.map((comment, index) => (
+//               <li key={index} className="comment-item mb-3">
+//                 {comment.content}
+//               </li>
+//             ))}
+//           </ul>
+//           <div className="comment-box pt-3">
+//             <textarea
+//               className="textarea"
+//               placeholder="Add your comment..."
+//               value={newComment}
+//               onChange={handleCommentChange}
+//             />
+//             <button className="button is-primary mt-3 is-rounded">Submit Comment</button>
+//           </div>
+//         </div>
+//     )
+// } */}
