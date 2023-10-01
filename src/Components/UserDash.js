@@ -56,7 +56,7 @@ export default function UserDash({user}) {
         <div className="column is-one-third">
           <div className="card">
             <div className="card-header">
-              <h1 className="card-header-title has-text-centered">Welcome,{user.displayName}!</h1>
+              <h1 className="card-header-title has-text-centered">Welcome,{user?.displayName}!</h1>
             </div>
             <div className="card-content">
               <div className="media">
