@@ -4,12 +4,11 @@ import SingleDonation from "./SingleDonation";
 export default function DonationCard({ donation }) {
 
     return (
-        <div className="column is-10 ml-4">
+        <div className="column ">
             <div className="card mb-5">
-                <div className="card-content">
                     <div className='columns'>
-                        <div className=''>
-                            <figure className="image is-128x128 pt-6 mr-3">
+                        <div className='column is-flex is-align-items-center is-justify-content-center'>
+                            <figure className="image is-128x128 ">
                                 <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder" />
                             </figure>
                         </div>
@@ -22,7 +21,7 @@ export default function DonationCard({ donation }) {
                         </div>
                         <SingleDonation />
                     </div>
-                </div>
+
             </div>
         </div>
     )

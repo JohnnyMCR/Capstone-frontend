@@ -70,7 +70,7 @@ const SignUp = () => {
 
   return (
     <>
-    <button className="button is-primary is-rounded has-text-weight-bold ml-2" type="button" onClick={openModal}>
+    <button className="button  is-primary is-rounded has-text-weight-bold ml-2" type="button" onClick={openModal}>
       Sign Up
       </button>
       {isModalOpen && (
@@ -108,10 +108,10 @@ const SignUp = () => {
 
               
                 <div className="columns">
-                  <div className="column mr-5">
+                  <div className="column has-text-left">
 
                   <button
-                    className="button is-medium mt-4 mr-5 is-outlined is-primary is-rounded has-text-primary"
+                    className="button is-medium mt-4  is-outlined is-primary is-rounded has-text-primary has-text-weight-bold	"
                     aria-label="close"
                     onClick={closeModal}
                     style={{
@@ -124,10 +124,10 @@ const SignUp = () => {
                   </button>
                   </div>
                   
-                  <div className="column ml-5">
+                  <div className="column has-text-right">
 
                   <button
-                    className="button is-primary is-rounded is-medium mt-4 ml-5"
+                    className="button is-primary is-rounded is-medium mt-4 ml-5 has-text-weight-bold"
                     type="button"
                     onClick={() => handleSignup()}
                   >

@@ -184,7 +184,7 @@ export default function Forums({ user }) {
             className="control"
             style={{ textAlign: "right", marginRight: "20px" }}
           >
-            <button className="button is-rounded is-primary" onClick={openModal}>
+            <button className="button is-medium is-rounded is-primary has-text-weight-bold " onClick={openModal}>
               Post +
             </button>
           </div>

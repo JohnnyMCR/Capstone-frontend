@@ -126,7 +126,7 @@ export default function ForumModal({ isOpen, onClose ,user, forums, setForums })
             <div className="columns">
               <div className="column has-text-left">
                 <button
-                  className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary has-text-left"
+                  className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary has-text-left has-text-weight-bold"
                   aria-label="close"
                   onClick={onClose}
                   style={{
@@ -142,7 +142,7 @@ export default function ForumModal({ isOpen, onClose ,user, forums, setForums })
                 <div className="field">
                   <div className="control">
                     <button
-                      className="button is-medium is-rounded is-primary mt-3"
+                      className="button is-medium is-rounded is-primary mt-3 has-text-weight-bold"
                       type="submit"
                     >
                       Submit
