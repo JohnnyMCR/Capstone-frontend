@@ -41,14 +41,14 @@ export default function NavBar({ user, onLogout }) {
 
           <Link to="/forums" className="navbar-item subtitle is-5 has-text-black mt-5 mx-2">Forums</Link>
 
-          <Link to="/donations" className="navbar-item subtitle is-5 has-text-black mt-5 mr-6 ml-2">Donations</Link>
+          <Link to="/donations" className="navbar-item subtitle is-5 has-text-black mt-5 mr-5 ml-2">Donations</Link>
 
           {user ? (
             <div className="navbar-item">
-              <button className="button is-primary is-rounded mx-1 mb-5 mt-5 has-text-weight-bold is-italic has-text-warning">
+              <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning ">
                 Hi, {user.displayName}!
               </button>
-              <button className="button is-primary is-rounded mx-1 mb-5 mt-5" onClick={onLogout}>Logout</button>              
+              <button className="button is-primary is-rounded ml-2" onClick={onLogout}>Logout</button>              
             </div>
           ) : (
             <>

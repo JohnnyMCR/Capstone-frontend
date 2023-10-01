@@ -59,17 +59,18 @@ export default function Comment({ user }) {
     return (
         <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>
             <div className="header" onClick={toggleExpand}>
-                <span className="see-more-link has-text-link">
+                <span className="see-more-link has-text-link is-clickable">
                     {isExpanded ? 'See Less' : 'See More'}
                 </span>
             </div>
             {isExpanded && (
                 <div className="expanded-content">
                     <div className="post-content column is-three-quarter is-size-6 has-background-light">
+                        content blah blah blah
                     </div>
                     <ul>
                         {comments.map((comment, index) => (
-                            <li key={index} className="comment-item mb-3">
+                            <li key={index} className="comment-item mb-3 mt-5">
                                 <p>Posted by {user.displayName}:</p>
                                 {editingCommentId === comment.id ? (
                                     <EditComment
@@ -80,17 +81,17 @@ export default function Comment({ user }) {
                                 ) : (
                                     <div>
                                         {comment.content}
-                                        <div className="is-pulled-right">
-                                        <button className="button is-primary is-small mt-1" onClick={() => handleEditClick(comment.id)}>
+                                        {/* <div className="is-pulled-right"> */}
+                                        <button className="button is-primary is-rounded is-small " onClick={() => handleEditClick(comment.id)}>
                                             Edit
                                         </button>
-                                        </div>
+                                        {/* </div> */}
                                     </div>
                                 )}
                             </li>
                         ))}
                     </ul>
-                    <div className='comment-box'>
+                    <div className='comment-box pt-5'>
                         <textarea
                             className="textarea"
                             placeholder="Add your comment..."
