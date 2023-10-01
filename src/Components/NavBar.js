@@ -35,20 +35,20 @@ export default function NavBar({ user, onLogout }) {
       <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
         <div className="navbar-end">
 
-          <Link to="/" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">Home</Link>
+          <Link to="/" className="navbar-item subtitle is-5 has-text-black mt-5 mx-2">Home</Link>
 
-          <Link to="/aboutus" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">About Us</Link>
+          <Link to="/aboutus" className="navbar-item subtitle is-5 has-text-black mt-5 mx-2">About Us</Link>
 
-          <Link to="/forums" className="navbar-item subtitle is-4 has-text-black mt-5 mx-2">Forums</Link>
+          <Link to="/forums" className="navbar-item subtitle is-5 has-text-black mt-5 mx-2">Forums</Link>
 
-          <Link to="/donations" className="navbar-item subtitle is-4 has-text-black mt-5 mr-6 ml-2">Donations</Link>
+          <Link to="/donations" className="navbar-item subtitle is-5 has-text-black mt-5 mr-5 ml-2">Donations</Link>
 
           {user ? (
             <div className="navbar-item">
-              <button className="button is-primary is-rounded mx-1 mb-5 mt-5 has-text-weight-bold is-italic has-text-warning">
-                {user.displayName}
+              <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning ">
+                Hi, {user.displayName}!
               </button>
-              <button className="button is-primary is-rounded mx-1 mb-5 mt-5" onClick={onLogout}>Logout</button>              
+              <button className="button is-primary is-rounded ml-2" onClick={onLogout}>Logout</button>              
             </div>
           ) : (
             <>
