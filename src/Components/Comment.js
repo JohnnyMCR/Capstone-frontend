@@ -68,9 +68,9 @@ export default function Comment({ user }) {
                     <div className="post-content column is-three-quarter is-size-6 has-background-light">
                         content blah blah blah
                     </div>
-                    <ul>
+                    <ul className='card'>
                         {comments.map((comment, index) => (
-                            <li key={index} className="comment-item mb-3 mt-5">
+                            <li key={index} className="comment-item mb-3">
                                 <p>Posted by {user.displayName}:</p>
                                 {editingCommentId === comment.id ? (
                                     <EditComment
@@ -81,11 +81,11 @@ export default function Comment({ user }) {
                                 ) : (
                                     <div>
                                         {comment.content}
-                                        {/* <div className="is-pulled-right"> */}
+                                        <div className="is-pulled-right">
                                         <button className="button is-primary is-rounded is-small " onClick={() => handleEditClick(comment.id)}>
                                             Edit
                                         </button>
-                                        {/* </div> */}
+                                        </div>
                                     </div>
                                 )}
                             </li>
