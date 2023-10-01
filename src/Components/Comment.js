@@ -4,11 +4,13 @@ import EditComment from './EditComment';
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function Comment({ user }) {
+export default function Comment({ user, forum_id }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [isExpanded, setIsExpanded] = useState(false);
     const [editingCommentId, setEditingCommentId] = useState(null);
+
+    console.log(comments)
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
@@ -49,12 +51,13 @@ export default function Comment({ user }) {
     };
 
     useEffect(() => {
-        axios.get(`${API}/comments`)
+        axios.get(`${API}/forums/${forum_id}/comments`)
             .then((response) => {
+                console.log(response.data)
                 setComments(response.data);
             })
             .catch((e) => console.warn("Error fetching comments:", e));
-    }, []);
+    }, [forum_id]);
 
     return (
         <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>

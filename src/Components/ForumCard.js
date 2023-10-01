@@ -1,6 +1,7 @@
 import Comments from './Comment';
 
 export default function ForumCard({ forum ,user }) {
+  console.log(forum)
 
     return (
         <div className="column">
@@ -13,7 +14,7 @@ export default function ForumCard({ forum ,user }) {
                             <p className='column is-one-quarter is-size-6 has-text-dark'>{forum.username}</p>
                             <p className='column is-one-quarter is-size-6 has-text-dark'>{forum.category}</p>
                             <p className='column is-one-quarter is-size-6 has-text-dark'>{forum.content}</p>
-                            <Comments user={user}  />
+                            <Comments user={user} forum_id={forum.id}  />
                         </div>
                     </div>
                 </div>

@@ -42,7 +42,7 @@ const SignUp = () => {
 
       await updateProfile(auth.currentUser, { displayName: username });
 
-      const response = await axios.post(`${API}/profiles`, formData);
+      const response = await axios.post(`${API}/users`, formData);
       console.log(response);
       console.log(response.status);
       
