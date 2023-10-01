@@ -67,7 +67,7 @@ export default function Forums({ user }) {
                     aria-controls="dropdown-menu"
                     onClick={toggleDropdown}
                   >
-                    <span>{selectedItem || "Dropdown button"}</span>
+                    <span>{selectedItem || "Dropdown Button"}</span>
                     <span className="icon is-small">
                       <i
                         className={`fas fa-angle-${

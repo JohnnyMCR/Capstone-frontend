@@ -24,7 +24,7 @@ export default function Footer() {
             to="/aboutus"
             className="title is-5 has-text-white  has-text-centered"
           >
-            About us
+            About Us
           </Link>
 
           <Link
