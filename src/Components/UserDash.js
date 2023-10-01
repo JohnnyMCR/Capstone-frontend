@@ -108,7 +108,6 @@ export default function UserDash({user}) {
               <h1 className="card-header-title">My Donations</h1>
             </div>
             <div className="card-content">
-              {/* Render donation data */}
               {userDonations.map((donation, index) => (
                 <div className="column" key={index}>
                   <div className="card mb-5">

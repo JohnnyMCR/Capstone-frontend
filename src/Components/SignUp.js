@@ -70,7 +70,7 @@ const SignUp = () => {
 
   return (
     <>
-    <button className="button is-primary mx-1 mb-5 is-rounded mt-5 has-text-weight-bold" type="button" onClick={openModal}>
+    <button className="button is-primary is-rounded has-text-weight-bold ml-2" type="button" onClick={openModal}>
       Sign Up
       </button>
       {isModalOpen && (
