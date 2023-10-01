@@ -42,7 +42,7 @@ const SignUp = () => {
 
       await updateProfile(auth.currentUser, { displayName: username });
 
-      const response = await axios.post(`${API}/profiles`, formData);
+      const response = await axios.post(`${API}/users`, formData);
       console.log(response);
       console.log(response.status);
       
@@ -70,7 +70,7 @@ const SignUp = () => {
 
   return (
     <>
-    <button className="button is-primary is-rounded has-text-weight-bold ml-2" type="button" onClick={openModal}>
+    <button className="button  is-primary is-rounded has-text-weight-bold ml-2" type="button" onClick={openModal}>
       Sign Up
       </button>
       {isModalOpen && (

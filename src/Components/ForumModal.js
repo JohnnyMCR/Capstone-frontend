@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function ForumModal({ isOpen, onClose ,user })
+export default function ForumModal({ isOpen, onClose ,user, forums, setForums })
 {
   
   const [title, setTitle] = useState('');
@@ -12,7 +12,7 @@ export default function ForumModal({ isOpen, onClose ,user })
 
   const API = process.env.REACT_APP_API_URL;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,9 +26,10 @@ export default function ForumModal({ isOpen, onClose ,user })
 
     axios
       .post(`${API}/forums`, newForum)
-      .then(() => {
-        console.log('Form submitted successfully:', newForum);
-        navigate('/forums');
+      .then((res) => {
+        console.log('Form submitted successfully:', res.data);
+        const newForumsArray = [...forums, res.data]
+        setForums(newForumsArray)
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -43,7 +44,7 @@ export default function ForumModal({ isOpen, onClose ,user })
   useEffect(() => {
     if (user) {
       axios
-        .get(`${API}/profiles`)
+        .get(`${API}/users`)
         .then((response) => {
           console.log('API Response:', response.data);
           response.data.forEach(element => {
@@ -58,7 +59,7 @@ export default function ForumModal({ isOpen, onClose ,user })
           setCurUser('Error fetching username');
         });
     } else {
-      setCurUser('Profile ID not defined');
+      setCurUser('User ID not defined');
     }
   },[user ,API]);
 
@@ -85,7 +86,7 @@ export default function ForumModal({ isOpen, onClose ,user })
                 <input
                   className="input"
                   type="text"
-                  placeholder="Enter post title"
+                  placeholder="Enter forum title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
@@ -97,7 +98,7 @@ export default function ForumModal({ isOpen, onClose ,user })
               <div className="control">
                 <textarea
                   className="textarea"
-                  placeholder="Enter post content"
+                  placeholder="Enter forum content"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   required
@@ -125,7 +126,7 @@ export default function ForumModal({ isOpen, onClose ,user })
             <div className="columns">
               <div className="column has-text-left">
                 <button
-                  className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary has-text-left"
+                  className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary has-text-left has-text-weight-bold"
                   aria-label="close"
                   onClick={onClose}
                   style={{
@@ -141,7 +142,7 @@ export default function ForumModal({ isOpen, onClose ,user })
                 <div className="field">
                   <div className="control">
                     <button
-                      className="button is-medium is-rounded is-primary mt-3"
+                      className="button is-medium is-rounded is-primary mt-3 has-text-weight-bold"
                       type="submit"
                     >
                       Submit

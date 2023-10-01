@@ -4,11 +4,13 @@ import EditComment from './EditComment';
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function Comment({ user }) {
+export default function Comment({ user, forum_id }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [isExpanded, setIsExpanded] = useState(false);
     const [editingCommentId, setEditingCommentId] = useState(null);
+
+    console.log(comments)
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
@@ -49,28 +51,29 @@ export default function Comment({ user }) {
     };
 
     useEffect(() => {
-        axios.get(`${API}/comments`)
+        axios.get(`${API}/forums/${forum_id}/comments`)
             .then((response) => {
+                console.log(response.data)
                 setComments(response.data);
             })
             .catch((e) => console.warn("Error fetching comments:", e));
-    }, []);
+    }, [forum_id]);
 
     return (
         <div className={`comment-section ${isExpanded ? 'expanded' : ''}`}>
             <div className="header" onClick={toggleExpand}>
-                <span className="see-more-link has-text-link is-clickable">
+                <span className="see-more-link has-text-link is-clickable pl-4">
                     {isExpanded ? 'See Less' : 'See More'}
                 </span>
             </div>
             {isExpanded && (
-                <div className="expanded-content">
-                    <div className="post-content column is-three-quarter is-size-6 has-background-light">
+                <div className="expanded-content pl-5 py-2">
+                    <div className="post-content column is-three-quarter is-size-6 has-background-light has-text-dark">
                         content blah blah blah
                     </div>
-                    <ul className='card'>
+                    <ul className='card has-background-info'>
                         {comments.map((comment, index) => (
-                            <li key={index} className="comment-item mb-3">
+                            <li key={index} className="comment-item mb-3 mt-2 py-1 has-text-dark">
                                 <p>Posted by {user.displayName}:</p>
                                 {editingCommentId === comment.id ? (
                                     <EditComment
@@ -79,13 +82,12 @@ export default function Comment({ user }) {
                                         onCancel={handleCancelEdit}
                                     />
                                 ) : (
-                                    <div>
+                                    <div className='has-background-success py-3 px-3'>
                                         {comment.content}
-                                        <div className="is-pulled-right">
-                                        <button className="button is-primary is-rounded is-small " onClick={() => handleEditClick(comment.id)}>
+                                        <button className="button is-primary is-rounded is-small is-pulled-right is-flex  has-text-weight-bold" onClick={() => handleEditClick(comment.id)}>
                                             Edit
                                         </button>
-                                        </div>
+                                        
                                     </div>
                                 )}
                             </li>
@@ -98,7 +100,7 @@ export default function Comment({ user }) {
                             value={newComment}
                             onChange={handleCommentChange}
                         />
-                        <button className="button is-primary mt-3" onClick={handleSubmitComment}>
+                        <button className="button is-rounded has-text-weight-bold is-primary mt-3" onClick={handleSubmitComment}>
                             Submit Comment
                         </button>
                     </div>

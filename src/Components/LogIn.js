@@ -43,7 +43,7 @@ const LogIn = () => {
         Login
       </button> */}
       <button
-        className="button custom-button is-outlined is-primary has-text-primary has-text-weight-bold is-rounded"
+        className="button custom-button  is-outlined is-primary has-text-primary has-text-weight-bold is-rounded"
         type="button"
         onClick={openModal}
         style={{

@@ -52,10 +52,10 @@ export default function SingleDonation({ donation }) {
 
   return (
     // <div>
-    <div className="column control is-flex is-justify-content-center">
+    <div className="column control is-flex is-justify-content-center is-align-items-center">
       {/* <div className="control " > */}
       <button
-        className="button is-medium is-rounded is-primary"
+        className="button is-medium is-rounded is-primary has-text-weight-bold"
         onClick={openModal}
       >
         Show More
