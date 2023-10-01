@@ -35,7 +35,7 @@ export default function About() {
           </h2>
           <div className="columns is-centered">
             <div className="column is-four-fifth has-text-center">
-              <p className="content has-text-center is-medium is-italic has-text-grey pb-6">
+              <p className="content has-text-center is-medium is-italic has-text-grey pb-6 ">
                 At CareVillage, our mission is to empower parents and caregivers
                 on their unique parenting journeys while fostering a
                 compassionate and supportive community. We provide a platform

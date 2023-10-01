@@ -52,7 +52,7 @@ export default function SingleDonation({ donation }) {
 
   return (
     <div>
-      <div className='column has-text-right control pt-6 ml-6'>
+      <div className='column control pt-6 ml-6'>
         {/* <div className="control" > */}
           <button className="button is-medium is-rounded is-primary mt-5 ml-5" onClick={openModal}>
             Show
