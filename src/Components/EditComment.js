@@ -23,16 +23,16 @@ export default function EditComment({ comment, onUpdateComment, onCancel }) {
     return (
         <div className="edit-comment">
             <textarea
-                className="textarea"
+                className="textarea my-1"
                 placeholder="Edit your comment..."
                 value={editedContent}
                 onChange={handleContentChange}
             />
-            <div className="edit-comment-buttons">
-                <button className="button is-primary" onClick={handleUpdateComment}>
+            <div className="edit-comment-buttons my-2">
+                <button className="button is-primary is-rounded has-text-weight-bold mx-2" onClick={handleUpdateComment}>
                     Save
                 </button>
-                <button className="button is-danger" onClick={onCancel}>
+                <button className="button is-danger is-rounded has-text-weight-bold" onClick={onCancel}>
                     Cancel
                 </button>
             </div>

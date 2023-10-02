@@ -108,7 +108,7 @@ export default function DonationModal({ isOpen, onClose }) {
             <div className="columns">
               <div className="column has-text-left">
                 <button
-                  className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary has-text-left"
+                  className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary has-text-left has-text-weight-bold"
                   aria-label="close"
                   onClick={onClose}
                   style={{
@@ -123,7 +123,7 @@ export default function DonationModal({ isOpen, onClose }) {
               <div className="column has-text-right">
 
               <button
-                className="button is-primary is-rounded is-medium mt-4 has-text-right"
+                className="button is-primary is-rounded is-medium mt-4 has-text-right has-text-weight-bold"
                 type="button"
                 onClick={handleDonationSubmit}
               >
