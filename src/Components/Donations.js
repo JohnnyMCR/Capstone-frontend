@@ -6,13 +6,14 @@ const API = process.env.REACT_APP_API_URL;
 
 
 export default function Donations() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [selectedSortOption, setSelectedSortOption] = useState('All');
-    const [zipcode, setZipCode] = useState('');
+    // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    // const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
+    // const [selectedItem, setSelectedItem] = useState(null);
+    // const [selectedSortOption, setSelectedSortOption] = useState('All');
+    const [selectedFilter, setSelectedFilter] = useState("All");
+    const [selectedSortOption, setSelectedSortOption] = useState("All");
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const [zipcode, setZipCode] = useState('');
     const [donations, setDonations] = useState([]);
 
     useEffect(() => {
@@ -23,22 +24,13 @@ export default function Donations() {
             .catch((e) => console.warn("catch", e));
     }, []);
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const handleFilterSelect = (filterOption) => {
+        setSelectedFilter(filterOption);
     };
 
-    const toggleSortDropdown = () => {
-        setIsSortDropdownOpen(!isSortDropdownOpen);
-    };
+    const handleSortSelect = (sortOption) => {
+        setSelectedSortOption(sortOption);
 
-    const selectItem = (item) => {
-        setSelectedItem(item);
-        setIsDropdownOpen(false);
-    };
-
-    const selectSortOption = (option) => {
-        setSelectedSortOption(option);
-        setIsSortDropdownOpen(false);
     };
 
     const handleZipCodeChange = (e) => {
@@ -56,9 +48,11 @@ export default function Donations() {
     return (
         <div>
             <div className='columns mt-1'>
-                <div className='column is-half'>
+                <div className='column is-half ml-3'>
                     <div className="field is-grouped">
-                        <div className="control" style={{ marginLeft: '10px' }}>
+
+                        {/* 1st */}
+                        {/* <div className="control" style={{ marginLeft: '10px' }}>
                             <div className={`dropdown ${isDropdownOpen ? 'is-active' : ''}`}>
                                 <div className="dropdown-trigger">
                                     <button
@@ -105,49 +99,69 @@ export default function Donations() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="control">
-                            <div className={`dropdown ${isSortDropdownOpen ? 'is-active' : ''}`}>
+                            <div className="dropdown is-hoverable">
                                 <div className="dropdown-trigger">
-                                    <button
-                                        className="button"
-                                        aria-haspopup="true"
-                                        aria-controls="sort-dropdown-menu"
-                                        onClick={toggleSortDropdown}
-                                    >
-                                        <span>Sort: {selectedSortOption}</span>
+                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                        <span>Category: {selectedFilter}</span>
                                         <span className="icon is-small">
-                                            <i
-                                                className={`fas fa-angle-${isSortDropdownOpen ? 'up' : 'down'}`}
-                                                aria-hidden="true"
-                                            ></i>
+                                            <i className="fas fa-angle-down" aria-hidden="true"></i>
                                         </span>
                                     </button>
                                 </div>
-                                <div className="dropdown-menu" id="sort-dropdown-menu" role="menu">
+                                <div className="dropdown-menu" id="dropdown-menu4" role="menu">
                                     <div className="dropdown-content">
-                                        <button
-                                            className={`dropdown-item ${selectedSortOption === 'Most Recent' ? 'is-active' : ''}`}
-                                            onClick={() => selectSortOption('Most Recent')}
-                                        >
-                                            Most Recent
-                                        </button>
-                                        <button
-                                            className={`dropdown-item ${selectedSortOption === 'Most Popular' ? 'is-active' : ''}`}
-                                            onClick={() => selectSortOption('Most Popular')}
-                                        >
-                                            Most Popular
-                                        </button>
-                                        <button
-                                            className={`dropdown-item ${selectedSortOption === 'All' ? 'is-active' : ''}`}
-                                            onClick={() => selectSortOption('All')}
-                                        >
-                                            All
-                                        </button>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Clothing")}>
+                                            Clothing
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Toys")}>
+                                            Toys
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Food")}>
+                                            Food
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Educational")}>
+                                            Educational
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Other")}>
+                                            Other
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {/* 1st */}
+
+
+                        {/* 2nd */}
+                        {/* <div className="control">
+                            <div className="dropdown is-hoverable">
+                                <div className="dropdown-trigger">
+                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                        <span>Sort: {selectedSortOption}</span>
+                                        <span className="icon is-small">
+                                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div className="dropdown-menu" id="dropdown-menu4" role="menu">
+                                    <div className="dropdown-content">
+                                        <div className="dropdown-item" onClick={() => handleSortSelect("Most Recent")} >
+                                            Most Recent
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleSortSelect("Most Popular")}>
+                                            Most Popular
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleSortSelect("All")}>
+                                            All
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> */}
+                        {/* 2nd */}
+
                         <div className="field has-addons" style={{ marginRight: '20px' }}>
                             <p className="control">
                                 <input
@@ -214,11 +228,11 @@ export default function Donations() {
 //             setSelectedDonation(null);
 //         }
 //     };
-    // //delete existing Donation
-    // const deleteDonation = (donationId) => {
-    //     const updatedDonations = donations.filter((donation) => donation.id !== donationId);
-    //     setDonations(updatedDonations);
-    // };
+// //delete existing Donation
+// const deleteDonation = (donationId) => {
+//     const updatedDonations = donations.filter((donation) => donation.id !== donationId);
+//     setDonations(updatedDonations);
+// };
 //     return (
 //         <div>
 //             <h1>Donations</h1>
