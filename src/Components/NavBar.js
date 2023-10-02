@@ -14,7 +14,7 @@ export default function NavBar({ user, onLogout }) {
   };
 
   return (
-    <nav className="navbar has-background-primary is-spaced">
+    <nav className="navbar has-background is-spaced">
 
       <div className="navbar-brand">
         <img src={LOGO} alt="logo" width='100' />
