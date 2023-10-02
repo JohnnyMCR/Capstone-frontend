@@ -3,6 +3,8 @@ import backgroundImage from './CareVillageBanner.jpeg'
 import SignUp from "../Components/SignUp"
 import DONATIONS from "./DONATIONS.png"
 import FORUMS from "./FORUMS.jpeg"
+import { Link } from "react-router-dom";
+
 
 function Home() {
 
@@ -69,20 +71,33 @@ function Home() {
         <div className='columns mt-6 pt-6'>
           <div className='column is-one-third has-background-info card'>
           <p className='title has-text-primary mt-3 pt-3'>Community:</p>
-          <p className='content is-medium is-italic column has-text-dark is-full mb-6 pb-6'>
-            At CareVillage and experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
+          <p className='content is-medium is-italic column has-text-dark is-full mb-6'>
+           Content.</p>
+          <button className='button is-primary is-rounded ml-2 has-text-weight-bold mb-3'> <Link
+            to="/forums"
+            className="title is-5 has-text-white  has-text-centered"
+          >
+            Forums/Articles
+          </Link></button>
           </div>
 
           <div className='column is-one-third has-background-success card'>
           <p className='title has-text-primary mt-3 pt-3'>Join Us:</p>
-          <p className='content is-medium is-italic column has-text-dark is-full mb-6 pb-6'>
+          <p className='content is-medium is-italic column has-text-dark is-full mb-6 '>
             At CareVillage and experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
+            <SignUp />
           </div>
 
           <div className='column is-one-third has-background-info card'>
           <p className='title has-text-primary mt-3 pt-3'>About Us:</p>
-          <p className='content is-medium is-italic column has-text-dark is-full mb-6 pb-6'>
-            At CareVillage and experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
+          <p className='content is-medium is-italic column has-text-dark is-full mb-6'>
+            Content.</p>
+            <button className='button is-primary is-rounded ml-2 has-text-weight-bold mb-3'> <Link
+            to="/aboutus"
+            className="title is-5 has-text-white  has-text-centered"
+          >
+            Meet The Team
+          </Link></button>
           </div>
           {/* <p className='title has-text-primary'>Privacy and Security:</p>
           <p className='content is-medium is-italic column has-text-dark is-full'>
@@ -116,7 +131,13 @@ function Home() {
           </div>
             <h2 className="title is-4 has-text-danger">Make a Donation!</h2>
             
-              <SignUp />
+            <button className='button is-primary is-rounded ml-2 has-text-weight-bold mb-3'> <Link
+            to="/donations"
+            className="title is-5 has-text-white has-text-centered"
+          >
+            Donations
+          </Link></button>
+
             
 
           </div>
