@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function EditComment({ comment, onUpdateComment, onCancel }) {
+export default function EditComment({ comment, onUpdateComment, onCancel, user }) {
     const [editedContent, setEditedContent] = useState(comment.content);
 
     const handleContentChange = (event) => {
@@ -13,7 +13,9 @@ export default function EditComment({ comment, onUpdateComment, onCancel }) {
     const handleUpdateComment = () => {
         axios.put(`${API}/comments/${comment.id}`, { content: editedContent })
             .then((response) => {
-                onUpdateComment(response.data); 
+                const editedComment = {...response.data,username:user.username}
+
+                onUpdateComment(editedComment); 
             })
             .catch((error) => {
                 console.error('Error updating comment:', error);

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import React, { useState, } from 'react';
 import axios from 'axios';
 
 export default function ForumModal({ isOpen, onClose ,user, forums, setForums })
@@ -8,27 +7,28 @@ export default function ForumModal({ isOpen, onClose ,user, forums, setForums })
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
-  const [curUser, setCurUser] = useState(null);
 
   const API = process.env.REACT_APP_API_URL;
 
-  // const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newForum = {
-      user_id: curUser,
+      user_id: user.id,
       title,
       content,
       category,
       date: new Date().toLocaleDateString(),
     };
 
+    console.log(user)
+
     axios
       .post(`${API}/forums`, newForum)
       .then((res) => {
         console.log('Form submitted successfully:', res.data);
-        const newForumsArray = [...forums, res.data]
+        const addedForum = {...res.data,username:user.username}
+        const newForumsArray = [...forums, addedForum]
         setForums(newForumsArray)
       })
       .catch((error) => {
@@ -41,29 +41,6 @@ export default function ForumModal({ isOpen, onClose ,user, forums, setForums })
     onClose();
   };
 
-  useEffect(() => {
-    if (user) {
-      axios
-        .get(`${API}/users`)
-        .then((response) => {
-          console.log('API Response:', response.data);
-          response.data.forEach(element => {
-            if (element.username === user.displayName) {
-              setCurUser(element.id)
-            }
-            
-          });
-        })
-        .catch((error) => {
-          console.error('Error fetching username:', error);
-          setCurUser('Error fetching username');
-        });
-    } else {
-      setCurUser('User ID not defined');
-    }
-  },[user ,API]);
-
-  console.log(curUser)
   return (
     <div className={`modal ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>

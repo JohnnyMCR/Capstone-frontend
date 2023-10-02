@@ -11,6 +11,7 @@ export default function Forums({ user }) {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [selectedSortOption, setSelectedSortOption] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [curUser, setCurUser] = useState(null);
 
   useEffect(() => {
     axios
@@ -21,6 +22,28 @@ export default function Forums({ user }) {
       })
       .catch((e) => console.warn("catch", e));
   }, [isModalOpen]);
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`${API}/users`)
+        .then((response) => {
+          console.log('API Response:', response.data);
+          response.data.forEach(element => {
+            if (element.username === user.displayName) {
+              setCurUser(element)
+            }
+            
+          });
+        })
+        .catch((error) => {
+          console.error('Error fetching username:', error);
+          setCurUser('Error fetching username');
+        });
+    } else {
+      setCurUser('User ID not defined');
+    }
+  },[user]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -124,7 +147,7 @@ export default function Forums({ user }) {
         <ForumModal
           isOpen={isModalOpen}
           onClose={closeModal}
-          user={user}
+          user={curUser}
           forums={forums}
           setForums={setForums}
         />
@@ -136,7 +159,7 @@ export default function Forums({ user }) {
               <ForumCard
                 key={`${forum.title}-${forum.id}`}
                 forum={forum}
-                user={user}
+                user={curUser}
               />
             );
           })}

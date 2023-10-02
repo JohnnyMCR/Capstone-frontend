@@ -54,7 +54,9 @@ export default function Comment({ user, forum_id }) {
             .then((response) => {
                 console.log(actualNewComment)
                 console.log(response.data)
-                setComments([...comments, response.data]); 
+                const addedComment = {...response.data,username:user.username}
+
+                setComments([...comments, addedComment]); 
                 setNewComment('');
             })
             .catch((error) => {
@@ -86,10 +88,11 @@ export default function Comment({ user, forum_id }) {
                     <ul className='card has-background-info'>
                         {comments.map((comment, index) => (
                             <li key={index} className="comment-item mb-3 mt-2 py-1 has-text-dark">
-                                <p>Posted by {user.displayName}:</p>
+                                <p>Posted by {comment.username}:</p>
                                 {editingCommentId === comment.id ? (
                                     <EditComment
                                         comment={comment}
+                                        user={user}
                                         onUpdateComment={handleUpdateComment}
                                         onCancel={handleCancelEdit}
                                     />
