@@ -91,19 +91,22 @@ export default function SingleDonation({ donation }) {
                   Title:{" "}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Category:{" "}
+                  User:{" "}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
                   Drescription:{" "}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  User:{" "}
+                  Category:{" "}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
                   Distance: miles away
                 </p>
               </div>
             </div>
+            <button className="button has-background-primary is-rounded has-text-white has-text-weight-bold" onClick={closeModal}>
+              Message "The Giver/Donor"
+            </button>
           </section>
         </div>
       </div>
