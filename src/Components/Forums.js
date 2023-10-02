@@ -7,9 +7,13 @@ import ArticleCard from "./ArticleCard";
 const API = process.env.REACT_APP_API_URL;
 
 export default function Forums({ user }) {
+  //forums and filtered state
   const [forums, setForums] = useState([]);
+  const [filteredForums, setFilteredForums] = useState(forums);
+  // filter dropdowns
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [selectedSortOption, setSelectedSortOption] = useState("All");
+  // new forum modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [curUser, setCurUser] = useState(null);
 
@@ -56,7 +60,15 @@ export default function Forums({ user }) {
 
   const handleFilterSelect = (filterOption) => {
     setSelectedFilter(filterOption);
+  
+    if (filterOption === "All") {
+      setFilteredForums(forums);
+    } else {
+      const filtered = forums.filter((forum) => forum.category === filterOption);
+      setFilteredForums(filtered);
+    }
   };
+  
 
   const handleSortSelect = (sortOption) => {
     setSelectedSortOption(sortOption);
@@ -95,6 +107,9 @@ export default function Forums({ user }) {
                       </div>
                     <div className="dropdown-item" onClick={() => handleFilterSelect("Other")}>
                       Other
+                      </div>
+                      <div className="dropdown-item" onClick={() => handleFilterSelect("All")}>
+                      All
                       </div>
                   </div>
                 </div>
@@ -155,7 +170,7 @@ export default function Forums({ user }) {
       </div>
       <div className="columns">
         <div className="column is-three-quarters">
-          {forums.map((forum) => {
+          {filteredForums.map((forum) => {
             return (
               <ForumCard
                 key={`${forum.title}-${forum.id}`}
