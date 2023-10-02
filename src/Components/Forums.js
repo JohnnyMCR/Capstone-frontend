@@ -9,7 +9,7 @@ const API = process.env.REACT_APP_API_URL;
 export default function Forums({ user }) {
   //forums and filtered state
   const [forums, setForums] = useState([]);
-  const [filteredForums, setFilteredForums] = useState(forums);
+  const [filteredForums, setFilteredForums] = useState([]);
   // filter dropdowns
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [selectedSortOption, setSelectedSortOption] = useState("All");
@@ -22,6 +22,7 @@ export default function Forums({ user }) {
       .get(`${API}/forums`)
       .then((response) => {
         setForums(response.data);
+        setFilteredForums(response.data)
         console.log("Fetched forums:", response.data);
       })
       .catch((e) => console.warn("catch", e));
