@@ -92,7 +92,7 @@ export default function ForumModal({ isOpen, onClose ,user, forums, setForums })
                     required
                   >
                     <option value="">Select A Category</option>
-                    <option value="New Born">New Born</option>
+                    <option value="New born">Newborn</option>
                     <option value="Toddler">Toddler</option>
                     <option value="Child">Child</option>
                     <option value="Adolescent">Adolescent</option>

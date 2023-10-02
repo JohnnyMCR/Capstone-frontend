@@ -22,6 +22,7 @@ export default function Forums({ user }) {
       })
       .catch((e) => console.warn("catch", e));
   }, [isModalOpen]);
+  console.log(forums, 'ALL FORUMS')
 
   useEffect(() => {
     if (user) {
@@ -80,8 +81,8 @@ export default function Forums({ user }) {
                 </div>
                 <div className="dropdown-menu" id="dropdown-menu4" role="menu">
                   <div className="dropdown-content">
-                    <div className="dropdown-item" onClick={() => handleFilterSelect("New Born")}>
-                      New Born
+                    <div className="dropdown-item" onClick={() => handleFilterSelect("Newborn")}>
+                      Newborn
                       </div>
                     <div className="dropdown-item" onClick={() => handleFilterSelect("Toddler")}>
                       Toddler
