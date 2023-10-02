@@ -39,10 +39,24 @@ export default function Comment({ user, forum_id }) {
         setEditingCommentId(null); 
     };
 
-    const handleSubmitComment = () => {
-        axios.post(`${API}/comments`, { content: newComment })
+    const handleSubmitComment = (e) => {
+        e.preventDefault()
+        console.log(user)
+        const actualNewComment = {
+            content: newComment,
+            user_id: user.id,
+            forum_id,
+            date: new Date().toLocaleDateString()
+        }
+
+
+        axios.post(`${API}/comments`, actualNewComment)
             .then((response) => {
-                setComments([...comments, response.data]); 
+                console.log(actualNewComment)
+                console.log(response.data)
+                const addedComment = {...response.data,username:user.username}
+
+                setComments([...comments, addedComment]); 
                 setNewComment('');
             })
             .catch((error) => {
@@ -74,10 +88,11 @@ export default function Comment({ user, forum_id }) {
                     <ul className='card has-background-info'>
                         {comments.map((comment, index) => (
                             <li key={index} className="comment-item mb-3 mt-2 py-1 has-text-dark">
-                                <p>Posted by {user.displayName}:</p>
+                                <p>Posted by {comment.username}:</p>
                                 {editingCommentId === comment.id ? (
                                     <EditComment
                                         comment={comment}
+                                        user={user}
                                         onUpdateComment={handleUpdateComment}
                                         onCancel={handleCancelEdit}
                                     />
