@@ -1,5 +1,5 @@
 import React from "react";
-import LOGO from "./LOGO.png";
+import LOGO2 from "./LOGO2.png";
 import { Link } from "react-router-dom";
 // import Login from "./LogIn";
 // import SignUp from "./SignUp";
@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="has-background-primary">
       <div className="columns">
         <div className="column is-one-quarter has-text-left ml-2">
-          <img src={LOGO} alt="logo" width="96" />
+          <img src={LOGO2} alt="logo2" width="96" />
         </div>
 
         <div className="column is-half has-text-centered is-flex is-justify-content-space-evenly pt-5 mt-5">
