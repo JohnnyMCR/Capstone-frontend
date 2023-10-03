@@ -2,7 +2,7 @@ import React from 'react';
 import backgroundImage from './CareVillageBanner.jpeg'
 import SignUp from "../Components/SignUp"
 import DONATIONS from "./DONATIONS.png"
-import FORUMS from "./FORUMS.jpeg"
+import FORUMS from "./FORUM.png"
 import { Link } from "react-router-dom";
 
 
