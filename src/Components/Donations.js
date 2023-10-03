@@ -55,11 +55,11 @@ export default function Donations() {
       };
     return (
         <div>
-             <section className="hero is-medium has-background-primary" style={heroStyle}>
+             <section className="hero is-medium has-background-info" style={heroStyle}>
         <div className="hero-body">
           <div className="container">
             <h1 className="title is-1 has-text-white is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
-              Care Village Donation
+              {/* Care Village Donation */}
             </h1>
           </div>
         </div>

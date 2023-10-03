@@ -86,10 +86,10 @@ export default function Forums({ user }) {
   return (
 
     <div>
-      <section className="hero is-medium has-background-success" style={heroStyle}>
+      <section className="hero is-medium has-background-info" style={heroStyle}>
         <div className="hero-body">
           <div className="container">
-            <h1 className="title is-1 has-text-primary is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
+            <h1 className="title is-1 has-text-dark is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
               Care Village Forum
             </h1>
           </div>

@@ -49,7 +49,13 @@ export default function NavBar({ user, onLogout }) {
               <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning"
               onClick={() => navigate('/dashboard')}
               >
-                Hi, {user.displayName}!
+                 <Link
+            to="/dashboard"
+            className="title is-5 has-text-warning is-italic has-text-centered"
+          >
+            Hi, {user.displayName}!
+          </Link>
+                
               </button>
               <button className="button is-primary is-rounded ml-2 has-text-weight-bold" onClick={onLogout}>Logout</button>              
             </div>
