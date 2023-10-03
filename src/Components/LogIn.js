@@ -19,7 +19,7 @@ const LogIn = () => {
       await signInWithEmailAndPassword(auth, email, password);
       setError("");
 
-      navigate("/");
+      navigate("/dashbaord");
 
       setIsModalOpen(false);
     } catch (error) {

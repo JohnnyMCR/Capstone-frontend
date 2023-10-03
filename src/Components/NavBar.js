@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import Login from "./LogIn";
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function NavBar({ user, onLogout }) {
+  const navigate = useNavigate()
  
 
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -45,7 +46,9 @@ export default function NavBar({ user, onLogout }) {
 
           {user ? (
             <div className="navbar-item">
-              <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning ">
+              <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning"
+              onClick={() => navigate('/dashboard')}
+              >
                 Hi, {user.displayName}!
               </button>
               <button className="button is-primary is-rounded ml-2 has-text-weight-bold" onClick={onLogout}>Logout</button>              
