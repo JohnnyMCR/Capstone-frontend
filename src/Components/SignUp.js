@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './LogIn';
+import { AuthContext } from './AuthContext';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -25,6 +26,7 @@ const SignUp = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const {setCurrentUser} = useContext(AuthContext)
 
   const handleSignup = async () => {
     const auth = getAuth();
@@ -47,6 +49,7 @@ const SignUp = () => {
       console.log(response.status);
       
       if (response.status === 200) {
+        setCurrentUser(response.data)
         setError("");
         navigate("/dashboard", { replace: true });
         setIsModalOpen(false);

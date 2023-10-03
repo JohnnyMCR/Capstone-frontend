@@ -1,12 +1,16 @@
 import React from 'react';
 import axios from "axios";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import SingleDonation from './SingleDonation';
+
+import { AuthContext } from './AuthContext';
 import backgroundImage from "../Pages/Dashboard4.png"
+
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function UserDash({user}) {
+export default function UserDash() {
+  const {currentUser} = useContext(AuthContext)
   
 
   const [userForums, setUserForums] = useState([])
@@ -31,7 +35,7 @@ export default function UserDash({user}) {
       .catch((e) => console.warn("catch", e));
   }, []);
 
-  console.log(user, "what user?")
+  console.log(currentUser, "what user?")
 
 
   const cardInfoStyle = {
@@ -75,7 +79,8 @@ backgroundPosition: "center",
         <div className="column is-one-third">
           <div className="card">
             <div className="card-header has-background-primary">
-              <h1 className="card-header-title title has-text-centered has-text-white">Welcome, {user?.displayName}!</h1>
+              <h1 className="card-header-title has-text-centered has-text-white">Welcome,{currentUser?.username}!</h1>
+
             </div>
             <div className="card-content has-background-info">
               <div className="media">
