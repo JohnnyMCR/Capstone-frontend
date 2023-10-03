@@ -18,7 +18,9 @@ const LogIn = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setError("");
+
       navigate("/dashboard");
+
       setIsModalOpen(false);
     } catch (error) {
       setError(error.message);

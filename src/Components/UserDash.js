@@ -2,7 +2,9 @@ import React from 'react';
 import axios from "axios";
 import { useState, useEffect, useContext } from 'react';
 import SingleDonation from './SingleDonation';
+
 import { AuthContext } from './AuthContext';
+import backgroundImage from "../Pages/Dashboard4.png"
 
 
 const API = process.env.REACT_APP_API_URL;
@@ -54,16 +56,33 @@ export default function UserDash() {
   };
 
 
-
+  const heroStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "contain",
+backgroundPosition: "center",
+    
+   
+  };
   return (
-    <div className="container">
+    <div>
+<section className="hero is-medium has-background-info mb-6" style={heroStyle}>
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title is-1 has-text-primary is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
+              {/* Welcome, {user?.displayName}! */}
+            </h1>
+          </div>
+        </div>
+      </section>
+    <div className="container"> 
       <div className="columns">
         <div className="column is-one-third">
           <div className="card">
-            <div className="card-header">
-              <h1 className="card-header-title has-text-centered">Welcome,{currentUser?.username}!</h1>
+            <div className="card-header has-background-primary">
+              <h1 className="card-header-title has-text-centered has-text-white">Welcome,{currentUser?.username}!</h1>
+
             </div>
-            <div className="card-content">
+            <div className="card-content has-background-info">
               <div className="media">
                 <div className="media-left">
                   {/* Placeholder image */}
@@ -74,10 +93,10 @@ export default function UserDash() {
                     />
                   </figure>
                 </div>
-                <div className="media-content">
-                  <p style={cardInfoStyle}><strong>Username:</strong></p>
-                  <p style={cardInfoStyle}><strong>Address:</strong> 123 Main St</p>
-                  <p style={cardInfoStyle}><strong>Email:</strong> john@example.com</p>
+                <div className="media-content has-text-dark">
+                  <p style={cardInfoStyle} ><strong className='has-text-dark'>Username:</strong></p>
+                  <p style={cardInfoStyle}><strong className='has-text-dark'>Address:</strong> 123 Main St</p>
+                  <p style={cardInfoStyle}><strong className='has-text-dark'>Email:</strong> john@example.com</p>
                 </div>
               </div>
             </div>
@@ -85,10 +104,10 @@ export default function UserDash() {
         </div>
         <div className="column is-two-thirds">
           <div className="card" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-            <div className="card-header">
-              <h1 className="card-header-title">Your forums</h1>
+            <div className="card-header has-background-primary">
+              <h1 className="card-header-title has-text-white title ">Your Forums</h1>
             </div>
-            <div className="card-content">
+            <div className="card-content has-background-info">
               <ul>
                 {userForums.map((forum, index) => (
                   <div className="card mb-5" key={index}>
@@ -109,10 +128,10 @@ export default function UserDash() {
             </div>
           </div>
           <div className="card mb-5" style={{ maxHeight: '400px', overflowY: 'auto', marginTop: '20px' }}>
-            <div className="card-header">
-              <h1 className="card-header-title">My Donations</h1>
+            <div className="card-header has-background-primary">
+              <h1 className="card-header-title has-text-white title">My Donations</h1>
             </div>
-            <div className="card-content">
+            <div className="card-content has-background-info">
               {userDonations.map((donation, index) => (
                 <div className="column" key={index}>
                   <div className="card mb-5">
@@ -146,6 +165,7 @@ export default function UserDash() {
       {selectedDonation && (
         <SingleDonation donation={selectedDonation} closeModal={closeDonationModal} />
       )}
+    </div>
     </div>
   );
 }

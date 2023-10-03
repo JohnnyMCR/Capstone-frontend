@@ -3,6 +3,7 @@ import axios from "axios";
 import ForumModal from "./ForumModal";
 import ForumCard from "./ForumCard";
 import ArticleCard from "./ArticleCard";
+import backgroundImage from "../Pages/Community.png";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -75,8 +76,25 @@ export default function Forums({ user }) {
     setSelectedSortOption(sortOption);
 
   };
+  
+  const heroStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+   
+  };
   return (
+
     <div>
+      <section className="hero is-medium has-background-info" style={heroStyle}>
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title is-1 has-text-dark is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
+              Care Village Forum
+            </h1>
+          </div>
+        </div>
+      </section>
       <div className="columns mt-1">
         <div className="column is-one-fifth ml-4">
           <div className="field is-grouped">
