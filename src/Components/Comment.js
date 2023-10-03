@@ -4,7 +4,7 @@ import EditComment from './EditComment';
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function Comment({ user, forum_id }) {
+export default function Comment({ user, forum_id, forumContent }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [isExpanded, setIsExpanded] = useState(false);
@@ -83,8 +83,8 @@ export default function Comment({ user, forum_id }) {
             </div>
             {isExpanded && (
                 <div className="expanded-content pl-5 py-2">
-                    <div className="post-content column is-three-quarter is-size-6 has-background-light has-text-dark">
-                        blaaa blaaa
+
+                    <div className="post-content column is-three-quarter is-size-6 has-background-light has-text-dark">{forumContent}                    
                     </div>
                     <ul className='card has-background-info'>
                         {comments.map((comment, index) => (
