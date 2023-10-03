@@ -30,6 +30,8 @@ export default function UserDash({user}) {
       .catch((e) => console.warn("catch", e));
   }, []);
 
+  console.log(user, "what user?")
+
 
   const cardInfoStyle = {
     marginBottom: '10px',
@@ -70,7 +72,7 @@ export default function UserDash({user}) {
                   </figure>
                 </div>
                 <div className="media-content">
-                  <p style={cardInfoStyle}><strong>Username:</strong> John Doe</p>
+                  <p style={cardInfoStyle}><strong>Username:</strong></p>
                   <p style={cardInfoStyle}><strong>Address:</strong> 123 Main St</p>
                   <p style={cardInfoStyle}><strong>Email:</strong> john@example.com</p>
                 </div>

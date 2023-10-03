@@ -48,7 +48,7 @@ const SignUp = () => {
       
       if (response.status === 200) {
         setError("");
-        navigate("/", { replace: true });
+        navigate("/dashboard", { replace: true });
         setIsModalOpen(false);
 
       } else {
@@ -58,6 +58,7 @@ const SignUp = () => {
       console.error('Sign-up error:', error);
       setError(error.message);
     }
+
   };
 
   const openModal = () => {
