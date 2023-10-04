@@ -42,7 +42,6 @@ export default function ForumModal({ isOpen, onClose , forums, setForums })
         });
     } else {
       console.error('currentUser is not defined');
-      // Handle the case when currentUser is not defined
     }
   };
   
