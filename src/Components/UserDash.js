@@ -6,9 +6,11 @@ import { AuthContext } from './AuthContext';
 import backgroundImage from "../Pages/Dashboard4.png"
 
 
+
 const API = process.env.REACT_APP_API_URL;
 
 export default function UserDash() {
+  
   const {currentUser} = useContext(AuthContext)
   
 
@@ -17,13 +19,18 @@ export default function UserDash() {
   const [selectedDonation, setSelectedDonation] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`${API}/forums/user/1`)
-      .then((response) => {
-        setUserForums(response.data);
-      })
-      .catch((e) => console.warn("catch", e));
-  }, []);
+    if (currentUser) {
+      axios
+        .get(`${API}/forums/user/${currentUser.id}`)
+        .then((response) => {
+          setUserForums(response.data);
+        })
+        .catch((e) => console.warn("catch", e));
+    }
+  }, [currentUser]);
+  
+
+  console.log(userForums, 'user forumsss')
 
   useEffect(() => {
     axios
@@ -78,7 +85,7 @@ backgroundPosition: "center",
         <div className="column is-one-third">
           <div className="card">
             <div className="card-header has-background-primary">
-              <h1 className="card-header-title has-text-centered has-text-white">Welcome,{currentUser?.username}!</h1>
+              <h1 className="card-header-title has-text-centered has-text-white">Welcome, {currentUser?.username}!</h1>
             </div>
             <div className="card-content has-background-info">
               <div className="media">
@@ -92,9 +99,9 @@ backgroundPosition: "center",
                   </figure>
                 </div>
                 <div className="media-content has-text-dark">
-                  <p style={cardInfoStyle} ><strong className='has-text-dark'>Username:</strong></p>
-                  <p style={cardInfoStyle}><strong className='has-text-dark'>Address:</strong> 123 Main St</p>
-                  <p style={cardInfoStyle}><strong className='has-text-dark'>Email:</strong> john@example.com</p>
+                  <p style={cardInfoStyle} ><strong className='has-text-dark'>Username: {currentUser?.username}</strong></p>
+                  <p style={cardInfoStyle}><strong className='has-text-dark'>Email: </strong>{currentUser?.email}</p>
+                  <p style={cardInfoStyle}><strong className='has-text-dark'>Address: </strong>{currentUser?.zipcode}</p>
                 </div>
               </div>
             </div>
@@ -116,7 +123,7 @@ backgroundPosition: "center",
                           <span className='column is-two-thirds is-size-6 has-background-primary'>{forum.date}</span>
                           <p className='column is-two-thirds is-size-7 has-background-danger'>{forum.content}</p>
                           <p className='column is-two-thirds is-size-7 has-background-light'>{forum.date}</p>
-                          <p className='column is-two-thirds is-size-7 has-background-dark'>xuxs</p>
+                          <p className='column is-two-thirds is-size-7 has-background-dark'>{forum.category}</p>
                         </div>
                       </div>
                     </div>
