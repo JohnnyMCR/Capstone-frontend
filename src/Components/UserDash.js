@@ -3,9 +3,6 @@ import axios from "axios";
 import { useState, useEffect, useContext } from 'react';
 import SingleDonation from './SingleDonation';
 import { AuthContext } from './AuthContext';
-
-
-import { AuthContext } from './AuthContext';
 import backgroundImage from "../Pages/Dashboard4.png"
 
 
