@@ -1,5 +1,5 @@
 import React from "react"
-import SingleDonation from "./SingleDonation";
+import ShowDonation from "./ShowDonation";
 
 export default function DonationCard({ donation }) {
 
@@ -19,7 +19,7 @@ export default function DonationCard({ donation }) {
                             <p className='subtitle is-size-6 has-text-dark'>User: {donation.user}</p>
                             <p className='subtitle is-size-6 has-text-dark'>Distance: {donation.distance}</p>
                         </div>
-                        <SingleDonation />
+                        <ShowDonation />
                     </div>
 
             </div>

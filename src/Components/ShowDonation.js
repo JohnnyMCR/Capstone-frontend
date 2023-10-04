@@ -20,7 +20,7 @@ import React, { useState } from "react";
 // import Donation from "../Components/Donation";
 // import Donation from "./Donations";
 
-export default function SingleDonation({ donation }) {
+export default function ShowDonation({ donation }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {

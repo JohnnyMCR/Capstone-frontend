@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import { useState, useEffect, useContext } from 'react';
-import SingleDonation from './SingleDonation';
+import ShowDonation from './ShowDonation';
 import { AuthContext } from './AuthContext';
 import backgroundImage from "../Pages/Dashboard4.png"
 
@@ -161,7 +161,7 @@ backgroundPosition: "center",
         </div>
       </div>
       {selectedDonation && (
-        <SingleDonation donation={selectedDonation} closeModal={closeDonationModal} />
+        <ShowDonation donation={selectedDonation} closeModal={closeDonationModal} />
       )}
     </div>
     </div>
