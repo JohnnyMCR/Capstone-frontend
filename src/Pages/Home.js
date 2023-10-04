@@ -72,8 +72,8 @@ function Home() {
           <div className='column is-one-third has-background-info card'>
           <p className='title has-text-primary mt-3 pt-3'>Community:</p>
           <p className='content is-medium is-italic column has-text-dark is-full mb-6'>
-           Content.</p>
-          <button className='button is-primary is-rounded ml-2 has-text-weight-bold mb-3'> <Link
+          Join our thriving community in our forums and uncover a treasure trove of knowledge, shared experiences, and expert advice, all at your fingertips.</p>
+          <button className='button is-primary is-rounded ml-2 has-text-weight-bold '> <Link
             to="/forums"
             className="title is-5 has-text-white  has-text-centered"
           >
@@ -83,16 +83,16 @@ function Home() {
 
           <div className='column is-one-third has-background-success card'>
           <p className='title has-text-primary mt-3 pt-3'>Join Us:</p>
-          <p className='content is-medium is-italic column has-text-dark is-full mb-6 '>
-            At CareVillage and experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
+          <p className='content is-medium is-italic column has-text-dark is-full mb-6'>
+          At CareVillage, experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
             <SignUp />
           </div>
 
           <div className='column is-one-third has-background-info card'>
           <p className='title has-text-primary mt-3 pt-3'>About Us:</p>
-          <p className='content is-medium is-italic column has-text-dark is-full mb-6'>
-            Content.</p>
-            <button className='button is-primary is-rounded ml-2 has-text-weight-bold mb-3'> <Link
+          <p className='content is-medium is-italic column has-text-dark is-full mb-6 pb-5'>
+          Meet Our Diverse Team: Learn about the unique backgrounds and skills that make our engineering team stand out.</p>
+            <button className='button is-primary is-rounded ml-2 has-text-weight-bold mt-4 mb-5'> <Link
             to="/aboutus"
             className="title is-5 has-text-white  has-text-centered"
           >
