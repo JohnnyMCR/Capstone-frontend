@@ -2,6 +2,8 @@ import React from 'react';
 import axios from "axios";
 import { useState, useEffect, useContext } from 'react';
 import SingleDonation from './SingleDonation';
+import { AuthContext } from './AuthContext';
+
 
 import { AuthContext } from './AuthContext';
 import backgroundImage from "../Pages/Dashboard4.png"
@@ -80,7 +82,6 @@ backgroundPosition: "center",
           <div className="card">
             <div className="card-header has-background-primary">
               <h1 className="card-header-title has-text-centered has-text-white">Welcome,{currentUser?.username}!</h1>
-
             </div>
             <div className="card-content has-background-info">
               <div className="media">

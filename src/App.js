@@ -22,6 +22,9 @@ import NewDonation from './Pages/NewDonation';
 import ShowDonation from './Pages/ShowOneDonation';
 import Footer from "./Components/Footer.js";
 import AboutUs from "./Pages/About";
+import {app} from './Components/firebaseConfig'
+
+console.log(app)
 //Initializing Firebase
 // const app = initializeApp(firebaseConfig);
 // console.log("Firebase initialized:", app);

@@ -36,12 +36,12 @@ export default function Forums({ user }) {
         .get(`${API}/users`)
         .then((response) => {
           console.log('API Response:', response.data);
-          response.data.forEach(element => {
-            if (element.username === user.displayName) {
-              setCurUser(element)
-            }
-            
-          });
+          const foundUser = response.data.find((element) => element.username === user.displayName);
+          if (foundUser) {
+            setCurUser(foundUser);
+          } else {
+            console.error('User not found');
+          }
         })
         .catch((error) => {
           console.error('Error fetching username:', error);
@@ -50,7 +50,8 @@ export default function Forums({ user }) {
     } else {
       setCurUser('User ID not defined');
     }
-  },[user]);
+  }, [user]);
+  
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -182,7 +183,7 @@ export default function Forums({ user }) {
         <ForumModal
           isOpen={isModalOpen}
           onClose={closeModal}
-          user={curUser}
+          user={user}
           forums={forums}
           setForums={setForums}
         />
