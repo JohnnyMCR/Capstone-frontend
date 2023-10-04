@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from "axios";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import SingleDonation from './SingleDonation';
+import { AuthContext } from './AuthContext';
+
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function UserDash({user}) {
+export default function UserDash() {
+  const {currentUser} = useContext(AuthContext)
   
 
   const [userForums, setUserForums] = useState([])
@@ -29,6 +32,8 @@ export default function UserDash({user}) {
       })
       .catch((e) => console.warn("catch", e));
   }, []);
+
+  console.log(currentUser, "what user?")
 
 
   const cardInfoStyle = {
@@ -56,7 +61,7 @@ export default function UserDash({user}) {
         <div className="column is-one-third">
           <div className="card">
             <div className="card-header">
-              <h1 className="card-header-title has-text-centered">Welcome,{user?.displayName}!</h1>
+              <h1 className="card-header-title has-text-centered">Welcome,{currentUser?.username}!</h1>
             </div>
             <div className="card-content">
               <div className="media">
@@ -70,7 +75,7 @@ export default function UserDash({user}) {
                   </figure>
                 </div>
                 <div className="media-content">
-                  <p style={cardInfoStyle}><strong>Username:</strong> John Doe</p>
+                  <p style={cardInfoStyle}><strong>Username:</strong></p>
                   <p style={cardInfoStyle}><strong>Address:</strong> 123 Main St</p>
                   <p style={cardInfoStyle}><strong>Email:</strong> john@example.com</p>
                 </div>

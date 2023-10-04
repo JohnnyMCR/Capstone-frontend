@@ -1,9 +1,12 @@
-import React, { useState, } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from './AuthContext';
 
-export default function ForumModal({ isOpen, onClose ,user, forums, setForums })
+
+export default function ForumModal({ isOpen, onClose , forums, setForums })
 {
-  
+  const {currentUser, auth} = useContext(AuthContext)
+  console.log(currentUser, auth, "nav test")
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -13,33 +16,36 @@ export default function ForumModal({ isOpen, onClose ,user, forums, setForums })
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newForum = {
-      user_id: user.id,
-      title,
-      content,
-      category,
-      date: new Date().toLocaleDateString(),
-    };
-
-    console.log(user)
-
-    axios
-      .post(`${API}/forums`, newForum)
-      .then((res) => {
-        console.log('Form submitted successfully:', res.data);
-        const addedForum = {...res.data,username:user.username}
-        const newForumsArray = [...forums, addedForum]
-        setForums(newForumsArray)
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-    
-    setTitle('');
-    setContent('');
-    setCategory('');
-    onClose();
+    if (currentUser) {
+      const newForum = {
+        user_id: currentUser.id,
+        title,
+        content,
+        category,
+        date: new Date().toLocaleDateString(),
+      };
+  
+      axios
+        .post(`${API}/forums`, newForum)
+        .then((res) => {
+          console.log('Form submitted successfully:', res.data);
+          const addedForum = { ...res.data, username: currentUser.username };
+          const newForumsArray = [...forums, addedForum];
+          setForums(newForumsArray);
+          setTitle('');
+          setContent('');
+          setCategory('');
+          onClose();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else {
+      console.error('currentUser is not defined');
+      // Handle the case when currentUser is not defined
+    }
   };
+  
 
   return (
     <div className={`modal ${isOpen ? "is-active" : ""}`}>

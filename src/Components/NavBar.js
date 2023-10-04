@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Login from "./LogIn";
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
-export default function NavBar({ user, onLogout }) {
- 
+export default function NavBar() {
+  const navigate = useNavigate()
+  const {currentUser, auth} = useContext(AuthContext)
+  console.log(currentUser, auth, "nav test")
+  const onLogout = () => auth.signOut()
 
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -43,10 +47,12 @@ export default function NavBar({ user, onLogout }) {
 
           <Link to="/donations" className="navbar-item subtitle is-5 has-text-black mt-5 mr-5 ml-2">Donations</Link>
 
-          {user ? (
+          {currentUser ? (
             <div className="navbar-item">
-              <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning ">
-                Hi, {user.displayName}!
+              <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning"
+              onClick={() => navigate('/dashboard')}
+              >
+                Hi, {currentUser.username}!
               </button>
               <button className="button is-primary is-rounded ml-2 has-text-weight-bold" onClick={onLogout}>Logout</button>              
             </div>
