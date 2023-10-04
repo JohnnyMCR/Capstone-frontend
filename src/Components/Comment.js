@@ -15,7 +15,8 @@ export default function Comment({ forum_id, forumContent }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [editingCommentId, setEditingCommentId] = useState(null);
 
-    console.log(comments)
+    // console.log(comments)
+    console.log(forum_id, 'testing forum ID')
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
@@ -92,6 +93,7 @@ export default function Comment({ forum_id, forumContent }) {
             </div>
             {isExpanded && (
                 <div className="expanded-content pl-5 py-2">
+
                     <div className="post-content column is-three-quarter is-size-6 has-background-light has-text-dark">{forumContent}                    
                     </div>
                     <ul className='card has-background-info'>

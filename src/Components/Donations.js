@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DonationModal from './DonationModal';
 import DonationCard from './DonationCard';
+import backgroundImage from "../Pages/DONATION4.png";
 const API = process.env.REACT_APP_API_URL;
 
 
@@ -45,8 +46,24 @@ export default function Donations() {
         setIsModalOpen(false);
     };
 
+    const heroStyle = {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "contain",
+    backgroundPosition: "center",
+        
+       
+      };
     return (
         <div>
+             <section className="hero is-medium has-background-info" style={heroStyle}>
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title is-1 has-text-white is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
+              {/* Care Village Donation */}
+            </h1>
+          </div>
+        </div>
+      </section>
             <div className='columns mt-1'>
                 <div className='column is-half ml-3'>
                     <div className="field is-grouped">
