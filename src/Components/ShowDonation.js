@@ -1,55 +1,34 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-// import Donation from "../Components/Donation";
-// import Donation from "./Donations";
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import { AuthContext } from './AuthContext';
 
 const API = process.env.REACT_APP_API_URL;
 
+export default function ShowDonation({ donation_id }) {
 
-export default function ShowDonation( { user }) {
-  const [donation, setDonation] = useState([]);
-  const { id } = useParams();
+    const {currentUser, auth} = useContext(AuthContext)
+    console.log(currentUser, auth, "nav test")
+    const [donation, setDonations] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+    console.log(currentUser)
+    console.log(donation_id, 'testing forum ID')
+    const openModal = () => {
+          setIsModalOpen(true);
+        };
+      
+        const closeModal = () => {
+          setIsModalOpen(false);
+        };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  //make api call to backend for a SINGLE donation id
-
-  useEffect(() => {
-        axios
-          .get(`${API}/donations/${id}`)
-          .then((response) => {
-            setDonation(response.data);
-          })
-          .catch((error) => {
-            console.error("Error fetching forum details:", error);
-          });
-      }, [id]);
-
-  //         <div className="SingleDonation">
-  //             <h2>Single Donation</h2>
-  //             {donation ? (
-  //                 <Donation
-  //                     donation={donation}
-  //                     onEdit={(editedDonation) => {
-  //                     }}
-  //                     onDelete={(deletedDonation) => {
-  //                     }}
-  //                 />
-  //             ) : (
-  //                 <p>No donation selected.</p>
-  //             )}
-  //         </div>
-  //     );
-  // }
+    useEffect(() => {
+        axios.get(`${API}/donations/${donation_id}`)
+            .then((response) => {
+                console.log(response.data)
+                setDonations(response.data);
+            })
+            .catch((e) => console.warn("Error fetching comments:", e));
+    }, [donation_id]);
 
   return (
     // <div>
@@ -89,16 +68,16 @@ export default function ShowDonation( { user }) {
               </div>
               <div className="column has-text-left is-three-fifths">
                 <p className="content is-size-4 is-large has-text-primary has-text-weight-bold">
-                  Title:{donation.title}
+                  Title: {donation.title}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  User:{donation.username}
+                  Donation by: {donation.donation_id}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Description:{donation.description}
+                  Drescription: {donation.description}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Category:{donation.category}
+                  Category: {donation.category}
                 </p>
               </div>
             </div>
