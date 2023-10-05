@@ -3,17 +3,12 @@ import axios from 'axios';
 import DonationModal from './DonationModal';
 import DonationCard from './DonationCard';
 import backgroundImage from "../Pages/DONATION4.png";
+
 const API = process.env.REACT_APP_API_URL;
 
-
 export default function Donations({ user }) {
-    // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    // const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
-    // const [selectedItem, setSelectedItem] = useState(null);
-    // const [selectedSortOption, setSelectedSortOption] = useState('All');
     const [curUser, setCurUser] = useState(null);
     const [selectedFilter, setSelectedFilter] = useState("All");
-    // const [selectedSortOption, setSelectedSortOption] = useState("All");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [zipcode, setZipCode] = useState('');
     const [donations, setDonations] = useState([]);
@@ -24,7 +19,7 @@ export default function Donations({ user }) {
                 setDonations(response.data);
             })
             .catch((e) => console.warn("catch", e));
-    }, []);
+    }, [isModalOpen]);
 
     useEffect(() => {
         if (user) {
@@ -51,11 +46,6 @@ export default function Donations({ user }) {
     const handleFilterSelect = (filterOption) => {
         setSelectedFilter(filterOption);
     };
-
-    // const handleSortSelect = (sortOption) => {
-    //     setSelectedSortOption(sortOption);
-
-    // };
 
     const handleZipCodeChange = (e) => {
         setZipCode(e.target.value);

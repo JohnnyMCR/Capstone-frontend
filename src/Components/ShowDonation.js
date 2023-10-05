@@ -1,26 +1,16 @@
-// import React from "react";
-// import Donations from "../Components/Donations";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-// export default function SingleDonation({ donation }) {
-//     return (
-//         <div className="SingleDonation">
-//             <h2>Single Donation</h2>
-//             {donation ? (
-//                 <Donations
-//                     donation={donation}
-//                     onEdit={(editedDonation) => {
-//                     }}
-//                     onDelete={(deletedDonation) => {
-//                     }}
-//                 />
-//             ) : (
-//                 <p>No donation selected.</p>
-//             )}
-import React, { useState } from "react";
 // import Donation from "../Components/Donation";
 // import Donation from "./Donations";
 
-export default function ShowDonation({ donation }) {
+const API = process.env.REACT_APP_API_URL;
+
+
+export default function ShowDonation( { user }) {
+  const [donation, setDonation] = useState([]);
+  const { id } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -32,6 +22,17 @@ export default function ShowDonation({ donation }) {
   };
 
   //make api call to backend for a SINGLE donation id
+
+  useEffect(() => {
+        axios
+          .get(`${API}/donations/${id}`)
+          .then((response) => {
+            setDonation(response.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching forum details:", error);
+          });
+      }, [id]);
 
   //         <div className="SingleDonation">
   //             <h2>Single Donation</h2>
@@ -88,19 +89,16 @@ export default function ShowDonation({ donation }) {
               </div>
               <div className="column has-text-left is-three-fifths">
                 <p className="content is-size-4 is-large has-text-primary has-text-weight-bold">
-                  Title:{" "}
+                  Title:{donation.title}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  User:{" "}
+                  User:{donation.username}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Drescription:{" "}
+                  Description:{donation.description}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Category:{" "}
-                </p>
-                <p className="content is-size-6 is-large has-text-dark">
-                  Distance: miles away
+                  Category:{donation.category}
                 </p>
               </div>
             </div>

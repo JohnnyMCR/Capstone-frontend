@@ -137,7 +137,7 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
-                    <option value="" disabled>
+                    <option value="">
                       Select A Category
                     </option>
                     <option value="Category 1">Clothing</option>
