@@ -1,33 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import { AuthContext } from './AuthContext';
 
-export default function ForumModal({ isOpen, onClose, onSubmit }) {
+
+export default function ForumModal({ isOpen, onClose , forums, setForums })
+{
+  const {currentUser, auth} = useContext(AuthContext)
+  console.log(currentUser, auth, "nav test")
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState('');
+
+  const API = process.env.REACT_APP_API_URL;
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ title, content, category: setCategory });
-    setTitle('');
-    setContent('');
-    setCategory('')
-    onClose();
+    if (currentUser) {
+      const newForum = {
+        user_id: currentUser.id,
+        title,
+        content,
+        category,
+        date: new Date().toLocaleDateString(),
+      };
+  
+      axios
+        .post(`${API}/forums`, newForum)
+        .then((res) => {
+          console.log('Form submitted successfully:', res.data);
+          const addedForum = { ...res.data, username: currentUser.username };
+          const newForumsArray = [...forums, addedForum];
+          setForums(newForumsArray);
+          setTitle('');
+          setContent('');
+          setCategory('');
+          onClose();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else {
+      console.error('currentUser is not defined');
+    }
   };
+  
 
   return (
-    <div className={`modal ${isOpen ? 'is-active' : ''}`}>
+    <div className={`modal ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>
       <div className="modal-content ">
         <div className="box has-background-info">
-          <h1 className="title is-1 has-text-primary">New Forum Post</h1>
+          <div className="columns px-3 py-3">
+            <h1 className="modal-card-title title is-2 has-text-primary has-text-left">
+              New Forum Post
+            </h1>
+            <button
+              className="delete"
+              aria-label="close"
+              onClick={onClose}
+            ></button>
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="field">
-              <label className="label is-large has-text-danger">Title</label>
+              {/* <label className="label is-large has-text-danger">Title</label> */}
               <div className="control">
                 <input
                   className="input"
                   type="text"
-                  placeholder="Enter post title"
+                  placeholder="Enter forum title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
@@ -35,11 +76,11 @@ export default function ForumModal({ isOpen, onClose, onSubmit }) {
               </div>
             </div>
             <div className="field">
-              <label className="label is-large has-text-danger">Content</label>
+              {/* <label className="label is-large has-text-danger">Content</label> */}
               <div className="control">
                 <textarea
                   className="textarea"
-                  placeholder="Enter post content"
+                  placeholder="Enter forum content"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   required
@@ -47,7 +88,7 @@ export default function ForumModal({ isOpen, onClose, onSubmit }) {
               </div>
             </div>
             <div className="field">
-              <label className="label is-large has-text-danger">Category</label>
+              {/* <label className="label is-large has-text-danger">Category</label> */}
               <div className="control">
                 <div className="select">
                   <select
@@ -55,20 +96,42 @@ export default function ForumModal({ isOpen, onClose, onSubmit }) {
                     onChange={(e) => setCategory(e.target.value)}
                     required
                   >
-                    <option value="">Select a category</option>
-                    <option value="baby">Baby</option>
-                    <option value="adolescents">Adolescents</option>
-                    <option value="teen">Teen</option>
-                    <option value="health">Health</option>
+                    <option value="">Select A Category</option>
+                    <option value="Newborn">Newborn</option>
+                    <option value="Toddler">Toddler</option>
+                    <option value="Child">Child</option>
+                    <option value="Adolescent">Adolescent</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
               </div>
             </div>
-            <div className="field">
-              <div className="control">
-                <button className="button is-primary" type="submit">
-                  Submit
+            <div className="columns">
+              <div className="column has-text-left">
+                <button
+                  className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary has-text-left has-text-weight-bold"
+                  aria-label="close"
+                  onClick={onClose}
+                  style={{
+                    boxShadow: "none",
+                    backgroundColor: "white",
+                    color: "inherit",
+                  }}
+                >
+                  Cancel
                 </button>
+              </div>
+              <div className="column has-text-right">
+                <div className="field">
+                  <div className="control">
+                    <button
+                      className="button is-medium is-rounded is-primary mt-3 has-text-weight-bold"
+                      type="submit"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </form>

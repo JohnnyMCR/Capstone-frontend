@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import Login from "./LogIn"
+import React, { useContext, useState } from 'react';
+import Login from "./LogIn";
 import SignUp from './SignUp';
 import LOGO from './LOGO.png'
-import { Link } from 'react-router-dom';
-import Profile from './Profile';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
-export default function NavBar({ user, onLogout }) {
+export default function NavBar() {
+  const navigate = useNavigate()
+  const {currentUser, auth} = useContext(AuthContext)
+  console.log(currentUser, auth, "nav test")
+  const onLogout = () => auth.signOut()
+
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -34,29 +39,30 @@ export default function NavBar({ user, onLogout }) {
       <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
         <div className="navbar-end">
 
-          <Link to="/" className="navbar-item title is-5 has-text-primary">Home</Link>
+          <Link to="/" className="navbar-item subtitle is-5 has-text-black mt-5 mx-2">Home</Link>
 
-          <Link to="/aboutus" className="navbar-item title is-5 has-text-primary">About Us</Link>
+          <Link to="/aboutus" className="navbar-item subtitle is-5 has-text-black mt-5 mx-2">About Us</Link>
 
-          <Link to="/forums" className="navbar-item title is-5 has-text-primary">Forums</Link>
+          <Link to="/forums" className="navbar-item subtitle is-5 has-text-black mt-5 mx-2">Forums</Link>
 
-          <Link to="/donations" className="navbar-item title is-5 has-text-primary">Donations</Link>
+          <Link to="/donations" className="navbar-item subtitle is-5 has-text-black mt-5 mr-5 ml-2">Donations</Link>
 
-          {user ? (
+          {currentUser ? (
             <div className="navbar-item">
-              <button className="button is-primary is-rounded mx-1 mb-5">
-                <Profile/>
+              <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning"
+              onClick={() => navigate('/dashboard')}
+              >
+                Hi, {currentUser.username}!
               </button>
-              <button className="button is-primary is-rounded mx-1 mb-5" onClick={onLogout}>Logout</button>              
+              <button className="button is-primary is-rounded ml-2 has-text-weight-bold" onClick={onLogout}>Logout</button>              
             </div>
           ) : (
             <>
-              <button href='/login' className="button is-warning  mx-1 mb-5 is-rounded" id="login" >
+              
                 <Login />
-              </button>
-              <button href='/signup' className="button is-primary mx-1 mb-5 is-rounded" id="signup" >
+              
                 <SignUp />
-              </button>
+            
             </>
           )}
         </div>
@@ -64,50 +70,3 @@ export default function NavBar({ user, onLogout }) {
     </nav>
   );
 }
-
-
-//  import React from 'react';
-// import { Link } from react-router-dom;
-// const NavBar = ({ user, onLogout }) => { 
-//    return (
-//     <nav>
-//        <ul>
-//         <li>
-//           <Link to=“/”>Home</Link>
-//          </li>
-//         {user ? (
-//           <>
-//             <li>
-//               <Link to=“/dashboard”>Dashboard</Link>
-//             </li>
-//             <li>
-//                <Link to=“/forums”>Forums</Link>
-//              </li>
-//             <li>
-//                <Link to=“/forums/new”>Add a New Post</Link>
-//             </li>
-//              <li>
-//         <li>
-//           <Link to=“/forums/new”>Add a New Post</Link>
-//         </li>
-//                <Link to=“/donations”>Donations</Link>
-//             </li>
-//              <li>
-//               <button onClick={onLogout}>Logout</button>
-//             </li>
-//           </>
-//          ) : (
-//           <>
-//             <li>
-//                <Link to=“/login”>Login</Link>
-//              </li>
-//             <li>
-//               <Link to=“/signup”>Sign Up</Link>
-//              </li>
-//           </>
-//          )}
-//        </ul>
-//      </nav>
-//   );
-// };
-//  export default NavBar; 

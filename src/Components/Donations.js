@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DonationModal from './DonationModal';
 import DonationCard from './DonationCard';
+import backgroundImage from "../Pages/DONATION4.png";
 const API = process.env.REACT_APP_API_URL;
 
 
 export default function Donations() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [selectedSortOption, setSelectedSortOption] = useState('All');
-    const [zipcode, setZipCode] = useState('');
+    // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    // const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
+    // const [selectedItem, setSelectedItem] = useState(null);
+    // const [selectedSortOption, setSelectedSortOption] = useState('All');
+    const [selectedFilter, setSelectedFilter] = useState("All");
+    const [selectedSortOption, setSelectedSortOption] = useState("All");
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const [zipcode, setZipCode] = useState('');
     const [donations, setDonations] = useState([]);
 
     useEffect(() => {
@@ -23,22 +25,13 @@ export default function Donations() {
             .catch((e) => console.warn("catch", e));
     }, []);
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const handleFilterSelect = (filterOption) => {
+        setSelectedFilter(filterOption);
     };
 
-    const toggleSortDropdown = () => {
-        setIsSortDropdownOpen(!isSortDropdownOpen);
-    };
+    const handleSortSelect = (sortOption) => {
+        setSelectedSortOption(sortOption);
 
-    const selectItem = (item) => {
-        setSelectedItem(item);
-        setIsDropdownOpen(false);
-    };
-
-    const selectSortOption = (option) => {
-        setSelectedSortOption(option);
-        setIsSortDropdownOpen(false);
     };
 
     const handleZipCodeChange = (e) => {
@@ -53,12 +46,30 @@ export default function Donations() {
         setIsModalOpen(false);
     };
 
+    const heroStyle = {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "contain",
+    backgroundPosition: "center",
+        
+       
+      };
     return (
         <div>
+             <section className="hero is-medium has-background-info" style={heroStyle}>
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title is-1 has-text-white is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
+              {/* Care Village Donation */}
+            </h1>
+          </div>
+        </div>
+      </section>
             <div className='columns mt-1'>
-                <div className='column is-half'>
+                <div className='column is-half ml-3'>
                     <div className="field is-grouped">
-                        <div className="control" style={{ marginLeft: '10px' }}>
+
+                        {/* 1st */}
+                        {/* <div className="control" style={{ marginLeft: '10px' }}>
                             <div className={`dropdown ${isDropdownOpen ? 'is-active' : ''}`}>
                                 <div className="dropdown-trigger">
                                     <button
@@ -67,7 +78,7 @@ export default function Donations() {
                                         aria-controls="dropdown-menu"
                                         onClick={toggleDropdown}
                                     >
-                                        <span>{selectedItem || 'Dropdown button'}</span>
+                                        <span>{selectedItem || 'Dropdown Button'}</span>
                                         <span className="icon is-small">
                                             <i
                                                 className={`fas fa-angle-${isDropdownOpen ? 'up' : 'down'}`}
@@ -82,72 +93,92 @@ export default function Donations() {
                                             className={`dropdown-item ${selectedItem === 'Dropdown item' ? 'is-active' : ''}`}
                                             onClick={() => selectItem('Dropdown item')}
                                         >
-                                            Dropdown item
+                                            Dropdown Item
                                         </button>
                                         <button
                                             className={`dropdown-item ${selectedItem === 'item' ? 'is-active' : ''}`}
                                             onClick={() => selectItem('item')}
                                         >
-                                            item
+                                            Item
                                         </button>
                                         <button
                                             className={`dropdown-item ${selectedItem === 'Active dropdown item' ? 'is-active' : ''}`}
                                             onClick={() => selectItem('Active dropdown item')}
                                         >
-                                            Active dropdown item
+                                            Active Dropdown Item
                                         </button>
                                         <button
                                             className={`dropdown-item ${selectedItem === 'Other dropdown item' ? 'is-active' : ''}`}
                                             onClick={() => selectItem('Other dropdown item')}
                                         >
-                                            Other dropdown item
+                                            Other Dropdown Item
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="control">
-                            <div className={`dropdown ${isSortDropdownOpen ? 'is-active' : ''}`}>
+                            <div className="dropdown is-hoverable">
                                 <div className="dropdown-trigger">
-                                    <button
-                                        className="button"
-                                        aria-haspopup="true"
-                                        aria-controls="sort-dropdown-menu"
-                                        onClick={toggleSortDropdown}
-                                    >
-                                        <span>Sort: {selectedSortOption}</span>
+                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                        <span>Category: {selectedFilter}</span>
                                         <span className="icon is-small">
-                                            <i
-                                                className={`fas fa-angle-${isSortDropdownOpen ? 'up' : 'down'}`}
-                                                aria-hidden="true"
-                                            ></i>
+                                            <i className="fas fa-angle-down" aria-hidden="true"></i>
                                         </span>
                                     </button>
                                 </div>
-                                <div className="dropdown-menu" id="sort-dropdown-menu" role="menu">
+                                <div className="dropdown-menu" id="dropdown-menu4" role="menu">
                                     <div className="dropdown-content">
-                                        <button
-                                            className={`dropdown-item ${selectedSortOption === 'Most Recent' ? 'is-active' : ''}`}
-                                            onClick={() => selectSortOption('Most Recent')}
-                                        >
-                                            Most Recent
-                                        </button>
-                                        <button
-                                            className={`dropdown-item ${selectedSortOption === 'Most Popular' ? 'is-active' : ''}`}
-                                            onClick={() => selectSortOption('Most Popular')}
-                                        >
-                                            Most Popular
-                                        </button>
-                                        <button
-                                            className={`dropdown-item ${selectedSortOption === 'All' ? 'is-active' : ''}`}
-                                            onClick={() => selectSortOption('All')}
-                                        >
-                                            All
-                                        </button>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Clothing")}>
+                                            Clothing
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Toys")}>
+                                            Toys
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Food")}>
+                                            Food
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Educational")}>
+                                            Educational
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleFilterSelect("Other")}>
+                                            Other
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {/* 1st */}
+
+
+                        {/* 2nd */}
+                        {/* <div className="control">
+                            <div className="dropdown is-hoverable">
+                                <div className="dropdown-trigger">
+                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                        <span>Sort: {selectedSortOption}</span>
+                                        <span className="icon is-small">
+                                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div className="dropdown-menu" id="dropdown-menu4" role="menu">
+                                    <div className="dropdown-content">
+                                        <div className="dropdown-item" onClick={() => handleSortSelect("Most Recent")} >
+                                            Most Recent
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleSortSelect("Most Popular")}>
+                                            Most Popular
+                                        </div>
+                                        <div className="dropdown-item" onClick={() => handleSortSelect("All")}>
+                                            All
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> */}
+                        {/* 2nd */}
+
                         <div className="field has-addons" style={{ marginRight: '20px' }}>
                             <p className="control">
                                 <input
@@ -163,7 +194,7 @@ export default function Donations() {
                 </div>
                 <div className='column'>
                     <div className="control" style={{ textAlign: 'right', marginRight: '20px' }}>
-                        <button className="button is-primary" onClick={openModal}>
+                        <button className="button is-medium is-rounded is-primary has-text-weight-bold" onClick={openModal}>
                             Post +
                         </button>
                     </div>
@@ -214,11 +245,11 @@ export default function Donations() {
 //             setSelectedDonation(null);
 //         }
 //     };
-    // //delete existing Donation
-    // const deleteDonation = (donationId) => {
-    //     const updatedDonations = donations.filter((donation) => donation.id !== donationId);
-    //     setDonations(updatedDonations);
-    // };
+// //delete existing Donation
+// const deleteDonation = (donationId) => {
+//     const updatedDonations = donations.filter((donation) => donation.id !== donationId);
+//     setDonations(updatedDonations);
+// };
 //     return (
 //         <div>
 //             <h1>Donations</h1>

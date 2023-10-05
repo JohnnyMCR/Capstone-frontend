@@ -37,3 +37,13 @@
     transform: rotate(360deg);
   }
 }
+
+ul, li {
+  list-style: none;
+}
+
+.dropdown-item:hover {
+  background-color: lightgray; /* Change to the desired highlight color */
+  cursor: pointer; /* Add a pointer cursor when hovering */
+}
+

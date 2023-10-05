@@ -1,44 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ForumModal from './ForumModal';
-import ForumCard from './ForumCard';
+import ForumModal from "./ForumModal";
+import ForumCard from "./ForumCard";
+import ArticleCard from "./ArticleCard";
+import backgroundImage from "../Pages/Community.png";
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function Forums() {
+export default function Forums({ user }) {
+  //forums and filtered state
   const [forums, setForums] = useState([]);
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedSortOption, setSelectedSortOption] = useState('All');
+  const [filteredForums, setFilteredForums] = useState([]);
+  // filter dropdowns
+  const [selectedFilter, setSelectedFilter] = useState("All");
+  const [selectedSortOption, setSelectedSortOption] = useState("All");
+  // new forum modal
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [curUser, setCurUser] = useState(null);
 
   useEffect(() => {
-    axios.get(`${API}/forums`)
+    axios
+      .get(`${API}/forums`)
+      .then((response) => {
+        setForums(response.data);
+        setFilteredForums(response.data)
+        console.log("Fetched forums:", response.data);
+      })
+      .catch((e) => console.warn("catch", e));
+  }, [isModalOpen]);
+  console.log(forums, 'ALL FORUMS')
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`${API}/users`)
         .then((response) => {
-            setForums(response.data);
+          console.log('API Response:', response.data);
+          const foundUser = response.data.find((element) => element.username === user.displayName);
+          if (foundUser) {
+            setCurUser(foundUser);
+          } else {
+            console.error('User not found');
+          }
         })
-        .catch((e) => console.warn("catch", e));
-}, []);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const toggleSortDropdown = () => {
-    setIsSortDropdownOpen(!isSortDropdownOpen);
-  };
-
-  const selectItem = (item) => {
-    setSelectedItem(item);
-    setIsDropdownOpen(false);
-  };
-
-  const selectSortOption = (option) => {
-    setSelectedSortOption(option);
-    setIsSortDropdownOpen(false);
-  };
+        .catch((error) => {
+          console.error('Error fetching username:', error);
+          setCurUser('Error fetching username');
+        });
+    } else {
+      setCurUser('User ID not defined');
+    }
+  }, [user]);
+  
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -48,250 +61,154 @@ export default function Forums() {
     setIsModalOpen(false);
   };
 
-//   useEffect(() => {
-//     axios
-//       .get(`${API}/forums`)
-//       .then((response) => {
-//         console.log("Fetched forums:", response.data);
-//         setForums(response.data);
-//       })
-//       .catch((err) => console.warn("Error fetching forums:", err));
-//   }, []);
+  const handleFilterSelect = (filterOption) => {
+    setSelectedFilter(filterOption);
+  
+    if (filterOption === "All") {
+      setFilteredForums(forums);
+    } else {
+      const filtered = forums.filter((forum) => forum.category === filterOption);
+      setFilteredForums(filtered);
+    }
+  };
+  
 
+  const handleSortSelect = (sortOption) => {
+    setSelectedSortOption(sortOption);
+
+  };
+  
+  const heroStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+   
+  };
   return (
-    <div>
-      <div className='columns mt-1'>
-        <div className='column is-one-fifth'>
-          <div className="field is-grouped">
-            <div className="control">
-              <div className={`dropdown ${isDropdownOpen ? 'is-active' : ''}`}>
-                <div className="dropdown-trigger">
-                  <button
-                    className="button"
-                    aria-haspopup="true"
-                    aria-controls="dropdown-menu"
-                    onClick={toggleDropdown}
-                  >
-                    <span>{selectedItem || 'Dropdown button'}</span>
-                    <span className="icon is-small">
-                      <i
-                        className={`fas fa-angle-${isDropdownOpen ? 'up' : 'down'}`}
-                        aria-hidden="true"
-                      ></i>
-                    </span>
-                  </button>
-                </div>
-                <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                  <div className="dropdown-content">
-                    <button
-                      className={`dropdown-item ${selectedItem === 'Dropdown item' ? 'is-active' : ''}`}
-                      onClick={() => selectItem('Dropdown item')}
-                    >
-                      Dropdown item
-                    </button>
-                    <button
-                      className={`dropdown-item ${selectedItem === 'item' ? 'is-active' : ''}`}
-                      onClick={() => selectItem('item')}
-                    >
-                      item
-                    </button>
-                    <button
-                      className={`dropdown-item ${selectedItem === 'Active dropdown item' ? 'is-active' : ''}`}
-                      onClick={() => selectItem('Active dropdown item')}
-                    >
-                      Active dropdown item
-                    </button>
-                    <button
-                      className={`dropdown-item ${selectedItem === 'Other dropdown item' ? 'is-active' : ''}`}
-                      onClick={() => selectItem('Other dropdown item')}
-                    >
-                      Other dropdown item
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div className="control">
-              <div className={`dropdown ${isSortDropdownOpen ? 'is-active' : ''}`}>
-                <div className="dropdown-trigger">
-                  <button
-                    className="button"
-                    aria-haspopup="true"
-                    aria-controls="sort-dropdown-menu"
-                    onClick={toggleSortDropdown}
-                  >
-                    <span>Sort: {selectedSortOption}</span>
-                    <span className="icon is-small">
-                      <i
-                        className={`fas fa-angle-${isSortDropdownOpen ? 'up' : 'down'}`}
-                        aria-hidden="true"
-                      ></i>
-                    </span>
-                  </button>
-                </div>
-                <div className="dropdown-menu" id="sort-dropdown-menu" role="menu">
-                  <div className="dropdown-content">
-                    <button
-                      className={`dropdown-item ${selectedSortOption === 'Most Recent' ? 'is-active' : ''}`}
-                      onClick={() => selectSortOption('Most Recent')}
-                    >
-                      Most Recent
-                    </button>
-                    <button
-                      className={`dropdown-item ${selectedSortOption === 'Most Popular' ? 'is-active' : ''}`}
-                      onClick={() => selectSortOption('Most Popular')}
-                    >
-                      Most Popular
-                    </button>
-                    <button
-                      className={`dropdown-item ${selectedSortOption === 'All' ? 'is-active' : ''}`}
-                      onClick={() => selectSortOption('All')}
-                    >
-                      All
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div>
+      <section className="hero is-medium has-background-info" style={heroStyle}>
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title is-1 has-text-dark is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
+              Care Village Forum
+            </h1>
           </div>
         </div>
-        <div className='column'>
-          <div className="control" style={{ textAlign: 'right', marginRight: '20px' }}>
-            <button className="button is-primary" onClick={openModal}>
+      </section>
+      <div className="columns mt-1">
+        <div className="column is-one-fifth ml-4">
+          <div className="field is-grouped">
+
+            {/* 1st drop */}
+            <div className="control">
+              <div className="dropdown is-hoverable">
+                <div className="dropdown-trigger">
+                  <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                    <span>Filter: {selectedFilter}</span>
+                    <span className="icon is-small">
+                      <i className="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div className="dropdown-menu" id="dropdown-menu4" role="menu">
+                  <div className="dropdown-content">
+                    <div className="dropdown-item" onClick={() => handleFilterSelect("Newborn")}>
+                      Newborn
+                      </div>
+                    <div className="dropdown-item" onClick={() => handleFilterSelect("Toddler")}>
+                      Toddler
+                      </div>
+                    <div className="dropdown-item" onClick={() => handleFilterSelect("Child")}>
+                      Child
+                      </div>
+                    <div className="dropdown-item" onClick={() => handleFilterSelect("Adolescent")}>
+                      Adolescent
+                      </div>
+                    <div className="dropdown-item" onClick={() => handleFilterSelect("Other")}>
+                      Other
+                      </div>
+                      <div className="dropdown-item" onClick={() => handleFilterSelect("All")}>
+                      All
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* 1st drop */}
+
+            {/* 2nd drop */}
+            <div className="control">
+              <div className="dropdown is-hoverable">
+                <div className="dropdown-trigger">
+                  <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                    <span>Sort: {selectedSortOption}</span>
+                    <span className="icon is-small">
+                      <i className="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div className="dropdown-menu" id="dropdown-menu4" role="menu">
+                  <div className="dropdown-content">
+                    <div className="dropdown-item" onClick={() => handleSortSelect("Most Recent")} >
+                      Most Recent
+                    </div>
+                    <div className="dropdown-item" onClick={() => handleSortSelect("Most Popular")}>
+                      Most Popular
+                    </div>
+                    <div className="dropdown-item" onClick={() => handleSortSelect("All")}>
+                      All
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* 2nd drop */}
+          </div>
+
+        </div>
+        <div className="column">
+          <div
+            className="control"
+            style={{ textAlign: "right", marginRight: "20px" }}
+          >
+            <button
+              className="button is-medium is-rounded is-primary has-text-weight-bold"
+              onClick={openModal}
+            >
               Post +
             </button>
           </div>
         </div>
-        <ForumModal isOpen={isModalOpen} onClose={closeModal} />
+        <ForumModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          user={user}
+          forums={forums}
+          setForums={setForums}
+        />
       </div>
       <div className="columns">
-        <div className='column is-three-quarters'>
-          {forums.map((forum) => {
-            return <ForumCard key={forum.id} forum={forum} />;
+        <div className="column is-three-quarters">
+          {filteredForums.map((forum) => {
+            return (
+              <ForumCard
+                key={`${forum.title}-${forum.id}`}
+                forum={forum}
+                user={curUser}
+              />
+            );
           })}
         </div>
-        <div className="column is-one-quarter">
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-          </ul>
+        <div className="column is-one-quarter mb-6 mt-3">
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
+          {/* <Articles /> */}
+          <div className="card"></div>
         </div>
       </div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-//   const [selectedCategory, setSelectedCategory] = useState(“”);
-
-
-//   
-//   const handleCategoryChange = (category) => {
-//     setSelectedCategory(category);
-//   };
-
-
-
-//   const filteredForums = selectedCategory
-//     ? forums.filter((forum) => forum.category === selectedCategory)
-//     : forums;
-
-
-
-//   return (
-//     <div className=“Forums”>
-//       <CategoryFilter
-//         categories={Array.from(new Set(forums.map((forum) => forum.category)))}
-//         selectedCategory={selectedCategory}
-//         onCategoryChange={handleCategoryChange}
-//       />
-
-//       <table>
-//         <thead>
-//           <tr>
-//             <th className=“title”>Title</th>
-//             <th className=“category”>Category</th>
-//             <th className=“date”>Date</th>
-//             <th className=“content”>Content</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {filteredForums.map((forum) => {
-//             return <Forum key={forum.id} forum={forum} />;
-//           })}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// }
-// export default Forums;import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import Forum from "./Forum";
-// import CategoryFilter from "./CategoryFilter"; 
-
-// const API = process.env.REACT_APP_API_URL;
-
-// function Forums() {
-//   const [forums, setForums] = useState([]);
-//   const [selectedCategory, setSelectedCategory] = useState(""); 
-//   useEffect(() => {
-//     axios
-//       .get(`${API}/forums`)
-//       .then((response) => {
-//         console.log("Fetched forums:", response.data);
-//         setForums(response.data);
-//       })
-//       .catch((err) => console.warn("Error fetching forums:", err));
-//   }, []);
-
-  
-//   const handleCategoryChange = (category) => {
-//     setSelectedCategory(category);
-//   };
-
-  
-//   const filteredForums = selectedCategory
-//     ? forums.filter((forum) => forum.category === selectedCategory)
-//     : forums;
-
-//   return (
-//     <div className="Forums">
-//       <CategoryFilter
-//         categories={Array.from(new Set(forums.map((forum) => forum.category)))}
-//         selectedCategory={selectedCategory}
-//         onCategoryChange={handleCategoryChange}
-//       />
-
-//       <table>
-//         <thead>
-//           <tr>
-//             <th className="title">Title</th>
-//             <th className="category">Category</th>
-//             <th className="date">Date</th>
-//             <th className="content">Content</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {filteredForums.map((forum) => {
-//             return <Forum key={forum.id} forum={forum} />;
-//           })}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// }
-
-// export default Forums;

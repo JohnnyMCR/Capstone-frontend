@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function DonationModal({ isOpen, onClose }) {
-  const [donationTitle, setDonationTitle] = useState('');
-  const [donationDescription, setDonationDescription] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [donationTitle, setDonationTitle] = useState("");
+  const [donationDescription, setDonationDescription] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleDonationTitleChange = (e) => {
     setDonationTitle(e.target.value);
@@ -25,16 +25,22 @@ export default function DonationModal({ isOpen, onClose }) {
 
   return (
     <div>
-      <div className={`modal ${isOpen ? 'is-active' : ''}`}>
+      <div className={`modal ${isOpen ? "is-active" : ""}`}>
         <div className="modal-background" onClick={onClose}></div>
         <div className="modal-card">
-          <header className="modal-card-head">
-            <h1 className="modal-card-title title is-2 has-text-danger ">Create Donation</h1>
-            <button className="delete" aria-label="close" onClick={onClose}></button>
-          </header>
           <section className="modal-card-body has-background-info">
+            <div className="columns px-3 py-3">
+              <h1 className="modal-card-title title is-2 has-text-primary has-text-left">
+                New Donation
+              </h1>
+              <button
+                className="delete"
+                aria-label="close"
+                onClick={onClose}
+              ></button>
+            </div>
             <div className="field">
-              <label className="label is-large has-text-danger">Donation Title</label>
+              {/* <label className="label is-large has-text-danger">Donation Title</label> */}
               <div className="control">
                 <input
                   className="input"
@@ -46,7 +52,7 @@ export default function DonationModal({ isOpen, onClose }) {
               </div>
             </div>
             <div className="field">
-              <label className="label is-large has-text-danger">Donation Description</label>
+              {/* <label className="label is-large has-text-danger">Donation Description</label> */}
               <div className="control">
                 <textarea
                   className="textarea"
@@ -57,7 +63,7 @@ export default function DonationModal({ isOpen, onClose }) {
               </div>
             </div>
             <div className="field">
-              <label className="label is-large has-text-danger">Upload Image</label>
+              {/* <label className="label is-large has-text-danger">Upload Image</label> */}
               <div className="control">
                 <div className="file has-name">
                   <label className="file-label ">
@@ -71,51 +77,63 @@ export default function DonationModal({ isOpen, onClose }) {
                       <span className="file-icon">
                         <i className="fas fa-upload"></i>
                       </span>
-                      <span className="file-label">Choose a file…</span>
+                      <span className="file-label">Upload Image…</span>
                     </span>
                     <span className="file-name">
-                      {selectedImage ? selectedImage.name : 'No file selected'}
+                      {selectedImage ? selectedImage.name : "No file selected"}
                     </span>
                   </label>
                 </div>
               </div>
             </div>
             <div className="field">
-              <label className="label is-large has-text-danger">Category</label>
+              {/* <label className="label is-large has-text-danger">Category</label> */}
               <div className="control">
                 <div className="select">
                   <select
+                    className="px-6"
                     value={selectedCategory}
                     onChange={handleCategoryChange}
                   >
-                    <option value="" disabled>Select a category</option>
+                    <option value="" disabled>
+                      Select A Category
+                    </option>
                     <option value="Category 1">Clothing</option>
                     <option value="Category 2">Toys</option>
                     <option value="Category 3">Electronics</option>
-
                   </select>
                 </div>
               </div>
             </div>
+            <div className="columns">
+              <div className="column has-text-left">
+                <button
+                  className="button is-medium mt-4 is-outlined is-primary is-rounded has-text-primary has-text-left has-text-weight-bold"
+                  aria-label="close"
+                  onClick={onClose}
+                  style={{
+                    boxShadow: "none",
+                    backgroundColor: "white",
+                    color: "inherit",
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+              <div className="column has-text-right">
+
+              <button
+                className="button is-primary is-rounded is-medium mt-4 has-text-right has-text-weight-bold"
+                type="button"
+                onClick={handleDonationSubmit}
+              >
+                Create
+              </button>
+              </div>
+            </div>
           </section>
-          <footer className="modal-card-foot">
-            <button className="button is-primary" onClick={handleDonationSubmit}>
-              Create
-            </button>
-            <button className="button" onClick={onClose}>
-              Cancel
-            </button>
-          </footer>
         </div>
       </div>
     </div>
-
   );
 }
-
-
-
-
-
-
-
