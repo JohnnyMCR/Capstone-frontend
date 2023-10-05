@@ -1,5 +1,5 @@
 import React from "react";
-import LOGO2 from "./LOGO2.png";
+import LOGO2 from "../Pages/LOGO (1).png";
 import { Link } from "react-router-dom";
 // import Login from "./LogIn";
 // import SignUp from "./SignUp";

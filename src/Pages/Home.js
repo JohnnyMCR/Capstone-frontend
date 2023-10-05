@@ -83,7 +83,7 @@ function Home() {
 
           <div className='column is-one-third has-background-success card'>
           <p className='title has-text-primary mt-3 pt-3'>Join Us:</p>
-          <p className='content is-medium is-italic column has-text-dark is-full mb-6'>
+          <p className='content is-medium is-italic column has-text-dark is-full mb-4'>
           At CareVillage, experience the power of community, knowledge, and generosity. Together, we can build a supportive and caring environment where every parent and child can thrive.</p>
             <SignUp />
           </div>

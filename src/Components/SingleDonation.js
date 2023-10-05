@@ -69,7 +69,7 @@ export default function SingleDonation({ donation }) {
           <section className="modal-card-body py-6 px-6 has-background-info">
             <div className="columns">
               <h1 className="modal-card-title title is-2 has-text-primary has-text-left">
-                Donation Details
+                User Donation
               </h1>
               <button
                 className="delete"
@@ -78,33 +78,43 @@ export default function SingleDonation({ donation }) {
               ></button>
             </div>
             <div className="columns">
-              <div className="column">
-                <figure className="image is-96x128">
+              <div className="column is-one-fifth">
+                <figure className="image is-64x64">
                   <img
-                    src="https://bulma.io/images/placeholders/96x96.png"
+                    src="https://bulma.io/images/placeholders/64x64.png"
                     alt="donation"
+                    className="is-rounded"
                   />
-                </figure>
-              </div>
-              <div className="column has-text-left is-three-fifths">
-                <p className="content is-size-4 is-large has-text-primary has-text-weight-bold">
-                  Title:{" "}
-                </p>
-                <p className="content is-size-6 is-large has-text-dark">
+                <p className="content is-size-6 is-large has-text-dark mt-3">
                   User:{" "}
                 </p>
-                <p className="content is-size-6 is-large has-text-dark">
-                  Drescription:{" "}
+                <p className="content is-size-6 is-large has-text-dark ">
+                  Date:{" "}
+                </p>
+                </figure>
+              </div>
+              <div className="column has-text-left is-four-fifth">
+                <p className="content is-size-4 is-large has-text-primary has-text-weight-bold">
+                  Title:{" "}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
                   Category:{" "}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Distance: miles away
+                  Description:{" "}
                 </p>
+                {/* <p className="content is-size-6 is-large has-text-dark">
+                  Distance: miles away
+                </p> */}
               </div>
             </div>
-            <button className="button has-background-primary is-rounded has-text-white has-text-weight-bold" onClick={closeModal}>
+              <figure className="image is-96x128">
+                  <img
+                    src="https://bulma.io/images/placeholders/96x96.png"
+                    alt="donation"
+                  />
+                </figure>
+            <button className="button has-background-primary is-rounded has-text-white has-text-weight-bold mt-5" onClick={closeModal}>
               Message "The Giver/Donor"
             </button>
           </section>

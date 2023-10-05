@@ -16,8 +16,16 @@ export default function DonationCard({ donation }) {
                             <p className='title is-size-4 has-text-primary'>Title: {donation.title}</p>
                             <p className='subtitle is-size-6 has-text-dark pt-4'>Category: {donation.category}</p>
                             <p className='subtitle is-size-6 has-text-dark'>Description: {donation.description}</p>
-                            <p className='subtitle is-size-6 has-text-dark'>User: {donation.user}</p>
-                            <p className='subtitle is-size-6 has-text-dark'>Distance: {donation.distance}</p>
+                            <div className="columns mb-3">
+
+                                <figure className=" image is-48x48 ml-2">
+                                <img src="https://bulma.io/images/placeholders/48x48.png" alt="Placeholder" 
+                                className="is-rounded"/>
+                            </figure>
+                            <p className='column subtitle is-size-6 has-text-dark'>
+                            User: {donation.user}</p>
+                            </div>
+                            {/* <p className='subtitle is-size-6 has-text-dark'>Distance: {donation.distance}</p> */}
                         </div>
                         <SingleDonation />
                     </div>
