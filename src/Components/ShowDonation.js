@@ -21,6 +21,7 @@ export default function ShowDonation({ donation_id }) {
           setIsModalOpen(false);
         };
 
+
     useEffect(() => {
         axios.get(`${API}/donations/${donation_id}`)
             .then((response) => {
@@ -71,7 +72,7 @@ export default function ShowDonation({ donation_id }) {
                   Title: {donation.title}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Donation by: {donation.donation_id}
+                  Donation by: {currentUser.username}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
                   Drescription: {donation.description}
