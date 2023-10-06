@@ -8,7 +8,7 @@ export default function DonationCard({ donation, user }) {
                     <div className='columns'>
                         <div className='column is-flex is-align-items-center is-justify-content-center'>
                             <figure className="image is-128x128 ">
-                                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder" />
+                            <img src={donation.img || "https://bulma.io/images/placeholders/96x96.png"} alt="Placeholder" />
                             </figure>
                         </div>
                         <div className='column has-text-left is-three-quarters has-background-info'>

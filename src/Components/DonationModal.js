@@ -5,12 +5,15 @@ import axios from 'axios';
 
 export default function DonationModal({ isOpen, onClose, donations, setDonations }) {
 
-  const {currentUser, auth} = useContext(AuthContext)
-  console.log(currentUser, auth, "nav test")
+  const {currentUser, auth} = useContext(AuthContext);
+  console.log(auth);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
+
 
   const API = process.env.REACT_APP_API_URL;
 
@@ -23,9 +26,11 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
         title,
         description,
         category,
-        image,
+        img : image,
         date: new Date().toLocaleDateString(),
       };
+
+      console.log(image); 
   
       axios
         .post(`${API}/donations`, newDonation)
@@ -37,7 +42,8 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
           setTitle('');
           setDescription('');
           setCategory('');
-          setImage('');
+          setImage(null);
+          setIsImageUploaded(true); 
           onClose();
         })
         .catch((error) => {
@@ -48,22 +54,7 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
     }
   };
 
-  // const handleDonationTitleChange = (e) => {
-  //   setDonationTitle(e.target.value);
-  // };
-  // const handleDonationDescriptionChange = (e) => {
-  //   setDonationDescription(e.target.value);
-  // };
-  // const handleCategoryChange = (e) => {
-  //   setSelectedCategory(e.target.value);
-  // };
-  // const handleDonationSubmit = () => {
-  //   onClose();
-  // };
-  // const handleImageChange = (e) => {
-  //   const imageFile = e.target.files[0];
-  //   setSelectedImage(imageFile);
-  // };
+
 
   return (
     <div>
@@ -113,7 +104,7 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
                       className="file-input"
                       type="file"
                       accept="image/*"
-                      onChange={(e) => setImage(e.target.value)}
+                      onChange={(e) => setImage(e.target.files[0])}
                     />
                     <span className="file-cta">
                       <span className="file-icon">
@@ -128,6 +119,11 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
                 </div>
               </div>
             </div>
+            {isImageUploaded ? (
+          <p className="has-text-success">Image uploaded successfully!</p>
+        ) : (
+          <p className="has-text-danger">Please upload an image.</p>
+        )}
             <div className="field">
               {/* <label className="label is-large has-text-danger">Category</label> */}
               <div className="control">
@@ -140,9 +136,9 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
                     <option value="">
                       Select A Category
                     </option>
-                    <option value="Category 1">Clothing</option>
-                    <option value="Category 2">Toys</option>
-                    <option value="Category 3">Electronics</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Toys">Toys</option>
+                    <option value="Electronics">Electronics</option>
                   </select>
                 </div>
               </div>

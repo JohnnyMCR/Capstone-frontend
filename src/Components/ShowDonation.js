@@ -69,8 +69,7 @@ export default function ShowDonation({ donation_id }) {
               <div className="column">
                 <figure className="image is-96x128">
                   <img
-                    src="https://bulma.io/images/placeholders/96x96.png"
-                    alt="donation"
+                    src={donation.img} alt="donation" 
                   />
                 </figure>
               </div>
