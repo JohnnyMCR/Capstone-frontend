@@ -6,8 +6,8 @@ const API = process.env.REACT_APP_API_URL;
 export default function ShowDonation({ donation_id }) {
   const [donation, setDonation] = useState({});
   const [donationUser, setDonationUser] = useState({});
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false); 
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -15,6 +15,10 @@ export default function ShowDonation({ donation_id }) {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const toggleFavorite = () => {
+    setIsFavorited(!isFavorited);
   };
 
   useEffect(() => {
@@ -40,12 +44,26 @@ export default function ShowDonation({ donation_id }) {
       .catch((error) => {
         console.error('Error fetching donation details:', error);
       });
+
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setIsFavorited(storedFavorites.includes(donation_id));
   }, [donation_id]);
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (isFavorited) {
+      localStorage.setItem('favorites', JSON.stringify([...storedFavorites, donation_id]));
+    } else {
+      localStorage.setItem('favorites', JSON.stringify(storedFavorites.filter((id) => id !== donation_id)));
+    }
+  }, [isFavorited, donation_id]);
 
   return (
     <div className="column control is-flex is-justify-content-center is-align-items-center">
       <button
-        className="button is-medium is-rounded is-primary has-text-weight-bold"
+        className={`button is-medium is-rounded ${
+          isFavorited ? 'is-danger' : 'is-primary'
+        } has-text-weight-bold`}
         onClick={openModal}
       >
         Show More
@@ -68,10 +86,7 @@ export default function ShowDonation({ donation_id }) {
             <div className="columns">
               <div className="column">
                 <figure className="image is-96x128">
-                  <img
-                    src="https://bulma.io/images/placeholders/96x96.png"
-                    alt="donation"
-                  />
+                  <img src={donation.img} alt="donation" />
                 </figure>
               </div>
               <div className="column has-text-left is-three-fifths">
@@ -90,10 +105,12 @@ export default function ShowDonation({ donation_id }) {
               </div>
             </div>
             <button
-              className="button has-background-primary is-rounded has-text-white has-text-weight-bold"
-              onClick={closeModal}
+              className={`button is-rounded has-text-white has-text-weight-bold ${
+                isFavorited ? 'is-danger' : 'has-background-primary'
+              }`}
+              onClick={toggleFavorite}
             >
-              Message "The Giver/Donor"
+              {isFavorited ? 'Unfavorite' : 'Favorite'} this donation
             </button>
           </section>
         </div>
