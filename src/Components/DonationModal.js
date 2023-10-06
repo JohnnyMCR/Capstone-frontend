@@ -30,7 +30,6 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
         date: new Date().toLocaleDateString(),
       };
 
-      console.log(image); 
   
       axios
         .post(`${API}/donations`, newDonation)
@@ -54,6 +53,7 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
     }
   };
 
+  
 
 
   return (
