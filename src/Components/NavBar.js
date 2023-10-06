@@ -51,7 +51,7 @@ export default function NavBar({ user, onLogout }) {
               >
                  <Link
             to="/dashboard"
-            className="title is-5 has-text-warning has-text-centered"
+            className="title is-6 has-text-warning has-text-centered"
           >
             Hi, {user.displayName}!
           </Link>
