@@ -101,14 +101,14 @@ export default function SingleDonation({ donation }) {
                   Category:{" "}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Description:{" "}
+                  Description:{" content blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah "}
                 </p>
                 {/* <p className="content is-size-6 is-large has-text-dark">
                   Distance: miles away
                 </p> */}
               </div>
             </div>
-              <figure className="image is-96x128">
+              <figure className="image is-96x128 pt-4">
                   <img
                     src="https://bulma.io/images/placeholders/96x96.png"
                     alt="donation"
