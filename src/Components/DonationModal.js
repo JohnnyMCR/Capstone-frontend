@@ -53,9 +53,6 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
     }
   };
 
-  
-
-
   return (
     <div>
       <div className={`modal ${isOpen ? "is-active" : ""}`}>
