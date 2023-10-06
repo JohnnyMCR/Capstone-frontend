@@ -1,7 +1,6 @@
-import React from "react"
-import SingleDonation from "./SingleDonation";
+import ShowDonation from "./ShowDonation";
 
-export default function DonationCard({ donation }) {
+export default function DonationCard({ donation, user }) {
 
     return (
         <div className="column ">
@@ -16,10 +15,9 @@ export default function DonationCard({ donation }) {
                             <p className='title is-size-4 has-text-primary'>Title: {donation.title}</p>
                             <p className='subtitle is-size-6 has-text-dark pt-4'>Category: {donation.category}</p>
                             <p className='subtitle is-size-6 has-text-dark'>Description: {donation.description}</p>
-                            <p className='subtitle is-size-6 has-text-dark'>User: {donation.user}</p>
-                            <p className='subtitle is-size-6 has-text-dark'>Distance: {donation.distance}</p>
+                            <p className='subtitle is-size-6 has-text-dark'>Posted by: {donation.username}</p>
                         </div>
-                        <SingleDonation />
+                        <ShowDonation user={user} donation_id={donation.id} donationDescription={donation.description} />
                     </div>
 
             </div>

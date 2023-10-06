@@ -1,27 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from './AuthContext';
+import axios from 'axios';
 
-export default function DonationModal({ isOpen, onClose }) {
-  const [donationTitle, setDonationTitle] = useState("");
-  const [donationDescription, setDonationDescription] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleDonationTitleChange = (e) => {
-    setDonationTitle(e.target.value);
+export default function DonationModal({ isOpen, onClose, donations, setDonations }) {
+
+  const {currentUser, auth} = useContext(AuthContext)
+  console.log(currentUser, auth, "nav test")
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState(null);
+
+  const API = process.env.REACT_APP_API_URL;
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (currentUser) {
+      const newDonation = {
+        user_id: currentUser.id,
+        title,
+        description,
+        category,
+        image,
+        date: new Date().toLocaleDateString(),
+      };
+  
+      axios
+        .post(`${API}/donations`, newDonation)
+        .then((res) => {
+          console.log('Form submitted successfully:', res.data);
+          const addedDonation = { ...res.data, username: currentUser.username };
+          const newDonationsArray = [...donations, addedDonation];
+          setDonations(newDonationsArray);
+          setTitle('');
+          setDescription('');
+          setCategory('');
+          setImage('');
+          onClose();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else {
+      console.error('currentUser is not defined');
+    }
   };
-  const handleDonationDescriptionChange = (e) => {
-    setDonationDescription(e.target.value);
-  };
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
-  };
-  const handleDonationSubmit = () => {
-    onClose();
-  };
-  const handleImageChange = (e) => {
-    const imageFile = e.target.files[0];
-    setSelectedImage(imageFile);
-  };
+
+  // const handleDonationTitleChange = (e) => {
+  //   setDonationTitle(e.target.value);
+  // };
+  // const handleDonationDescriptionChange = (e) => {
+  //   setDonationDescription(e.target.value);
+  // };
+  // const handleCategoryChange = (e) => {
+  //   setSelectedCategory(e.target.value);
+  // };
+  // const handleDonationSubmit = () => {
+  //   onClose();
+  // };
+  // const handleImageChange = (e) => {
+  //   const imageFile = e.target.files[0];
+  //   setSelectedImage(imageFile);
+  // };
 
   return (
     <div>
@@ -46,8 +88,8 @@ export default function DonationModal({ isOpen, onClose }) {
                   className="input"
                   type="text"
                   placeholder="Enter title"
-                  value={donationTitle}
-                  onChange={handleDonationTitleChange}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
             </div>
@@ -57,8 +99,8 @@ export default function DonationModal({ isOpen, onClose }) {
                 <textarea
                   className="textarea"
                   placeholder="Enter description"
-                  value={donationDescription}
-                  onChange={handleDonationDescriptionChange}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
               </div>
             </div>
@@ -71,7 +113,7 @@ export default function DonationModal({ isOpen, onClose }) {
                       className="file-input"
                       type="file"
                       accept="image/*"
-                      onChange={handleImageChange}
+                      onChange={(e) => setImage(e.target.value)}
                     />
                     <span className="file-cta">
                       <span className="file-icon">
@@ -80,7 +122,7 @@ export default function DonationModal({ isOpen, onClose }) {
                       <span className="file-label">Upload Image…</span>
                     </span>
                     <span className="file-name">
-                      {selectedImage ? selectedImage.name : "No file selected"}
+                      {image ? image.name : "No file selected"}
                     </span>
                   </label>
                 </div>
@@ -92,10 +134,10 @@ export default function DonationModal({ isOpen, onClose }) {
                 <div className="select">
                   <select
                     className="px-6"
-                    value={selectedCategory}
-                    onChange={handleCategoryChange}
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
                   >
-                    <option value="" disabled>
+                    <option value="">
                       Select A Category
                     </option>
                     <option value="Category 1">Clothing</option>
@@ -125,7 +167,7 @@ export default function DonationModal({ isOpen, onClose }) {
               <button
                 className="button is-primary is-rounded is-medium mt-4 has-text-right has-text-weight-bold"
                 type="button"
-                onClick={handleDonationSubmit}
+                onClick={handleSubmit}
               >
                 Create
               </button>

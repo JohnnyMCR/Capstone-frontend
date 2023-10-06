@@ -3,16 +3,12 @@ import axios from 'axios';
 import DonationModal from './DonationModal';
 import DonationCard from './DonationCard';
 import backgroundImage from "../Pages/DONATION4.png";
+
 const API = process.env.REACT_APP_API_URL;
 
-
-export default function Donations() {
-    // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    // const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
-    // const [selectedItem, setSelectedItem] = useState(null);
-    // const [selectedSortOption, setSelectedSortOption] = useState('All');
+export default function Donations({ user }) {
+    const [curUser, setCurUser] = useState(null);
     const [selectedFilter, setSelectedFilter] = useState("All");
-    const [selectedSortOption, setSelectedSortOption] = useState("All");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [zipcode, setZipCode] = useState('');
     const [donations, setDonations] = useState([]);
@@ -23,15 +19,32 @@ export default function Donations() {
                 setDonations(response.data);
             })
             .catch((e) => console.warn("catch", e));
-    }, []);
+    }, [isModalOpen]);
+
+    useEffect(() => {
+        if (user) {
+          axios
+            .get(`${API}/users`)
+            .then((response) => {
+              console.log('API Response:', response.data);
+              const foundUser = response.data.find((element) => element.username === user.displayName);
+              if (foundUser) {
+                setCurUser(foundUser);
+              } else {
+                console.error('User not found');
+              }
+            })
+            .catch((error) => {
+              console.error('Error fetching username:', error);
+              setCurUser('Error fetching username');
+            });
+        } else {
+          setCurUser('User ID not defined');
+        }
+      }, [user]);
 
     const handleFilterSelect = (filterOption) => {
         setSelectedFilter(filterOption);
-    };
-
-    const handleSortSelect = (sortOption) => {
-        setSelectedSortOption(sortOption);
-
     };
 
     const handleZipCodeChange = (e) => {
@@ -199,11 +212,11 @@ export default function Donations() {
                         </button>
                     </div>
                 </div>
-                <DonationModal isOpen={isModalOpen} onClose={closeModal} />
+                <DonationModal isOpen={isModalOpen} onClose={closeModal} user={user} donations={donations} setDonations={setDonations} />
             </div>
             <div>
                 {donations.map((donation) => {
-                    return <DonationCard key={donation.id} donation={donation} />;
+                    return <DonationCard key={donation.id} donation={donation} user={curUser} />;
                 })}
             </div>
         </div>
