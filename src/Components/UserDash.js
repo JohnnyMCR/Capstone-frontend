@@ -1,12 +1,17 @@
 import React from 'react';
 import axios from "axios";
-import { useState, useEffect } from 'react';
-import SingleDonation from './SingleDonation';
+import { useState, useEffect, useContext } from 'react';
+import ShowDonation from './ShowDonation';
+import { AuthContext } from './AuthContext';
 import backgroundImage from "../Pages/Dashboard4.png"
+
+
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function UserDash({user}) {
+export default function UserDash() {
+  
+  const {currentUser} = useContext(AuthContext)
   
 
   const [userForums, setUserForums] = useState([])
@@ -14,13 +19,18 @@ export default function UserDash({user}) {
   const [selectedDonation, setSelectedDonation] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`${API}/forums/user/1`)
-      .then((response) => {
-        setUserForums(response.data);
-      })
-      .catch((e) => console.warn("catch", e));
-  }, []);
+    if (currentUser) {
+      axios
+        .get(`${API}/forums/user/${currentUser.id}`)
+        .then((response) => {
+          setUserForums(response.data);
+        })
+        .catch((e) => console.warn("catch", e));
+    }
+  }, [currentUser]);
+  
+
+  console.log(userForums, 'user forumsss')
 
   useEffect(() => {
     axios
@@ -31,7 +41,7 @@ export default function UserDash({user}) {
       .catch((e) => console.warn("catch", e));
   }, []);
 
-  console.log(user, "what user?")
+  console.log(currentUser, "what user?")
 
 
   const cardInfoStyle = {
@@ -75,7 +85,7 @@ backgroundPosition: "center",
         <div className="column is-one-third">
           <div className="card">
             <div className="card-header has-background-primary">
-              <h1 className="card-header-title title has-text-centered has-text-white">Welcome, {user?.displayName}!</h1>
+              <h1 className="card-header-title has-text-centered has-text-white">Welcome, {currentUser?.username}!</h1>
             </div>
             <div className="card-content has-background-info">
               <div className="media">
@@ -89,9 +99,12 @@ backgroundPosition: "center",
                   </figure>
                 </div>
                 <div className="media-content has-text-dark">
-                  <p style={cardInfoStyle} ><strong className='has-text-dark'>Username: </strong>{user?.displayName}123</p>
+                  {/* <p style={cardInfoStyle} ><strong className='has-text-dark'>Username: </strong>{user?.displayName}123</p>
                   <p style={cardInfoStyle}><strong className='has-text-dark'>Address:</strong> 123 Main St </p>
-                  <p style={cardInfoStyle}><strong className='has-text-dark'>Email:</strong> {user?.displayName}@gmail.com</p>
+                  <p style={cardInfoStyle}><strong className='has-text-dark'>Email:</strong> {user?.displayName}@gmail.com</p> */}
+                  <p style={cardInfoStyle} ><strong className='has-text-dark'>Username: {currentUser?.username}</strong></p>
+                  <p style={cardInfoStyle}><strong className='has-text-dark'>Email: </strong>{currentUser?.email}</p>
+                  <p style={cardInfoStyle}><strong className='has-text-dark'>Address: </strong>{currentUser?.zipcode}</p>
                 </div>
               </div>
             </div>
@@ -113,7 +126,7 @@ backgroundPosition: "center",
                           <span className='column is-two-thirds is-size-6 has-background-primary'>{forum.date}</span>
                           <p className='column is-two-thirds is-size-7 has-background-danger'>{forum.content}</p>
                           <p className='column is-two-thirds is-size-7 has-background-light'>{forum.date}</p>
-                          <p className='column is-two-thirds is-size-7 has-background-dark'>xuxs</p>
+                          <p className='column is-two-thirds is-size-7 has-background-dark'>{forum.category}</p>
                         </div>
                       </div>
                     </div>
@@ -158,7 +171,7 @@ backgroundPosition: "center",
         </div>
       </div>
       {selectedDonation && (
-        <SingleDonation donation={selectedDonation} closeModal={closeDonationModal} />
+        <ShowDonation donation={selectedDonation} closeModal={closeDonationModal} />
       )}
     </div>
     </div>

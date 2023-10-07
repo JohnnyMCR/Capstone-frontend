@@ -1,7 +1,8 @@
-import React from "react"
-import SingleDonation from "./SingleDonation";
+import React from "react";
+import ShowDonation from "./ShowDonation";
 
-export default function DonationCard({ donation }) {
+export default function DonationCard({ donation, user, }) {
+
 
     return (
         <div className="column ">
@@ -9,7 +10,7 @@ export default function DonationCard({ donation }) {
                     <div className='columns'>
                         <div className='column is-flex is-align-items-center is-justify-content-center'>
                             <figure className="image is-128x128 ">
-                                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder" />
+                            <img src={donation.img || "https://bulma.io/images/placeholders/96x96.png"} alt="Donation" />
                             </figure>
                         </div>
                         <div className='column has-text-left is-three-quarters has-background-info'>
@@ -26,8 +27,9 @@ export default function DonationCard({ donation }) {
                             User: {donation.user}</p>
                             </div>
                             {/* <p className='subtitle is-size-6 has-text-dark'>Distance: {donation.distance}</p> */}
+                            <p className='subtitle is-size-6 has-text-dark'>Posted by: {donation.username}</p>
                         </div>
-                        <SingleDonation />
+                        <ShowDonation user={user} donation_id={donation.id} donationDescription={donation.description}  />
                     </div>
 
             </div>

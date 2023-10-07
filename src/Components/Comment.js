@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import EditComment from './EditComment'; 
+import EditComment from './EditComment';
+import { AuthContext } from './AuthContext';
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function Comment({ user, forum_id, forumContent }) {
+export default function Comment({ forum_id, forumContent }) {
+
+    const {currentUser, auth} = useContext(AuthContext)
+    console.log(currentUser, auth, "nav test")
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [isExpanded, setIsExpanded] = useState(false);
@@ -41,29 +45,34 @@ export default function Comment({ user, forum_id, forumContent }) {
     };
 
     const handleSubmitComment = (e) => {
-        e.preventDefault()
-        console.log(user)
-        const actualNewComment = {
+        e.preventDefault();
+      
+        if (currentUser) {
+          const actualNewComment = {
             content: newComment,
-            user_id: user.id,
+            user_id: currentUser.id,
             forum_id,
-            date: new Date().toLocaleDateString()
-        }
-
-
-        axios.post(`${API}/comments`, actualNewComment)
+            date: new Date().toLocaleDateString(),
+          };
+      
+          axios
+            .post(`${API}/comments`, actualNewComment)
             .then((response) => {
-                console.log(actualNewComment)
-                console.log(response.data)
-                const addedComment = {...response.data,username:user.username}
-
-                setComments([...comments, addedComment]); 
-                setNewComment('');
+              console.log(actualNewComment);
+              console.log(response.data);
+      
+              const addedComment = { ...response.data, username: currentUser.username };
+      
+              setComments([...comments, addedComment]);
+              setNewComment('');
             })
             .catch((error) => {
-                console.error('Error submitting comment:', error);
+              console.error('Error submitting comment:', error);
             });
-    };
+        } else {
+          console.error('currentUser is not defined');
+        }
+      };
 
     useEffect(() => {
         axios.get(`${API}/forums/${forum_id}/comments`)
@@ -93,7 +102,7 @@ export default function Comment({ user, forum_id, forumContent }) {
                                 {editingCommentId === comment.id ? (
                                     <EditComment
                                         comment={comment}
-                                        user={user}
+                                        currentUser={currentUser}
                                         onUpdateComment={handleUpdateComment}
                                         onCancel={handleCancelEdit}
                                     />
