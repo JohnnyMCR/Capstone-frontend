@@ -16,6 +16,7 @@ export default function DonationComments({ donations_id }) {
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+  console.log(!isExpanded)
 
   const handleDonationCommentChange = (event) => {
     setNewDonationComment(event.target.value);
