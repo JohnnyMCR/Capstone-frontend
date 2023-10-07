@@ -1,6 +1,5 @@
 import React from "react";
 import ShowDonation from "./ShowDonation";
-
 export default function DonationCard({ donation, user, }) {
 
 

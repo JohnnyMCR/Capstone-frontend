@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import DonationComments from "./DonationComments"
+
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function ShowDonation({ donation_id }) {
+export default function ShowDonation({ donation_id, user }) {
   const [donation, setDonation] = useState({});
   const [donationUser, setDonationUser] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -112,6 +114,7 @@ export default function ShowDonation({ donation_id }) {
             >
               {isFavorited ? 'Unfavorite' : 'Favorite'} this donation
             </button>
+            <DonationComments user={user} donations_id={donation.id} donationContent={donation.content}/>
           </section>
         </div>
       </div>
