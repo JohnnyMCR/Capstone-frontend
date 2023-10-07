@@ -3,7 +3,6 @@ import axios from 'axios';
 import EditComment from './EditComment';
 import { AuthContext } from './AuthContext';
 
-
 const API = process.env.REACT_APP_API_URL;
 
 export default function Comment({ forum_id, forumContent }) {
