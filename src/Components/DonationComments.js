@@ -4,7 +4,7 @@ import { AuthContext } from './AuthContext';
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function DonationComments({ donations_id, donationContent }) {
+export default function DonationComments({ donations_id }) {
   const { currentUser, auth } = useContext(AuthContext);
   console.log(currentUser, auth, 'nav test');
   const [donationComments, setDonationComments] = useState([]);
@@ -16,7 +16,6 @@ export default function DonationComments({ donations_id, donationContent }) {
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
-  // console.log(!isExpanded)
 
   const handleDonationCommentChange = (event) => {
     setNewDonationComment(event.target.value);
@@ -56,15 +55,19 @@ export default function DonationComments({ donations_id, donationContent }) {
   };
 
   useEffect(() => {
-    axios
-      .get(`${API}/donations/${donations_id}/donation-comments`)
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${API}/donations/${donations_id}/donation-comments`);
         console.log(response.data);
         setDonationComments(response.data);
-      })
-      .catch((e) => console.warn('Error fetching comments:', e));
+      } catch (error) {
+        console.warn('Error fetching comments:', error);
+      }
+    };
+  
+    fetchData();
   }, [donations_id]);
-
+  
   return (
     <div className="column control is-flex is-justify-content-center is-align-items-center">
       <button
