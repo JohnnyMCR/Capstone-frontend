@@ -13,7 +13,7 @@ export default function Forums({ user }) {
   const [filteredForums, setFilteredForums] = useState([]);
   // filter dropdowns
   const [selectedFilter, setSelectedFilter] = useState("All");
-  const [selectedSortOption, setSelectedSortOption] = useState("All");
+  // const [selectedSortOption, setSelectedSortOption] = useState("All");
   // new forum modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [curUser, setCurUser] = useState(null);
@@ -73,10 +73,10 @@ export default function Forums({ user }) {
   };
   
 
-  const handleSortSelect = (sortOption) => {
-    setSelectedSortOption(sortOption);
+  // const handleSortSelect = (sortOption) => {
+  //   setSelectedSortOption(sortOption);
 
-  };
+  // };
   
   const heroStyle = {
     backgroundImage: `url(${backgroundImage})`,
@@ -87,15 +87,16 @@ export default function Forums({ user }) {
   return (
 
     <div>
-      <section className="hero is-medium has-background-info" style={heroStyle}>
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title is-1 has-text-dark is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
+      <section className="hero is-medium has-background-info columns" style={heroStyle}>
+        <div className="hero-body ">
+          <div className="container is-flex is-justify-content-center">
+            <h1 className="title is-1 has-text-primary has-background-info is-italic ">
               Care Village Forum
             </h1>
           </div>
         </div>
       </section>
+
       <div className="columns mt-1">
         <div className="column is-one-fifth ml-4">
           <div className="field is-grouped">
@@ -138,7 +139,7 @@ export default function Forums({ user }) {
             {/* 1st drop */}
 
             {/* 2nd drop */}
-            <div className="control">
+            {/* <div className="control">
               <div className="dropdown is-hoverable">
                 <div className="dropdown-trigger">
                   <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
@@ -162,11 +163,12 @@ export default function Forums({ user }) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* 2nd drop */}
           </div>
-
         </div>
+
+
         <div className="column">
           <div
             className="control"
@@ -188,6 +190,10 @@ export default function Forums({ user }) {
           setForums={setForums}
         />
       </div>
+      
+        <p className="has-text-left ml-5 has-text-primary is-size-3">{selectedFilter} Forums:</p>
+
+      
       <div className="columns">
         <div className="column is-three-quarters">
           {filteredForums.map((forum) => {

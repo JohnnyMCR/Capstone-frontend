@@ -64,7 +64,7 @@ export default function ShowDonation({ donation_id, user }) {
     <div className="column control is-flex is-justify-content-center is-align-items-center">
       <button
         className={`button is-medium is-rounded ${
-          isFavorited ? 'is-danger' : 'is-primary'
+          isFavorited ? 'is-warning' : 'is-primary'
         } has-text-weight-bold`}
         onClick={openModal}
       >
@@ -107,14 +107,21 @@ export default function ShowDonation({ donation_id, user }) {
               </div>
             </div>
             <button
-              className={`button is-rounded has-text-white has-text-weight-bold ${
-                isFavorited ? 'is-danger' : 'has-background-primary'
+              className={`button is-rounded has-text-white has-text-weight-bold mx-1 ${
+                isFavorited ? 'is-warning' : 'has-background-primary'
               }`}
               onClick={toggleFavorite}
             >
-              {isFavorited ? 'Unfavorite' : 'Favorite'} this donation
+              {isFavorited ? 'Unfavorite' : 'Favorite'} This Donation
             </button>
-            <DonationComments user={user} donations_id={donation.id} donationContent={donation.content}/>
+            <button
+              className="button is-rounded has-text-weight-bold is-primary mx-1"
+              onClick={closeModal}
+            >
+              Message For This Item
+            </button>
+            <DonationComments user={user} donations_id={donation.id} donationContent={donation.content} className="has-background-grey"/>
+           
           </section>
         </div>
       </div>
