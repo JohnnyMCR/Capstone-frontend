@@ -11,7 +11,7 @@ export default function ForumCard({ forum, user }) {
 
   return (
     <div className="column">
-      <div className="card mb-5" style={{ boxShadow: '5px 5px 10px #32A6C3' }}>
+      <div className="card mb-5">
         <div className="card-content has-background-info">
           <div className='columns'>
             <div className='column has-text-left is-full'>
