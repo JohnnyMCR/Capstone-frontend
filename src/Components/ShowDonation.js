@@ -115,6 +115,12 @@ export default function ShowDonation({ donation_id, user }) {
               {isFavorited ? 'Unfavorite' : 'Favorite'} This Donation
             </button>
             <DonationComments user={user} donations_id={donation.id} donationContent={donation.content} className="has-background-grey"/>
+            <button
+              className="button is-rounded has-text-weight-bold is-primary"
+              onClick={closeModal}
+            >
+              Message For This Item
+            </button>
           </section>
         </div>
       </div>
