@@ -5,19 +5,21 @@ import { AuthContext } from './AuthContext';
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function Comment({ forum_id, forumContent }) {
+export default function Comment({ forum_id, forumContent, updateForumContent }) {
   const { currentUser, auth } = useContext(AuthContext);
-      console.log(currentUser, auth, "nav test")
-
+  console.log(currentUser, auth, "nav test")
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   const [editingCommentId, setEditingCommentId] = useState(null);
 
-  console.log(forum_id, 'testing forum ID');
-
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
+
+    // Update the content in ForumCard when "See More" is clicked
+    if (!isExpanded) {
+      updateForumContent(forumContent);
+    }
   };
 
   const handleCommentChange = (event) => {
@@ -58,6 +60,7 @@ export default function Comment({ forum_id, forumContent }) {
   const handleSubmitComment = (e) => {
     e.preventDefault();
 
+
     if (currentUser) {
       const actualNewComment = {
         content: newComment,
@@ -88,6 +91,8 @@ export default function Comment({ forum_id, forumContent }) {
   useEffect(() => {
     axios
       .get(`${API}/forums/${forum_id}/comments`)
+
+
       .then((response) => {
         console.log(response.data);
         setComments(response.data);
@@ -104,10 +109,7 @@ export default function Comment({ forum_id, forumContent }) {
       </div>
       {isExpanded && (
         <div className="expanded-content pl-5 py-2">
-          <div className="post-content column is-three-quarter is-size-6 has-background-light has-text-dark">
-            {forumContent}
-          </div>
-          <ul className="card has-background-info">
+          <ul className='card has-background-info'>
             {comments.map((comment, index) => (
               <li key={index} className="comment-item mb-3 mt-2 py-1 has-text-dark">
                 <p>Posted by {comment.username}:</p>
