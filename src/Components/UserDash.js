@@ -29,17 +29,21 @@ export default function UserDash() {
     }
   }, [currentUser]);
 
+  
+
 
   console.log(userForums, 'user forumsss')
 
   useEffect(() => {
-    axios
-      .get(`${API}/donations/user/1`)
-      .then((response) => {
-        setUserDonations(response.data);
-      })
-      .catch((e) => console.warn("catch", e));
-  }, []);
+    if (currentUser) {
+      axios
+        .get(`${API}/donations/user/${currentUser.id}`)
+        .then((response) => {
+          setUserDonations(response.data);
+        })
+        .catch((e) => console.warn("catch", e));
+    }
+  }, [currentUser]);
 
   console.log(currentUser, "what user?")
 
@@ -52,10 +56,6 @@ export default function UserDash() {
   //   overflow: 'hidden',
   // };
 
-  const openDonationModal = (donation) => {
-    setSelectedDonation(donation);
-    console.log('Donation clicked', donation);
-  };
 
   const closeDonationModal = () => {
     setSelectedDonation(null);
@@ -165,28 +165,32 @@ export default function UserDash() {
               <div className="card-content has-background-info">
                 {userDonations.map((donation, index) => (
                   <div className="column" key={index}>
-                    <div className="card mb-5">
-                      <div className="card-content">
-                        <div className="columns">
-                          <div className="column">
-                            <figure
-                              className="image is-128x128"
-                              onClick={() => openDonationModal(donation)} // Add onClick to the image
-                              style={{ cursor: 'pointer' }} // Add a pointer cursor to indicate it's clickable
-                            >
-                              <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder" />
+            <div className="card mb-5">
+                    <div className='columns'>
+                        <div className='column is-flex is-align-items-center is-justify-content-center'>
+                            <figure className="image is-128x128 ">
+                            <img src={donation.img || "https://bulma.io/images/placeholders/96x96.png"} alt="Donation" />
                             </figure>
-                          </div>
-                          <div className="column has-text-left is-three-quarters has-background-info">
-                            <p className="is-size-4 has-text-danger">Title: {donation.title}</p>
-                            <p className="is-size-6 has-text-dark">Category: {donation.category}</p>
-                            <p className="is-size-6 has-text-dark">Description: {donation.description}</p>
-                            <p className="is-size-6 has-text-dark">User: {donation.user}</p>
-                            <p className="is-size-6 has-text-dark">Distance: {donation.distance}</p>
-                          </div>
                         </div>
-                      </div>
+                        <div className='column has-text-left is-three-quarters has-background-info'>
+                            <p className='title is-size-4 has-text-primary'>Title: {donation.title}</p>
+                            <p className='subtitle is-size-6 has-text-dark pt-4'>Category: {donation.category}</p>
+                            <p className='subtitle is-size-6 has-text-dark'>Description: {donation.description}</p>
+                            <div className="columns mb-3">
+
+                                {/* <figure className=" image is-48x48 ml-2">
+                                <img src="https://bulma.io/images/placeholders/48x48.png" alt="Placeholder" 
+                                className="is-rounded"/>
+                            </figure> */}
+                            {/* <p className='column subtitle is-size-6 has-text-dark'>
+                            User: {donation.user}</p> */}
+                            </div>
+                            {/* <p className='subtitle is-size-6 has-text-dark'>Distance: {donation.distance}</p> */}
+                            <p className='subtitle is-size-6 has-text-dark'>Posted by: {donation.username}</p>
+                        </div>
                     </div>
+
+            </div>
                   </div>
                 ))}
               </div>
