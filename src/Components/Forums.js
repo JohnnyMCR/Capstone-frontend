@@ -202,10 +202,6 @@ export default function Forums({ user }) {
         </div>
         <div className="column is-one-quarter mb-6 mt-3">
           <ArticleCard />
-          <ArticleCard />
-          <ArticleCard />
-          <ArticleCard />
-          {/* <Articles /> */}
           <div className="card"></div>
         </div>
       </div>
