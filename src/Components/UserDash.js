@@ -99,6 +99,9 @@ backgroundPosition: "center",
                   </figure>
                 </div>
                 <div className="media-content has-text-dark">
+                  {/* <p style={cardInfoStyle} ><strong className='has-text-dark'>Username: </strong>{user?.displayName}123</p>
+                  <p style={cardInfoStyle}><strong className='has-text-dark'>Address:</strong> 123 Main St </p>
+                  <p style={cardInfoStyle}><strong className='has-text-dark'>Email:</strong> {user?.displayName}@gmail.com</p> */}
                   <p style={cardInfoStyle} ><strong className='has-text-dark'>Username: {currentUser?.username}</strong></p>
                   <p style={cardInfoStyle}><strong className='has-text-dark'>Email: </strong>{currentUser?.email}</p>
                   <p style={cardInfoStyle}><strong className='has-text-dark'>Address: </strong>{currentUser?.zipcode}</p>

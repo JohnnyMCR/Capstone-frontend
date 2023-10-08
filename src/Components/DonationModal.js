@@ -61,7 +61,7 @@ export default function DonationModal({ isOpen, onClose, donations, setDonations
           <section className="modal-card-body has-background-info">
             <div className="columns px-3 py-3">
               <h1 className="modal-card-title title is-2 has-text-primary has-text-left">
-                New Donation
+                Donation Post
               </h1>
               <button
                 className="delete"

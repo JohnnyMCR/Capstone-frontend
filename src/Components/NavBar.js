@@ -52,7 +52,13 @@ export default function NavBar() {
               <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning"
               onClick={() => navigate('/dashboard')}
               >
-                Hi, {currentUser.username}!
+                 <Link
+            to="/dashboard"
+            className="title is-6 has-text-warning has-text-centered"
+          >
+            Hi, {currentUser.displayName}!
+          </Link>
+                
               </button>
               <button className="button is-primary is-rounded ml-2 has-text-weight-bold" onClick={onLogout}>Logout</button>              
             </div>
