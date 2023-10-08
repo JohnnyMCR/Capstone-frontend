@@ -56,7 +56,7 @@ export default function NavBar() {
             to="/dashboard"
             className="title is-6 has-text-warning has-text-centered"
           >
-            Hi, {currentUser.displayName}!
+            Hi, {currentUser?.username}!
           </Link>
                 
               </button>

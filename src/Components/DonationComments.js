@@ -78,9 +78,11 @@ export default function DonationComments({ donations_id }) {
         {isExpanded ? 'Hide Comments' : 'Show Comments'}
       </button>
 
+<div>
+
       {isExpanded && (
-        <div className="comments-box">
-          <h2 className="title is-4">Comments</h2>
+        <div className="comments-box has-background-success px-3 py-3">
+          <h2 className="title is-4 has-text-primary">Comments</h2>
           <ul>
             {donationComments.map((comment) => (
               <li key={comment.id}>
@@ -102,8 +104,9 @@ export default function DonationComments({ donations_id }) {
               Submit Comment
             </button>
           </div>
-        </div>
+          </div>
       )}
+  </div>
     </div>
   );
 }
