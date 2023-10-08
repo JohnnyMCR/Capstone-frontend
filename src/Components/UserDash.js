@@ -85,7 +85,7 @@ export default function UserDash() {
           <div className="column is-one-third">
             <div className="card">
               <div className="card-header has-background-primary">
-                <h1 className="card-header-title has-text-centered has-text-white">Welcome, {currentUser?.username}!</h1>
+                <h1 className="card-header-title has-text-centered has-text-white title">Welcome, {currentUser?.username}!</h1>
               </div>
               <div className="card-content has-background-info">
                 <div className="media">
@@ -110,12 +110,12 @@ export default function UserDash() {
           <div className="column is-two-thirds">
             <div className="card" style={{ maxHeight: '400px', overflowY: 'auto' }}>
               <div className="card-header has-background-primary">
-                <h1 className="card-header-title has-text-white title ">Your Forums</h1>
+                <h1 className="card-header-title has-text-white title ">Villager Post</h1>
               </div>
-              <div className="card-content has-background-info">
+              <div className="card-content ">
                 <ul>
                   {userForums.map((forum, index) => (
-                    <div className="card mb-5" style={{ boxShadow: '5px 5px 10px #32A6C3' }}>
+                    <div className="card mb-5">
                       <div className="card-content has-background-info">
                         <div className='columns'>
                           <div className='column has-text-left is-full'>
@@ -140,29 +140,15 @@ export default function UserDash() {
                         </div>
                       </div>
                     </div>
-                    // <div className="card mb-5" key={index}>
-                    //   <div className="card-content" style={cardContentStyle}>
-                    //     <div className='columns'>
-                    //       <div className='column has-text-left is-full has-background-info'>
-                    //         <h1 className='column is-two-thirds is-size-4 has-background-warning'>{forum.title}</h1>
-                    //         <span className='column is-two-thirds is-size-6 has-background-primary'>{forum.date}</span>
-                    //         <p className='column is-two-thirds is-size-7 has-background-danger'>{forum.content}</p>
-                    //         <p className='column is-two-thirds is-size-7 has-background-light'>{forum.date}</p>
-                    //         <p className='column is-two-thirds is-size-7 has-background-dark'>{forum.category}</p>
-                    //       </div>
-                    //     </div>
-                    //   </div>
-                    // </div>
-
                   ))}
                 </ul>
               </div>
             </div>
             <div className="card mb-5" style={{ maxHeight: '400px', overflowY: 'auto', marginTop: '20px' }}>
               <div className="card-header has-background-primary">
-                <h1 className="card-header-title has-text-white title">My Donations</h1>
+                <h1 className="card-header-title has-text-white title">Villager Donations</h1>
               </div>
-              <div className="card-content has-background-info">
+              <div className="card-content">
                 {userDonations.map((donation, index) => (
                   <div className="column" key={index}>
             <div className="card mb-5">
