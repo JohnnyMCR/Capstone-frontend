@@ -49,14 +49,14 @@ export default function NavBar() {
 
           {currentUser ? (
             <div className="navbar-item">
-              <button className="button is-primary is-rounded has-text-weight-bold is-italic has-text-warning"
+              <button className="button is-primary is-rounded has-text-weight-bold has-text-warning"
               onClick={() => navigate('/dashboard')}
               >
                  <Link
             to="/dashboard"
             className="title is-6 has-text-warning has-text-centered"
           >
-            Hi, {currentUser.displayName}!
+            Hi, {currentUser?.username}!
           </Link>
                 
               </button>

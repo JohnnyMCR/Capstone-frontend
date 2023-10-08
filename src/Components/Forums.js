@@ -13,10 +13,11 @@ export default function Forums({ user }) {
   const [filteredForums, setFilteredForums] = useState([]);
   // filter dropdowns
   const [selectedFilter, setSelectedFilter] = useState("All");
-  const [selectedSortOption, setSelectedSortOption] = useState("All");
+  // const [selectedSortOption, setSelectedSortOption] = useState("All");
   // new forum modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [curUser, setCurUser] = useState(null);
+
 
   useEffect(() => {
     axios
@@ -51,7 +52,7 @@ export default function Forums({ user }) {
       setCurUser('User ID not defined');
     }
   }, [user]);
-  
+
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -63,7 +64,7 @@ export default function Forums({ user }) {
 
   const handleFilterSelect = (filterOption) => {
     setSelectedFilter(filterOption);
-  
+
     if (filterOption === "All") {
       setFilteredForums(forums);
     } else {
@@ -71,18 +72,18 @@ export default function Forums({ user }) {
       setFilteredForums(filtered);
     }
   };
-  
 
-  const handleSortSelect = (sortOption) => {
-    setSelectedSortOption(sortOption);
 
-  };
-  
+  // const handleSortSelect = (sortOption) => {
+  //   setSelectedSortOption(sortOption);
+
+  // };
+
   const heroStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "contain",
     backgroundPosition: "center",
-   
+
   };
   return (
 
@@ -96,6 +97,7 @@ export default function Forums({ user }) {
           </div>
         </div>
       </section>
+
       <div className="columns mt-1">
         <div className="column is-one-fifth ml-4">
           <div className="field is-grouped">
@@ -115,22 +117,22 @@ export default function Forums({ user }) {
                   <div className="dropdown-content">
                     <div className="dropdown-item" onClick={() => handleFilterSelect("Newborn")}>
                       Newborn
-                      </div>
+                    </div>
                     <div className="dropdown-item" onClick={() => handleFilterSelect("Toddler")}>
                       Toddler
-                      </div>
+                    </div>
                     <div className="dropdown-item" onClick={() => handleFilterSelect("Child")}>
                       Child
-                      </div>
+                    </div>
                     <div className="dropdown-item" onClick={() => handleFilterSelect("Adolescent")}>
                       Adolescent
-                      </div>
+                    </div>
                     <div className="dropdown-item" onClick={() => handleFilterSelect("Other")}>
                       Other
-                      </div>
-                      <div className="dropdown-item" onClick={() => handleFilterSelect("All")}>
+                    </div>
+                    <div className="dropdown-item" onClick={() => handleFilterSelect("All")}>
                       All
-                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -138,7 +140,7 @@ export default function Forums({ user }) {
             {/* 1st drop */}
 
             {/* 2nd drop */}
-            <div className="control">
+            {/* <div className="control">
               <div className="dropdown is-hoverable">
                 <div className="dropdown-trigger">
                   <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
@@ -162,11 +164,12 @@ export default function Forums({ user }) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* 2nd drop */}
           </div>
-
         </div>
+
+
         <div className="column">
           <div
             className="control"
@@ -188,6 +191,10 @@ export default function Forums({ user }) {
           setForums={setForums}
         />
       </div>
+
+      <p className="has-text-left ml-5 has-text-primary is-size-3">Category: {selectedFilter} </p>
+
+
       <div className="columns">
         <div className="column is-three-quarters">
           {filteredForums.map((forum) => {

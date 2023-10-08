@@ -10,13 +10,14 @@ export default function Donations({ user }) {
     const [curUser, setCurUser] = useState(null);
     const [selectedFilter, setSelectedFilter] = useState("All");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [zipcode, setZipCode] = useState('');
     const [donations, setDonations] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([])
 
     useEffect(() => {
         axios.get(`${API}/donations`)
             .then((response) => {
                 setDonations(response.data);
+                setFilteredItems(response.data)
             })
             .catch((e) => console.warn("catch", e));
     }, [isModalOpen]);
@@ -43,13 +44,16 @@ export default function Donations({ user }) {
         }
       }, [user]);
 
-    const handleFilterSelect = (filterOption) => {
+      const handleFilterSelect = (filterOption) => {
         setSelectedFilter(filterOption);
-    };
-
-    const handleZipCodeChange = (e) => {
-        setZipCode(e.target.value);
-    };
+    
+        if (filterOption === "All") {
+          setFilteredItems(donations);
+        } else {
+          const filtered = donations.filter((donation) => donation.category === filterOption);
+          setFilteredItems(filtered);
+        }
+      };
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -58,6 +62,8 @@ export default function Donations({ user }) {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    
 
     const heroStyle = {
         backgroundImage: `url(${backgroundImage})`,
@@ -72,7 +78,6 @@ export default function Donations({ user }) {
         <div className="hero-body">
           <div className="container">
             <h1 className="title is-1 has-text-white is-italic is-overlay is-flex is-justify-content-center is-align-items-center">
-              {/* Care Village Donation */}
             </h1>
           </div>
         </div>
@@ -80,61 +85,11 @@ export default function Donations({ user }) {
             <div className='columns mt-1'>
                 <div className='column is-half ml-3'>
                     <div className="field is-grouped">
-
-                        {/* 1st */}
-                        {/* <div className="control" style={{ marginLeft: '10px' }}>
-                            <div className={`dropdown ${isDropdownOpen ? 'is-active' : ''}`}>
-                                <div className="dropdown-trigger">
-                                    <button
-                                        className="button"
-                                        aria-haspopup="true"
-                                        aria-controls="dropdown-menu"
-                                        onClick={toggleDropdown}
-                                    >
-                                        <span>{selectedItem || 'Dropdown Button'}</span>
-                                        <span className="icon is-small">
-                                            <i
-                                                className={`fas fa-angle-${isDropdownOpen ? 'up' : 'down'}`}
-                                                aria-hidden="true"
-                                            ></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                                    <div className="dropdown-content">
-                                        <button
-                                            className={`dropdown-item ${selectedItem === 'Dropdown item' ? 'is-active' : ''}`}
-                                            onClick={() => selectItem('Dropdown item')}
-                                        >
-                                            Dropdown Item
-                                        </button>
-                                        <button
-                                            className={`dropdown-item ${selectedItem === 'item' ? 'is-active' : ''}`}
-                                            onClick={() => selectItem('item')}
-                                        >
-                                            Item
-                                        </button>
-                                        <button
-                                            className={`dropdown-item ${selectedItem === 'Active dropdown item' ? 'is-active' : ''}`}
-                                            onClick={() => selectItem('Active dropdown item')}
-                                        >
-                                            Active Dropdown Item
-                                        </button>
-                                        <button
-                                            className={`dropdown-item ${selectedItem === 'Other dropdown item' ? 'is-active' : ''}`}
-                                            onClick={() => selectItem('Other dropdown item')}
-                                        >
-                                            Other Dropdown Item
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
                         <div className="control">
                             <div className="dropdown is-hoverable">
                                 <div className="dropdown-trigger">
                                     <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                        <span>Category: {selectedFilter}</span>
+                                        <span>Filter: {selectedFilter}</span>
                                         <span className="icon is-small">
                                             <i className="fas fa-angle-down" aria-hidden="true"></i>
                                         </span>
@@ -142,6 +97,9 @@ export default function Donations({ user }) {
                                 </div>
                                 <div className="dropdown-menu" id="dropdown-menu4" role="menu">
                                     <div className="dropdown-content">
+                                    <div className="dropdown-item" onClick={() => handleFilterSelect("All")}>
+                                            All
+                                        </div>
                                         <div className="dropdown-item" onClick={() => handleFilterSelect("Clothing")}>
                                             Clothing
                                         </div>
@@ -161,48 +119,7 @@ export default function Donations({ user }) {
                                 </div>
                             </div>
                         </div>
-                        {/* 1st */}
 
-
-                        {/* 2nd */}
-                        {/* <div className="control">
-                            <div className="dropdown is-hoverable">
-                                <div className="dropdown-trigger">
-                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                        <span>Sort: {selectedSortOption}</span>
-                                        <span className="icon is-small">
-                                            <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <div className="dropdown-menu" id="dropdown-menu4" role="menu">
-                                    <div className="dropdown-content">
-                                        <div className="dropdown-item" onClick={() => handleSortSelect("Most Recent")} >
-                                            Most Recent
-                                        </div>
-                                        <div className="dropdown-item" onClick={() => handleSortSelect("Most Popular")}>
-                                            Most Popular
-                                        </div>
-                                        <div className="dropdown-item" onClick={() => handleSortSelect("All")}>
-                                            All
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
-                        {/* 2nd */}
-
-                        <div className="field has-addons" style={{ marginRight: '20px' }}>
-                            <p className="control">
-                                <input
-                                    className="input"
-                                    type="text"
-                                    placeholder="Zip Code"
-                                    value={zipcode}
-                                    onChange={handleZipCodeChange}
-                                />
-                            </p>
-                        </div>
                     </div>
                 </div>
                 <div className='column'>
@@ -214,8 +131,9 @@ export default function Donations({ user }) {
                 </div>
                 <DonationModal isOpen={isModalOpen} onClose={closeModal} user={user} donations={donations} setDonations={setDonations} />
             </div>
+            <p className="has-text-left ml-5 has-text-primary is-size-3">Category: {selectedFilter} </p>
             <div>
-                {donations.map((donation) => {
+                {filteredItems.map((donation) => {
                     return <DonationCard key={donation.id} donation={donation} user={curUser} />;
                 })}
             </div>
