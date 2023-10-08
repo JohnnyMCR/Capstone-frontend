@@ -112,9 +112,9 @@ export default function ShowDonation({ donation_id, user }) {
               }`}
               onClick={toggleFavorite}
             >
-              {isFavorited ? 'Unfavorite' : 'Favorite'} this donation
+              {isFavorited ? 'Unfavorite' : 'Favorite'} This Donation
             </button>
-            <DonationComments user={user} donations_id={donation.id} donationContent={donation.content}/>
+            <DonationComments user={user} donations_id={donation.id} donationContent={donation.content} className="has-background-grey"/>
           </section>
         </div>
       </div>
