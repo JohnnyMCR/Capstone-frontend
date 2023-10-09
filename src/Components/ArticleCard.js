@@ -95,7 +95,7 @@ export default function ArticleCard() {
               </div>
               <div className="column is-two-third">
                 <div className="article has-text-centered pt-0 pr-0 mr-0 has-text-dark">
-                  <a href={article.url} target="_blank" rel="noopener noreferrer">
+                  <a href={article.url} target="_blank" rel="noopener noreferrer" >
                     {article.title}
                   </a>
                   <p className="subtitle is-6 has-text-dark is-italic"><b>Author:</b> {article.author}</p>
