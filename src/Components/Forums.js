@@ -191,12 +191,16 @@ export default function Forums({ user }) {
           setForums={setForums}
         />
       </div>
+{/* <div className="columns">
 
-      <p className="has-text-left ml-5 has-text-primary is-size-3">Category: {selectedFilter} </p>
+      <p className="column has-text-left ml-5 has-text-primary is-size-3">Category: {selectedFilter} </p>
+      <p className="column has-text-center ml-6 has-text-primary is-size-3">Related Articles</p>
+</div> */}
 
 
       <div className="columns">
         <div className="column is-two-thirds">
+        <p className="column has-text-left ml-5 has-text-primary is-size-3">Category: {selectedFilter} </p>
           {filteredForums.map((forum) => {
             return (
               <ForumCard
@@ -208,6 +212,7 @@ export default function Forums({ user }) {
           })}
         </div>
         <div className="column is-one-third mb-6 mt-3">
+        <p className="column has-text-center has-text-primary is-size-3">Related Articles</p>
           <ArticleCard />
           <div className="card"></div>
         </div>
