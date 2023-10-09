@@ -96,13 +96,13 @@ export default function ShowDonation({ donation_id, user }) {
                   Title: {donation.title}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Donation by: {donationUser.username}
+                  Category: {donation.category}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
                   Description: {donation.description}
                 </p>
                 <p className="content is-size-6 is-large has-text-dark">
-                  Category: {donation.category}
+                  Donation by: {donationUser.username}
                 </p>
               </div>
             </div>
