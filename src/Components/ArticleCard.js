@@ -83,9 +83,9 @@ export default function ArticleCard() {
     <div className="container">
       {limitedArticles.length > 0 ? (
         limitedArticles.map((article, index) => (
-          <div className="card has-background-info my-3 px-3" key={index}>
+          <div className="card has-background-info px-3 py-3 mb-2" key={index}>
             <div className="columns">
-              <div className="column">
+              <div className="column is-one-third">
                 <figure className="image is-128x128">
                   <img
                     src={article.urlToImage || "https://bulma.io/images/placeholders/96x96.png"}
@@ -93,13 +93,13 @@ export default function ArticleCard() {
                   />
                 </figure>
               </div>
-              <div className="column">
+              <div className="column is-two-third">
                 <div className="article has-text-centered pt-0 pr-0 mr-0 has-text-dark">
                   <a href={article.url} target="_blank" rel="noopener noreferrer">
                     {article.title}
                   </a>
+                  <p className="subtitle is-6 has-text-dark is-italic"><b>Author:</b> {article.author}</p>
                   <p>{article.description}</p>
-                  <p><b>Author:</b> {article.author}</p>
                 </div>
               </div>
             </div>

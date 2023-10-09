@@ -196,7 +196,7 @@ export default function Forums({ user }) {
 
 
       <div className="columns">
-        <div className="column is-three-quarters">
+        <div className="column is-two-thirds">
           {filteredForums.map((forum) => {
             return (
               <ForumCard
@@ -207,7 +207,7 @@ export default function Forums({ user }) {
             );
           })}
         </div>
-        <div className="column is-one-quarter mb-6 mt-3">
+        <div className="column is-one-third mb-6 mt-3">
           <ArticleCard />
           <div className="card"></div>
         </div>
